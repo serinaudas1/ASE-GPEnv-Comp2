@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandParser.cs" />
-    <Compile Include="Exceptions\Class1.cs" />
+    <Compile Include="Exceptions\InvalidCommandException.cs" />
     <Compile Include="Exceptions\InvalidParamsException.cs" />
     <Compile Include="Exceptions\ParsingException.cs" />
     <Compile Include="Form1.cs">

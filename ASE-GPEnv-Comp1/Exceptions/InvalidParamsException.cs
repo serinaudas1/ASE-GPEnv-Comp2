@@ -13,7 +13,7 @@ namespace ASE_GPEnv_Comp1.Exceptions
         public string invalidParamsMessage { get; }
         public InvalidParamsException(string message, string invalidParamsMessage) : base(message)
         {
-            invalidParamsMessage = invalidParamsMessage;
+            this.invalidParamsMessage = invalidParamsMessage;
         }
     }
 }

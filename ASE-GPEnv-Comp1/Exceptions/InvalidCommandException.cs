@@ -11,7 +11,7 @@ namespace ASE_GPEnv_Comp1.Exceptions
         public string invalidCommandMessage { get; }
         public InvalidCommandException(string message, string invalidCommandMessage) : base(message)
         {
-            invalidCommandMessage = invalidCommandMessage;
+            this.invalidCommandMessage = invalidCommandMessage;
         }
     }
 }
