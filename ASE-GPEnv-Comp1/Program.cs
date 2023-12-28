@@ -16,7 +16,7 @@ namespace ASE_GPEnv_Comp1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainUI_AseGPL1());
         }
     }
 }
