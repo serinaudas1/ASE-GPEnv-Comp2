@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ASE_GPEnv_Comp1
 {
-    public partial class Form1 : Form
+    public partial class MainUI_AseGPL1 : Form
     {
-        public Form1()
+        public MainUI_AseGPL1()
         {
             InitializeComponent();
         }

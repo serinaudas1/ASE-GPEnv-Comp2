@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ASE_GPEnv_Comp1
+namespace ASE_GPEnv_Comp1.Exceptions
 {
-    class CustomException
+    class InvalidParamtersException
     {
     }
 }
