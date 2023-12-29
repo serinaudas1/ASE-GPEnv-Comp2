@@ -98,5 +98,23 @@ namespace ASE_GPEnv_Comp1
 
         }
 
+        public void drawTriangle(int sideLength)
+        {
+
+            int halfSide = sideLength / 2;
+       
+            Point firstPoint = new Point(this.penPosition.posX, this.penPosition.posY - halfSide);
+            Point secondPoint = new Point(this.penPosition.posX + halfSide, this.penPosition.posY);
+            Point thirdPoint = new Point(this.penPosition.posX - halfSide, this.penPosition.posY);
+
+
+        
+            this.graphics.DrawLine(pen, firstPoint, secondPoint);
+            this.graphics.DrawLine(pen, secondPoint, thirdPoint);
+            this.graphics.DrawLine(pen, thirdPoint, firstPoint);
+
+
+        }
+
     }
 }

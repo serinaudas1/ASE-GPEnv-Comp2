@@ -55,6 +55,7 @@
             this.drawRectangleBtn = new System.Windows.Forms.Button();
             this.drawCircleBtn = new System.Windows.Forms.Button();
             this.moveTo100Btn = new System.Windows.Forms.Button();
+            this.drawTrianleBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.codeBlockContainer.SuspendLayout();
             this.convasContainer.SuspendLayout();
@@ -320,6 +321,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.drawTrianleBtn);
             this.tabPage2.Controls.Add(this.drawCircleBtn);
             this.tabPage2.Controls.Add(this.drawRectangleBtn);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -377,6 +379,16 @@
             this.moveTo100Btn.UseVisualStyleBackColor = true;
             this.moveTo100Btn.Click += new System.EventHandler(this.moveTo100Btn_Click);
             // 
+            // drawTrianleBtn
+            // 
+            this.drawTrianleBtn.Location = new System.Drawing.Point(185, 3);
+            this.drawTrianleBtn.Name = "drawTrianleBtn";
+            this.drawTrianleBtn.Size = new System.Drawing.Size(83, 23);
+            this.drawTrianleBtn.TabIndex = 2;
+            this.drawTrianleBtn.Text = "Draw Triangle";
+            this.drawTrianleBtn.UseVisualStyleBackColor = true;
+            this.drawTrianleBtn.Click += new System.EventHandler(this.drawTrianleBtn_Click);
+            // 
             // MainUI_AseGPL1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -431,6 +443,7 @@
         private System.Windows.Forms.Button drawRectangleBtn;
         private System.Windows.Forms.Button moveTo100Btn;
         private System.Windows.Forms.Button drawCircleBtn;
+        private System.Windows.Forms.Button drawTrianleBtn;
     }
 }
 

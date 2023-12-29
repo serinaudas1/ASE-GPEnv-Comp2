@@ -77,5 +77,10 @@ namespace ASE_GPEnv_Comp1
         {
             this.canvas.drawCircle(50);
         }
+
+        private void drawTrianleBtn_Click(object sender, EventArgs e)
+        {
+            this.canvas.drawTriangle(100);
+        }
     }
 }
