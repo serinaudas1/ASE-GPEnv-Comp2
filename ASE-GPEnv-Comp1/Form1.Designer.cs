@@ -30,23 +30,23 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.codeBlockContainer = new System.Windows.Forms.Panel();
-            this.convasContainer = new System.Windows.Forms.Panel();
-            this.commandAndHistoryContainer = new System.Windows.Forms.Panel();
-            this.toolboxAndSnippetsContainer = new System.Windows.Forms.Panel();
-            this.loadProgramButton = new System.Windows.Forms.Button();
-            this.saveProgramButton = new System.Windows.Forms.Button();
-            this.programTextBox = new System.Windows.Forms.RichTextBox();
-            this.programSyntaxCheckButton = new System.Windows.Forms.Button();
-            this.executeProgramButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.commandsHistoryTextBox = new System.Windows.Forms.RichTextBox();
-            this.commandTextBox = new System.Windows.Forms.TextBox();
-            this.runCommandButton = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.outputTextBox = new System.Windows.Forms.RichTextBox();
+            this.executeProgramButton = new System.Windows.Forms.Button();
+            this.programSyntaxCheckButton = new System.Windows.Forms.Button();
+            this.programTextBox = new System.Windows.Forms.RichTextBox();
+            this.saveProgramButton = new System.Windows.Forms.Button();
+            this.loadProgramButton = new System.Windows.Forms.Button();
+            this.convasContainer = new System.Windows.Forms.Panel();
+            this.canvasPanel = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.canvas = new System.Windows.Forms.Panel();
+            this.commandAndHistoryContainer = new System.Windows.Forms.Panel();
+            this.runCommandButton = new System.Windows.Forms.Button();
+            this.commandTextBox = new System.Windows.Forms.TextBox();
+            this.commandsHistoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.toolboxAndSnippetsContainer = new System.Windows.Forms.Panel();
+            this.outputTextBox = new System.Windows.Forms.RichTextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.codeBlockContainer.SuspendLayout();
             this.convasContainer.SuspendLayout();
@@ -92,18 +92,100 @@
             this.codeBlockContainer.Size = new System.Drawing.Size(382, 207);
             this.codeBlockContainer.TabIndex = 0;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(122, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Type your program here.";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // executeProgramButton
+            // 
+            this.executeProgramButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.executeProgramButton.Location = new System.Drawing.Point(208, 180);
+            this.executeProgramButton.Name = "executeProgramButton";
+            this.executeProgramButton.Size = new System.Drawing.Size(75, 23);
+            this.executeProgramButton.TabIndex = 4;
+            this.executeProgramButton.Text = "Execute";
+            this.executeProgramButton.UseVisualStyleBackColor = true;
+            // 
+            // programSyntaxCheckButton
+            // 
+            this.programSyntaxCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.programSyntaxCheckButton.Location = new System.Drawing.Point(289, 181);
+            this.programSyntaxCheckButton.Name = "programSyntaxCheckButton";
+            this.programSyntaxCheckButton.Size = new System.Drawing.Size(89, 23);
+            this.programSyntaxCheckButton.TabIndex = 3;
+            this.programSyntaxCheckButton.Text = "Syntax Check";
+            this.programSyntaxCheckButton.UseVisualStyleBackColor = true;
+            // 
+            // programTextBox
+            // 
+            this.programTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.programTextBox.Location = new System.Drawing.Point(4, 45);
+            this.programTextBox.Name = "programTextBox";
+            this.programTextBox.Size = new System.Drawing.Size(375, 130);
+            this.programTextBox.TabIndex = 2;
+            this.programTextBox.Text = "";
+            // 
+            // saveProgramButton
+            // 
+            this.saveProgramButton.Location = new System.Drawing.Point(86, 3);
+            this.saveProgramButton.Name = "saveProgramButton";
+            this.saveProgramButton.Size = new System.Drawing.Size(75, 23);
+            this.saveProgramButton.TabIndex = 1;
+            this.saveProgramButton.Text = "Save";
+            this.saveProgramButton.UseVisualStyleBackColor = true;
+            // 
+            // loadProgramButton
+            // 
+            this.loadProgramButton.Location = new System.Drawing.Point(4, 4);
+            this.loadProgramButton.Name = "loadProgramButton";
+            this.loadProgramButton.Size = new System.Drawing.Size(75, 23);
+            this.loadProgramButton.TabIndex = 0;
+            this.loadProgramButton.Text = "Load Program";
+            this.loadProgramButton.UseVisualStyleBackColor = true;
+            this.loadProgramButton.Click += new System.EventHandler(this.button1_Click);
+            // 
             // convasContainer
             // 
             this.convasContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.convasContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.convasContainer.Controls.Add(this.canvas);
+            this.convasContainer.Controls.Add(this.canvasPanel);
             this.convasContainer.Controls.Add(this.label4);
             this.convasContainer.Location = new System.Drawing.Point(391, 3);
             this.convasContainer.Name = "convasContainer";
             this.convasContainer.Size = new System.Drawing.Size(382, 207);
             this.convasContainer.TabIndex = 1;
+            // 
+            // canvasPanel
+            // 
+            this.canvasPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.canvasPanel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.canvasPanel.Location = new System.Drawing.Point(7, 20);
+            this.canvasPanel.Name = "canvasPanel";
+            this.canvasPanel.Size = new System.Drawing.Size(370, 183);
+            this.canvasPanel.TabIndex = 1;
+            this.canvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.canvasPanel_Paint);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(4, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Graphical Output";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // commandAndHistoryContainer
             // 
@@ -120,88 +202,24 @@
             this.commandAndHistoryContainer.Size = new System.Drawing.Size(382, 207);
             this.commandAndHistoryContainer.TabIndex = 2;
             // 
-            // toolboxAndSnippetsContainer
+            // runCommandButton
             // 
-            this.toolboxAndSnippetsContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.runCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.runCommandButton.Location = new System.Drawing.Point(303, 181);
+            this.runCommandButton.Name = "runCommandButton";
+            this.runCommandButton.Size = new System.Drawing.Size(75, 23);
+            this.runCommandButton.TabIndex = 4;
+            this.runCommandButton.Text = "Run";
+            this.runCommandButton.UseVisualStyleBackColor = true;
+            // 
+            // commandTextBox
+            // 
+            this.commandTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.toolboxAndSnippetsContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.toolboxAndSnippetsContainer.Controls.Add(this.outputTextBox);
-            this.toolboxAndSnippetsContainer.Controls.Add(this.label3);
-            this.toolboxAndSnippetsContainer.Location = new System.Drawing.Point(391, 216);
-            this.toolboxAndSnippetsContainer.Name = "toolboxAndSnippetsContainer";
-            this.toolboxAndSnippetsContainer.Size = new System.Drawing.Size(382, 207);
-            this.toolboxAndSnippetsContainer.TabIndex = 3;
-            // 
-            // loadProgramButton
-            // 
-            this.loadProgramButton.Location = new System.Drawing.Point(4, 4);
-            this.loadProgramButton.Name = "loadProgramButton";
-            this.loadProgramButton.Size = new System.Drawing.Size(75, 23);
-            this.loadProgramButton.TabIndex = 0;
-            this.loadProgramButton.Text = "Load Program";
-            this.loadProgramButton.UseVisualStyleBackColor = true;
-            this.loadProgramButton.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // saveProgramButton
-            // 
-            this.saveProgramButton.Location = new System.Drawing.Point(86, 3);
-            this.saveProgramButton.Name = "saveProgramButton";
-            this.saveProgramButton.Size = new System.Drawing.Size(75, 23);
-            this.saveProgramButton.TabIndex = 1;
-            this.saveProgramButton.Text = "Save";
-            this.saveProgramButton.UseVisualStyleBackColor = true;
-            // 
-            // programTextBox
-            // 
-            this.programTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.programTextBox.Location = new System.Drawing.Point(4, 45);
-            this.programTextBox.Name = "programTextBox";
-            this.programTextBox.Size = new System.Drawing.Size(375, 130);
-            this.programTextBox.TabIndex = 2;
-            this.programTextBox.Text = "";
-            // 
-            // programSyntaxCheckButton
-            // 
-            this.programSyntaxCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.programSyntaxCheckButton.Location = new System.Drawing.Point(289, 181);
-            this.programSyntaxCheckButton.Name = "programSyntaxCheckButton";
-            this.programSyntaxCheckButton.Size = new System.Drawing.Size(89, 23);
-            this.programSyntaxCheckButton.TabIndex = 3;
-            this.programSyntaxCheckButton.Text = "Syntax Check";
-            this.programSyntaxCheckButton.UseVisualStyleBackColor = true;
-            // 
-            // executeProgramButton
-            // 
-            this.executeProgramButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.executeProgramButton.Location = new System.Drawing.Point(208, 180);
-            this.executeProgramButton.Name = "executeProgramButton";
-            this.executeProgramButton.Size = new System.Drawing.Size(75, 23);
-            this.executeProgramButton.TabIndex = 4;
-            this.executeProgramButton.Text = "Execute";
-            this.executeProgramButton.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Type your program here.";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 4);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Commands History";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.commandTextBox.Location = new System.Drawing.Point(7, 155);
+            this.commandTextBox.Name = "commandTextBox";
+            this.commandTextBox.Size = new System.Drawing.Size(371, 20);
+            this.commandTextBox.TabIndex = 3;
             // 
             // commandsHistoryTextBox
             // 
@@ -216,33 +234,28 @@
             this.commandsHistoryTextBox.TabIndex = 2;
             this.commandsHistoryTextBox.Text = "";
             // 
-            // commandTextBox
+            // label2
             // 
-            this.commandTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 4);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Commands History";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // toolboxAndSnippetsContainer
+            // 
+            this.toolboxAndSnippetsContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.commandTextBox.Location = new System.Drawing.Point(7, 155);
-            this.commandTextBox.Name = "commandTextBox";
-            this.commandTextBox.Size = new System.Drawing.Size(371, 20);
-            this.commandTextBox.TabIndex = 3;
-            // 
-            // runCommandButton
-            // 
-            this.runCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.runCommandButton.Location = new System.Drawing.Point(303, 181);
-            this.runCommandButton.Name = "runCommandButton";
-            this.runCommandButton.Size = new System.Drawing.Size(75, 23);
-            this.runCommandButton.TabIndex = 4;
-            this.runCommandButton.Text = "Run";
-            this.runCommandButton.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 4);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Output";
+            this.toolboxAndSnippetsContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.toolboxAndSnippetsContainer.Controls.Add(this.outputTextBox);
+            this.toolboxAndSnippetsContainer.Controls.Add(this.label3);
+            this.toolboxAndSnippetsContainer.Location = new System.Drawing.Point(391, 216);
+            this.toolboxAndSnippetsContainer.Name = "toolboxAndSnippetsContainer";
+            this.toolboxAndSnippetsContainer.Size = new System.Drawing.Size(382, 207);
+            this.toolboxAndSnippetsContainer.TabIndex = 3;
             // 
             // outputTextBox
             // 
@@ -257,26 +270,14 @@
             this.outputTextBox.TabIndex = 5;
             this.outputTextBox.Text = "";
             // 
-            // label4
+            // label3
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 4);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Graphical Output";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // canvas
-            // 
-            this.canvas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.canvas.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.canvas.Location = new System.Drawing.Point(7, 20);
-            this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(370, 183);
-            this.canvas.TabIndex = 1;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Output";
             // 
             // MainUI_AseGPL1
             // 
@@ -320,7 +321,7 @@
         private System.Windows.Forms.RichTextBox outputTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel canvas;
+        private System.Windows.Forms.Panel canvasPanel;
     }
 }
 

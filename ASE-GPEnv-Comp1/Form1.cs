@@ -41,5 +41,12 @@ namespace ASE_GPEnv_Comp1
         {
 
         }
+
+        private void canvasPanel_Paint(object sender, PaintEventArgs e)
+        {
+            Canvas canvas = new Canvas(Color.Red, 2, e.Graphics);
+            //canvas.moveTo(50, 50);
+            canvas.drawTo();
+        }
     }
 }
