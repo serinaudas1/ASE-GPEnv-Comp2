@@ -53,6 +53,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.resetPenBtn = new System.Windows.Forms.Button();
             this.drawRectangleBtn = new System.Windows.Forms.Button();
+            this.drawCircleBtn = new System.Windows.Forms.Button();
+            this.moveTo100Btn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.codeBlockContainer.SuspendLayout();
             this.convasContainer.SuspendLayout();
@@ -167,6 +169,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.convasContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.convasContainer.Controls.Add(this.moveTo100Btn);
             this.convasContainer.Controls.Add(this.resetPenBtn);
             this.convasContainer.Controls.Add(this.clearCanvasButton);
             this.convasContainer.Controls.Add(this.canvasPanel);
@@ -317,6 +320,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.drawCircleBtn);
             this.tabPage2.Controls.Add(this.drawRectangleBtn);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -352,6 +356,26 @@
             this.drawRectangleBtn.Text = "Draw Rectangle";
             this.drawRectangleBtn.UseVisualStyleBackColor = true;
             this.drawRectangleBtn.Click += new System.EventHandler(this.drawRectangleBtn_Click);
+            // 
+            // drawCircleBtn
+            // 
+            this.drawCircleBtn.Location = new System.Drawing.Point(103, 3);
+            this.drawCircleBtn.Name = "drawCircleBtn";
+            this.drawCircleBtn.Size = new System.Drawing.Size(75, 23);
+            this.drawCircleBtn.TabIndex = 1;
+            this.drawCircleBtn.Text = "Draw Circle";
+            this.drawCircleBtn.UseVisualStyleBackColor = true;
+            this.drawCircleBtn.Click += new System.EventHandler(this.drawCircleBtn_Click);
+            // 
+            // moveTo100Btn
+            // 
+            this.moveTo100Btn.Location = new System.Drawing.Point(7, 180);
+            this.moveTo100Btn.Name = "moveTo100Btn";
+            this.moveTo100Btn.Size = new System.Drawing.Size(115, 23);
+            this.moveTo100Btn.TabIndex = 4;
+            this.moveTo100Btn.Text = "*MoveTo 100,100";
+            this.moveTo100Btn.UseVisualStyleBackColor = true;
+            this.moveTo100Btn.Click += new System.EventHandler(this.moveTo100Btn_Click);
             // 
             // MainUI_AseGPL1
             // 
@@ -405,6 +429,8 @@
         private System.Windows.Forms.Button clearCanvasButton;
         private System.Windows.Forms.Button resetPenBtn;
         private System.Windows.Forms.Button drawRectangleBtn;
+        private System.Windows.Forms.Button moveTo100Btn;
+        private System.Windows.Forms.Button drawCircleBtn;
     }
 }
 

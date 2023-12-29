@@ -67,5 +67,15 @@ namespace ASE_GPEnv_Comp1
         {
             this.canvas.drawRectangle(100, 100);
         }
+
+        private void moveTo100Btn_Click(object sender, EventArgs e)
+        {
+            this.canvas.moveTo(new PenPosition(100,100));
+        }
+
+        private void drawCircleBtn_Click(object sender, EventArgs e)
+        {
+            this.canvas.drawCircle(50);
+        }
     }
 }

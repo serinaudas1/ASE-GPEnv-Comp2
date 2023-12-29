@@ -29,8 +29,8 @@ namespace ASE_GPEnv_Comp1
     class Canvas
     {
         Pen pen;
-        float penWidth;
-        Color penColor;
+        //float penWidth;
+        //Color penColor;
         PenPosition penPosition;
 
         Graphics graphics;
@@ -90,6 +90,13 @@ namespace ASE_GPEnv_Comp1
 
         }
 
+        public void drawCircle(int radius)
+        {
+            int translatedX = this.penPosition.posX - radius;
+            int translatedY = this.penPosition.posY - radius;
+            this.graphics.DrawEllipse(pen, translatedX, translatedY, 2 * radius, 2 * radius);
+
+        }
 
     }
 }
