@@ -56,6 +56,8 @@
             this.drawCircleBtn = new System.Windows.Forms.Button();
             this.moveTo100Btn = new System.Windows.Forms.Button();
             this.drawTrianleBtn = new System.Windows.Forms.Button();
+            this.setPenRedBtn = new System.Windows.Forms.Button();
+            this.setPenYellowBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.codeBlockContainer.SuspendLayout();
             this.convasContainer.SuspendLayout();
@@ -170,6 +172,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.convasContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.convasContainer.Controls.Add(this.setPenYellowBtn);
+            this.convasContainer.Controls.Add(this.setPenRedBtn);
             this.convasContainer.Controls.Add(this.moveTo100Btn);
             this.convasContainer.Controls.Add(this.resetPenBtn);
             this.convasContainer.Controls.Add(this.clearCanvasButton);
@@ -389,6 +393,26 @@
             this.drawTrianleBtn.UseVisualStyleBackColor = true;
             this.drawTrianleBtn.Click += new System.EventHandler(this.drawTrianleBtn_Click);
             // 
+            // setPenRedBtn
+            // 
+            this.setPenRedBtn.BackColor = System.Drawing.Color.Red;
+            this.setPenRedBtn.Location = new System.Drawing.Point(128, 180);
+            this.setPenRedBtn.Name = "setPenRedBtn";
+            this.setPenRedBtn.Size = new System.Drawing.Size(21, 23);
+            this.setPenRedBtn.TabIndex = 5;
+            this.setPenRedBtn.UseVisualStyleBackColor = false;
+            this.setPenRedBtn.Click += new System.EventHandler(this.setPenRedBtn_Click);
+            // 
+            // setPenYellowBtn
+            // 
+            this.setPenYellowBtn.BackColor = System.Drawing.Color.Yellow;
+            this.setPenYellowBtn.Location = new System.Drawing.Point(155, 180);
+            this.setPenYellowBtn.Name = "setPenYellowBtn";
+            this.setPenYellowBtn.Size = new System.Drawing.Size(21, 23);
+            this.setPenYellowBtn.TabIndex = 6;
+            this.setPenYellowBtn.UseVisualStyleBackColor = false;
+            this.setPenYellowBtn.Click += new System.EventHandler(this.setPenYellowBtn_Click);
+            // 
             // MainUI_AseGPL1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -444,6 +468,8 @@
         private System.Windows.Forms.Button moveTo100Btn;
         private System.Windows.Forms.Button drawCircleBtn;
         private System.Windows.Forms.Button drawTrianleBtn;
+        private System.Windows.Forms.Button setPenYellowBtn;
+        private System.Windows.Forms.Button setPenRedBtn;
     }
 }
 

@@ -82,5 +82,22 @@ namespace ASE_GPEnv_Comp1
         {
             this.canvas.drawTriangle(100);
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void setPenYellowBtn_Click(object sender, EventArgs e)
+        {
+            this.canvas.setPenColor(Color.Yellow);
+
+        }
+
+        private void setPenRedBtn_Click(object sender, EventArgs e)
+        {
+            this.canvas.setPenColor(Color.Red);
+
+        }
     }
 }

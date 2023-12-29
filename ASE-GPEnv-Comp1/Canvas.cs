@@ -116,5 +116,9 @@ namespace ASE_GPEnv_Comp1
 
         }
 
+        public void setPenColor(Color newColor) {
+            this.pen.Color = newColor;
+        }
+
     }
 }
