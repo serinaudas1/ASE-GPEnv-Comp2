@@ -37,6 +37,7 @@ namespace ASE_GPEnv_Comp1
         Panel canvasPanel;
 
         bool hasInitializedPosition = false;
+        public bool shouldFill= false;
 
 
         public Canvas(Color penColor, float penWidth, Panel panel)
@@ -86,6 +87,11 @@ namespace ASE_GPEnv_Comp1
 
         public void drawRectangle(int width, int height)
         {
+            if (shouldFill)
+            {
+                Brush fillingBrush = new SolidBrush(this.pen.Color);
+                this.graphics.FillRectangle(fillingBrush, this.penPosition.posX, this.penPosition.posY, width, height);
+            }
             this.graphics.DrawRectangle(this.pen, this.penPosition.posX, this.penPosition.posY, width, height);
 
         }
@@ -94,7 +100,14 @@ namespace ASE_GPEnv_Comp1
         {
             int translatedX = this.penPosition.posX - radius;
             int translatedY = this.penPosition.posY - radius;
-            this.graphics.DrawEllipse(pen, translatedX, translatedY, 2 * radius, 2 * radius);
+
+            if(shouldFill)
+            {
+                Brush fillingBrush = new SolidBrush(this.pen.Color);
+                this.graphics.FillEllipse(fillingBrush, translatedX, translatedY, 2 * radius, 2 * radius);
+            }
+            else
+                this.graphics.DrawEllipse(pen, translatedX, translatedY, 2 * radius, 2 * radius);
 
         }
 
@@ -108,10 +121,18 @@ namespace ASE_GPEnv_Comp1
             Point thirdPoint = new Point(this.penPosition.posX - halfSide, this.penPosition.posY);
 
 
-        
-            this.graphics.DrawLine(pen, firstPoint, secondPoint);
-            this.graphics.DrawLine(pen, secondPoint, thirdPoint);
-            this.graphics.DrawLine(pen, thirdPoint, firstPoint);
+            if (shouldFill)
+            {
+                Brush fillingBrush = new SolidBrush(this.pen.Color);
+                this.graphics.FillPolygon(fillingBrush, new Point[] { firstPoint, secondPoint, thirdPoint });
+
+            }
+            else
+            {
+                this.graphics.DrawLine(pen, firstPoint, secondPoint);
+                this.graphics.DrawLine(pen, secondPoint, thirdPoint);
+                this.graphics.DrawLine(pen, thirdPoint, firstPoint);
+            }
 
 
         }
@@ -120,5 +141,9 @@ namespace ASE_GPEnv_Comp1
             this.pen.Color = newColor;
         }
 
+        public void setPenFill(bool shouldFill)
+        {
+            this.shouldFill = shouldFill;
+        }
     }
 }

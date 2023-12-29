@@ -99,5 +99,10 @@ namespace ASE_GPEnv_Comp1
             this.canvas.setPenColor(Color.Red);
 
         }
+
+        private void toggleFillBtn_Click(object sender, EventArgs e)
+        {
+            this.canvas.setPenFill(!this.canvas.shouldFill);
+        }
     }
 }

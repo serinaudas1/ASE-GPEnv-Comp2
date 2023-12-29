@@ -58,6 +58,7 @@
             this.drawTrianleBtn = new System.Windows.Forms.Button();
             this.setPenRedBtn = new System.Windows.Forms.Button();
             this.setPenYellowBtn = new System.Windows.Forms.Button();
+            this.toggleFillBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.codeBlockContainer.SuspendLayout();
             this.convasContainer.SuspendLayout();
@@ -86,7 +87,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(776, 426);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(838, 426);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // codeBlockContainer
@@ -103,7 +104,7 @@
             this.codeBlockContainer.Controls.Add(this.loadProgramButton);
             this.codeBlockContainer.Location = new System.Drawing.Point(3, 3);
             this.codeBlockContainer.Name = "codeBlockContainer";
-            this.codeBlockContainer.Size = new System.Drawing.Size(382, 207);
+            this.codeBlockContainer.Size = new System.Drawing.Size(413, 207);
             this.codeBlockContainer.TabIndex = 0;
             // 
             // label1
@@ -119,7 +120,7 @@
             // executeProgramButton
             // 
             this.executeProgramButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.executeProgramButton.Location = new System.Drawing.Point(208, 180);
+            this.executeProgramButton.Location = new System.Drawing.Point(239, 180);
             this.executeProgramButton.Name = "executeProgramButton";
             this.executeProgramButton.Size = new System.Drawing.Size(75, 23);
             this.executeProgramButton.TabIndex = 4;
@@ -129,7 +130,7 @@
             // programSyntaxCheckButton
             // 
             this.programSyntaxCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.programSyntaxCheckButton.Location = new System.Drawing.Point(289, 181);
+            this.programSyntaxCheckButton.Location = new System.Drawing.Point(320, 181);
             this.programSyntaxCheckButton.Name = "programSyntaxCheckButton";
             this.programSyntaxCheckButton.Size = new System.Drawing.Size(89, 23);
             this.programSyntaxCheckButton.TabIndex = 3;
@@ -143,7 +144,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.programTextBox.Location = new System.Drawing.Point(4, 20);
             this.programTextBox.Name = "programTextBox";
-            this.programTextBox.Size = new System.Drawing.Size(375, 158);
+            this.programTextBox.Size = new System.Drawing.Size(406, 158);
             this.programTextBox.TabIndex = 2;
             this.programTextBox.Text = "";
             // 
@@ -172,6 +173,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.convasContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.convasContainer.Controls.Add(this.toggleFillBtn);
             this.convasContainer.Controls.Add(this.setPenYellowBtn);
             this.convasContainer.Controls.Add(this.setPenRedBtn);
             this.convasContainer.Controls.Add(this.moveTo100Btn);
@@ -179,15 +181,15 @@
             this.convasContainer.Controls.Add(this.clearCanvasButton);
             this.convasContainer.Controls.Add(this.canvasPanel);
             this.convasContainer.Controls.Add(this.label4);
-            this.convasContainer.Location = new System.Drawing.Point(391, 3);
+            this.convasContainer.Location = new System.Drawing.Point(422, 3);
             this.convasContainer.Name = "convasContainer";
-            this.convasContainer.Size = new System.Drawing.Size(382, 207);
+            this.convasContainer.Size = new System.Drawing.Size(413, 207);
             this.convasContainer.TabIndex = 1;
             // 
             // clearCanvasButton
             // 
             this.clearCanvasButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearCanvasButton.Location = new System.Drawing.Point(301, 180);
+            this.clearCanvasButton.Location = new System.Drawing.Point(332, 180);
             this.clearCanvasButton.Name = "clearCanvasButton";
             this.clearCanvasButton.Size = new System.Drawing.Size(75, 23);
             this.clearCanvasButton.TabIndex = 2;
@@ -203,7 +205,7 @@
             this.canvasPanel.BackColor = System.Drawing.Color.White;
             this.canvasPanel.Location = new System.Drawing.Point(7, 20);
             this.canvasPanel.Name = "canvasPanel";
-            this.canvasPanel.Size = new System.Drawing.Size(370, 158);
+            this.canvasPanel.Size = new System.Drawing.Size(401, 158);
             this.canvasPanel.TabIndex = 1;
             this.canvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.canvasPanel_Paint);
             // 
@@ -229,13 +231,13 @@
             this.commandAndHistoryContainer.Controls.Add(this.label2);
             this.commandAndHistoryContainer.Location = new System.Drawing.Point(3, 216);
             this.commandAndHistoryContainer.Name = "commandAndHistoryContainer";
-            this.commandAndHistoryContainer.Size = new System.Drawing.Size(382, 207);
+            this.commandAndHistoryContainer.Size = new System.Drawing.Size(413, 207);
             this.commandAndHistoryContainer.TabIndex = 2;
             // 
             // runCommandButton
             // 
             this.runCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.runCommandButton.Location = new System.Drawing.Point(303, 181);
+            this.runCommandButton.Location = new System.Drawing.Point(334, 181);
             this.runCommandButton.Name = "runCommandButton";
             this.runCommandButton.Size = new System.Drawing.Size(75, 23);
             this.runCommandButton.TabIndex = 4;
@@ -248,7 +250,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.commandTextBox.Location = new System.Drawing.Point(7, 155);
             this.commandTextBox.Name = "commandTextBox";
-            this.commandTextBox.Size = new System.Drawing.Size(371, 20);
+            this.commandTextBox.Size = new System.Drawing.Size(402, 20);
             this.commandTextBox.TabIndex = 3;
             // 
             // commandsHistoryTextBox
@@ -260,7 +262,7 @@
             this.commandsHistoryTextBox.Enabled = false;
             this.commandsHistoryTextBox.Location = new System.Drawing.Point(4, 20);
             this.commandsHistoryTextBox.Name = "commandsHistoryTextBox";
-            this.commandsHistoryTextBox.Size = new System.Drawing.Size(374, 129);
+            this.commandsHistoryTextBox.Size = new System.Drawing.Size(405, 129);
             this.commandsHistoryTextBox.TabIndex = 2;
             this.commandsHistoryTextBox.Text = "";
             // 
@@ -282,9 +284,9 @@
             this.toolboxAndSnippetsContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.toolboxAndSnippetsContainer.Controls.Add(this.outputAndSnippetsTabControl);
             this.toolboxAndSnippetsContainer.Controls.Add(this.label3);
-            this.toolboxAndSnippetsContainer.Location = new System.Drawing.Point(391, 216);
+            this.toolboxAndSnippetsContainer.Location = new System.Drawing.Point(422, 216);
             this.toolboxAndSnippetsContainer.Name = "toolboxAndSnippetsContainer";
-            this.toolboxAndSnippetsContainer.Size = new System.Drawing.Size(382, 207);
+            this.toolboxAndSnippetsContainer.Size = new System.Drawing.Size(413, 207);
             this.toolboxAndSnippetsContainer.TabIndex = 3;
             // 
             // outputAndSnippetsTabControl
@@ -297,7 +299,7 @@
             this.outputAndSnippetsTabControl.Location = new System.Drawing.Point(7, 4);
             this.outputAndSnippetsTabControl.Name = "outputAndSnippetsTabControl";
             this.outputAndSnippetsTabControl.SelectedIndex = 0;
-            this.outputAndSnippetsTabControl.Size = new System.Drawing.Size(370, 200);
+            this.outputAndSnippetsTabControl.Size = new System.Drawing.Size(401, 200);
             this.outputAndSnippetsTabControl.TabIndex = 0;
             // 
             // tabPage1
@@ -330,7 +332,7 @@
             this.tabPage2.Controls.Add(this.drawRectangleBtn);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(362, 174);
+            this.tabPage2.Size = new System.Drawing.Size(393, 174);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Toolbox";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -345,7 +347,7 @@
             // 
             // resetPenBtn
             // 
-            this.resetPenBtn.Location = new System.Drawing.Point(220, 181);
+            this.resetPenBtn.Location = new System.Drawing.Point(251, 180);
             this.resetPenBtn.Name = "resetPenBtn";
             this.resetPenBtn.Size = new System.Drawing.Size(75, 23);
             this.resetPenBtn.TabIndex = 3;
@@ -377,9 +379,9 @@
             // 
             this.moveTo100Btn.Location = new System.Drawing.Point(7, 180);
             this.moveTo100Btn.Name = "moveTo100Btn";
-            this.moveTo100Btn.Size = new System.Drawing.Size(115, 23);
+            this.moveTo100Btn.Size = new System.Drawing.Size(84, 23);
             this.moveTo100Btn.TabIndex = 4;
-            this.moveTo100Btn.Text = "*MoveTo 100,100";
+            this.moveTo100Btn.Text = "*MoveTo100";
             this.moveTo100Btn.UseVisualStyleBackColor = true;
             this.moveTo100Btn.Click += new System.EventHandler(this.moveTo100Btn_Click);
             // 
@@ -396,7 +398,7 @@
             // setPenRedBtn
             // 
             this.setPenRedBtn.BackColor = System.Drawing.Color.Red;
-            this.setPenRedBtn.Location = new System.Drawing.Point(128, 180);
+            this.setPenRedBtn.Location = new System.Drawing.Point(97, 180);
             this.setPenRedBtn.Name = "setPenRedBtn";
             this.setPenRedBtn.Size = new System.Drawing.Size(21, 23);
             this.setPenRedBtn.TabIndex = 5;
@@ -406,18 +408,28 @@
             // setPenYellowBtn
             // 
             this.setPenYellowBtn.BackColor = System.Drawing.Color.Yellow;
-            this.setPenYellowBtn.Location = new System.Drawing.Point(155, 180);
+            this.setPenYellowBtn.Location = new System.Drawing.Point(124, 180);
             this.setPenYellowBtn.Name = "setPenYellowBtn";
             this.setPenYellowBtn.Size = new System.Drawing.Size(21, 23);
             this.setPenYellowBtn.TabIndex = 6;
             this.setPenYellowBtn.UseVisualStyleBackColor = false;
             this.setPenYellowBtn.Click += new System.EventHandler(this.setPenYellowBtn_Click);
             // 
+            // toggleFillBtn
+            // 
+            this.toggleFillBtn.Location = new System.Drawing.Point(151, 180);
+            this.toggleFillBtn.Name = "toggleFillBtn";
+            this.toggleFillBtn.Size = new System.Drawing.Size(75, 23);
+            this.toggleFillBtn.TabIndex = 7;
+            this.toggleFillBtn.Text = "Toggle Fill";
+            this.toggleFillBtn.UseVisualStyleBackColor = true;
+            this.toggleFillBtn.Click += new System.EventHandler(this.toggleFillBtn_Click);
+            // 
             // MainUI_AseGPL1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(862, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MainUI_AseGPL1";
             this.Text = "ASE-GPL-1";
@@ -470,6 +482,7 @@
         private System.Windows.Forms.Button drawTrianleBtn;
         private System.Windows.Forms.Button setPenYellowBtn;
         private System.Windows.Forms.Button setPenRedBtn;
+        private System.Windows.Forms.Button toggleFillBtn;
     }
 }
 
