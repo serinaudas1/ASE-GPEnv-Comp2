@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ASE_GPEnv_Comp1
 {
@@ -27,14 +28,16 @@ namespace ASE_GPEnv_Comp1
         PenPosition penPosition;
 
         Graphics graphics;
+        Panel canvasPanel;
 
         bool hasInitializedPosition = false;
 
 
-        public Canvas(Color penColor, float penWidth, Graphics  graphics)
+        public Canvas(Color penColor, float penWidth, Panel panel)
         {
             this.pen = new Pen(Color.Red, penWidth);
-            this.graphics = graphics;
+            this.canvasPanel = panel;
+            this.graphics = panel.CreateGraphics();
         }
 
 
@@ -64,7 +67,7 @@ namespace ASE_GPEnv_Comp1
         }
 
         public void clearCanvas() {
-            this.graphics.Clear(Color.White);
+            this.graphics.Clear(canvasPanel.BackColor);
 
         }
 

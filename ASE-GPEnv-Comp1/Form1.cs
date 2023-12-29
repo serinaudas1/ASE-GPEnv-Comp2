@@ -13,6 +13,7 @@ namespace ASE_GPEnv_Comp1
     public partial class MainUI_AseGPL1 : Form
     {
         Graphics canvasPanelGraphics;
+        Canvas canvas;
         public MainUI_AseGPL1()
         {
             InitializeComponent();
@@ -45,9 +46,16 @@ namespace ASE_GPEnv_Comp1
 
         private void canvasPanel_Paint(object sender, PaintEventArgs e)
         {
-            Canvas canvas = new Canvas(Color.Red, 2, e.Graphics);
-            //canvas.moveTo(50, 50);
-            canvas.drawTo();
+            this.canvasPanelGraphics = e.Graphics;
+            this.canvas = new Canvas(Color.Red, 2, canvasPanel);
+            this.canvas.moveTo(50, 50);
+            this.canvas.drawTo();
+        }
+
+        private void clearCanvasButton_Click(object sender, EventArgs e)
+        {
+            this.canvas.clearCanvas();
+      
         }
     }
 }

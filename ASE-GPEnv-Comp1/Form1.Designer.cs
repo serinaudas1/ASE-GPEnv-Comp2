@@ -177,7 +177,7 @@
             this.canvasPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.canvasPanel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.canvasPanel.BackColor = System.Drawing.Color.White;
             this.canvasPanel.Location = new System.Drawing.Point(7, 20);
             this.canvasPanel.Name = "canvasPanel";
             this.canvasPanel.Size = new System.Drawing.Size(370, 158);
@@ -326,6 +326,7 @@
             this.clearCanvasButton.TabIndex = 2;
             this.clearCanvasButton.Text = "Clear";
             this.clearCanvasButton.UseVisualStyleBackColor = true;
+            this.clearCanvasButton.Click += new System.EventHandler(this.clearCanvasButton_Click);
             // 
             // MainUI_AseGPL1
             // 
