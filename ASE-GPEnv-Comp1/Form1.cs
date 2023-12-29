@@ -57,5 +57,10 @@ namespace ASE_GPEnv_Comp1
             this.canvas.clearCanvas();
       
         }
+
+        private void resetPenBtn_Click(object sender, EventArgs e)
+        {
+            this.canvas.resetPen();
+        }
     }
 }

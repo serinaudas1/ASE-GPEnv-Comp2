@@ -37,6 +37,7 @@
             this.saveProgramButton = new System.Windows.Forms.Button();
             this.loadProgramButton = new System.Windows.Forms.Button();
             this.convasContainer = new System.Windows.Forms.Panel();
+            this.clearCanvasButton = new System.Windows.Forms.Button();
             this.canvasPanel = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.commandAndHistoryContainer = new System.Windows.Forms.Panel();
@@ -45,12 +46,12 @@
             this.commandsHistoryTextBox = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.toolboxAndSnippetsContainer = new System.Windows.Forms.Panel();
-            this.outputTextBox = new System.Windows.Forms.RichTextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.outputAndSnippetsTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.outputTextBox = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.clearCanvasButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.resetPenBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.codeBlockContainer.SuspendLayout();
             this.convasContainer.SuspendLayout();
@@ -164,6 +165,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.convasContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.convasContainer.Controls.Add(this.resetPenBtn);
             this.convasContainer.Controls.Add(this.clearCanvasButton);
             this.convasContainer.Controls.Add(this.canvasPanel);
             this.convasContainer.Controls.Add(this.label4);
@@ -171,6 +173,17 @@
             this.convasContainer.Name = "convasContainer";
             this.convasContainer.Size = new System.Drawing.Size(382, 207);
             this.convasContainer.TabIndex = 1;
+            // 
+            // clearCanvasButton
+            // 
+            this.clearCanvasButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearCanvasButton.Location = new System.Drawing.Point(301, 180);
+            this.clearCanvasButton.Name = "clearCanvasButton";
+            this.clearCanvasButton.Size = new System.Drawing.Size(75, 23);
+            this.clearCanvasButton.TabIndex = 2;
+            this.clearCanvasButton.Text = "Clear";
+            this.clearCanvasButton.UseVisualStyleBackColor = true;
+            this.clearCanvasButton.Click += new System.EventHandler(this.clearCanvasButton_Click);
             // 
             // canvasPanel
             // 
@@ -264,27 +277,6 @@
             this.toolboxAndSnippetsContainer.Size = new System.Drawing.Size(382, 207);
             this.toolboxAndSnippetsContainer.TabIndex = 3;
             // 
-            // outputTextBox
-            // 
-            this.outputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.outputTextBox.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.outputTextBox.Enabled = false;
-            this.outputTextBox.Location = new System.Drawing.Point(3, 3);
-            this.outputTextBox.Name = "outputTextBox";
-            this.outputTextBox.Size = new System.Drawing.Size(356, 168);
-            this.outputTextBox.TabIndex = 5;
-            this.outputTextBox.Text = "";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 4);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(0, 13);
-            this.label3.TabIndex = 0;
-            // 
             // outputAndSnippetsTabControl
             // 
             this.outputAndSnippetsTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -308,6 +300,19 @@
             this.tabPage1.Text = "Output";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // outputTextBox
+            // 
+            this.outputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.outputTextBox.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.outputTextBox.Enabled = false;
+            this.outputTextBox.Location = new System.Drawing.Point(3, 3);
+            this.outputTextBox.Name = "outputTextBox";
+            this.outputTextBox.Size = new System.Drawing.Size(356, 168);
+            this.outputTextBox.TabIndex = 5;
+            this.outputTextBox.Text = "";
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -317,16 +322,23 @@
             this.tabPage2.Text = "Toolbox";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // clearCanvasButton
+            // label3
             // 
-            this.clearCanvasButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearCanvasButton.Location = new System.Drawing.Point(301, 180);
-            this.clearCanvasButton.Name = "clearCanvasButton";
-            this.clearCanvasButton.Size = new System.Drawing.Size(75, 23);
-            this.clearCanvasButton.TabIndex = 2;
-            this.clearCanvasButton.Text = "Clear";
-            this.clearCanvasButton.UseVisualStyleBackColor = true;
-            this.clearCanvasButton.Click += new System.EventHandler(this.clearCanvasButton_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 13);
+            this.label3.TabIndex = 0;
+            // 
+            // resetPenBtn
+            // 
+            this.resetPenBtn.Location = new System.Drawing.Point(220, 181);
+            this.resetPenBtn.Name = "resetPenBtn";
+            this.resetPenBtn.Size = new System.Drawing.Size(75, 23);
+            this.resetPenBtn.TabIndex = 3;
+            this.resetPenBtn.Text = "Reset Pen";
+            this.resetPenBtn.UseVisualStyleBackColor = true;
+            this.resetPenBtn.Click += new System.EventHandler(this.resetPenBtn_Click);
             // 
             // MainUI_AseGPL1
             // 
@@ -377,6 +389,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button clearCanvasButton;
+        private System.Windows.Forms.Button resetPenBtn;
     }
 }
 
