@@ -63,6 +63,11 @@ namespace ASE_GPEnv_Comp1
             this.graphics.DrawEllipse(pen, this.penPosition.posX - radius, this.penPosition.posY - radius, 2 * radius, 2 * radius);
         }
 
+        public void clearCanvas() {
+            this.graphics.Clear(Color.White);
+
+        }
+
 
     }
 }
