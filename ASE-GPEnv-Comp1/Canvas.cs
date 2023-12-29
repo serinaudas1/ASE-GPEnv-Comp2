@@ -14,10 +14,16 @@ namespace ASE_GPEnv_Comp1
         public int posX;
         public int posY;
 
+    
         public PenPosition(int x, int y)
         {
             posX = x;
             posY = y;
+        }
+
+        public void setDefaultPosition() {
+            posX = 0;
+            posY = 0;
         }
     }
     class Canvas
@@ -38,6 +44,8 @@ namespace ASE_GPEnv_Comp1
             this.pen = new Pen(Color.Red, penWidth);
             this.canvasPanel = panel;
             this.graphics = panel.CreateGraphics();
+            this.penPosition =new PenPosition();
+            this.penPosition.setDefaultPosition();
         }
 
 
@@ -58,8 +66,8 @@ namespace ASE_GPEnv_Comp1
 
             if (!hasInitializedPosition)
             {
-                Debug.WriteLine("Waring! No position defined, setting position to (25,25)");
-                this.penPosition = new PenPosition(25, 25);
+                Debug.WriteLine("Waring! No position defined, setting position to (0,0)");
+                this.penPosition.setDefaultPosition();
             }
 
             int radius = 5;
@@ -68,6 +76,11 @@ namespace ASE_GPEnv_Comp1
 
         public void clearCanvas() {
             this.graphics.Clear(canvasPanel.BackColor);
+
+        }
+
+        public void resetPen() {
+            this.penPosition.setDefaultPosition();
 
         }
 
