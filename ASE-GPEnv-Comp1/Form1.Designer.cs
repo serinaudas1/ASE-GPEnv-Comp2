@@ -47,11 +47,17 @@
             this.toolboxAndSnippetsContainer = new System.Windows.Forms.Panel();
             this.outputTextBox = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.outputAndSnippetsTabControl = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.clearCanvasButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.codeBlockContainer.SuspendLayout();
             this.convasContainer.SuspendLayout();
             this.commandAndHistoryContainer.SuspendLayout();
             this.toolboxAndSnippetsContainer.SuspendLayout();
+            this.outputAndSnippetsTabControl.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -95,7 +101,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 29);
+            this.label1.Location = new System.Drawing.Point(4, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 13);
             this.label1.TabIndex = 5;
@@ -127,15 +133,15 @@
             this.programTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.programTextBox.Location = new System.Drawing.Point(4, 45);
+            this.programTextBox.Location = new System.Drawing.Point(4, 20);
             this.programTextBox.Name = "programTextBox";
-            this.programTextBox.Size = new System.Drawing.Size(375, 130);
+            this.programTextBox.Size = new System.Drawing.Size(375, 158);
             this.programTextBox.TabIndex = 2;
             this.programTextBox.Text = "";
             // 
             // saveProgramButton
             // 
-            this.saveProgramButton.Location = new System.Drawing.Point(86, 3);
+            this.saveProgramButton.Location = new System.Drawing.Point(84, 184);
             this.saveProgramButton.Name = "saveProgramButton";
             this.saveProgramButton.Size = new System.Drawing.Size(75, 23);
             this.saveProgramButton.TabIndex = 1;
@@ -144,7 +150,7 @@
             // 
             // loadProgramButton
             // 
-            this.loadProgramButton.Location = new System.Drawing.Point(4, 4);
+            this.loadProgramButton.Location = new System.Drawing.Point(3, 184);
             this.loadProgramButton.Name = "loadProgramButton";
             this.loadProgramButton.Size = new System.Drawing.Size(75, 23);
             this.loadProgramButton.TabIndex = 0;
@@ -158,6 +164,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.convasContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.convasContainer.Controls.Add(this.clearCanvasButton);
             this.convasContainer.Controls.Add(this.canvasPanel);
             this.convasContainer.Controls.Add(this.label4);
             this.convasContainer.Location = new System.Drawing.Point(391, 3);
@@ -173,7 +180,7 @@
             this.canvasPanel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.canvasPanel.Location = new System.Drawing.Point(7, 20);
             this.canvasPanel.Name = "canvasPanel";
-            this.canvasPanel.Size = new System.Drawing.Size(370, 183);
+            this.canvasPanel.Size = new System.Drawing.Size(370, 158);
             this.canvasPanel.TabIndex = 1;
             this.canvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.canvasPanel_Paint);
             // 
@@ -250,7 +257,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.toolboxAndSnippetsContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.toolboxAndSnippetsContainer.Controls.Add(this.outputTextBox);
+            this.toolboxAndSnippetsContainer.Controls.Add(this.outputAndSnippetsTabControl);
             this.toolboxAndSnippetsContainer.Controls.Add(this.label3);
             this.toolboxAndSnippetsContainer.Location = new System.Drawing.Point(391, 216);
             this.toolboxAndSnippetsContainer.Name = "toolboxAndSnippetsContainer";
@@ -264,9 +271,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.outputTextBox.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.outputTextBox.Enabled = false;
-            this.outputTextBox.Location = new System.Drawing.Point(3, 20);
+            this.outputTextBox.Location = new System.Drawing.Point(3, 3);
             this.outputTextBox.Name = "outputTextBox";
-            this.outputTextBox.Size = new System.Drawing.Size(374, 184);
+            this.outputTextBox.Size = new System.Drawing.Size(356, 168);
             this.outputTextBox.TabIndex = 5;
             this.outputTextBox.Text = "";
             // 
@@ -275,9 +282,50 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(4, 4);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 13);
+            this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Output";
+            // 
+            // outputAndSnippetsTabControl
+            // 
+            this.outputAndSnippetsTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.outputAndSnippetsTabControl.Controls.Add(this.tabPage1);
+            this.outputAndSnippetsTabControl.Controls.Add(this.tabPage2);
+            this.outputAndSnippetsTabControl.Location = new System.Drawing.Point(7, 4);
+            this.outputAndSnippetsTabControl.Name = "outputAndSnippetsTabControl";
+            this.outputAndSnippetsTabControl.SelectedIndex = 0;
+            this.outputAndSnippetsTabControl.Size = new System.Drawing.Size(370, 200);
+            this.outputAndSnippetsTabControl.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.outputTextBox);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(362, 174);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Output";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(362, 174);
+            this.tabPage2.TabIndex = 0;
+            this.tabPage2.Text = "Toolbox";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // clearCanvasButton
+            // 
+            this.clearCanvasButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearCanvasButton.Location = new System.Drawing.Point(301, 180);
+            this.clearCanvasButton.Name = "clearCanvasButton";
+            this.clearCanvasButton.Size = new System.Drawing.Size(75, 23);
+            this.clearCanvasButton.TabIndex = 2;
+            this.clearCanvasButton.Text = "Clear";
+            this.clearCanvasButton.UseVisualStyleBackColor = true;
             // 
             // MainUI_AseGPL1
             // 
@@ -297,6 +345,8 @@
             this.commandAndHistoryContainer.PerformLayout();
             this.toolboxAndSnippetsContainer.ResumeLayout(false);
             this.toolboxAndSnippetsContainer.PerformLayout();
+            this.outputAndSnippetsTabControl.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -322,6 +372,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel canvasPanel;
+        private System.Windows.Forms.TabControl outputAndSnippetsTabControl;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button clearCanvasButton;
     }
 }
 

@@ -12,6 +12,7 @@ namespace ASE_GPEnv_Comp1
 {
     public partial class MainUI_AseGPL1 : Form
     {
+        Graphics canvasPanelGraphics;
         public MainUI_AseGPL1()
         {
             InitializeComponent();
