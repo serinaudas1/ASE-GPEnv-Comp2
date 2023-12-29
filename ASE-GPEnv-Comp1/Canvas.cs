@@ -84,6 +84,12 @@ namespace ASE_GPEnv_Comp1
 
         }
 
+        public void drawRectangle(int width, int height)
+        {
+            this.graphics.DrawRectangle(this.pen, this.penPosition.posX, this.penPosition.posY, width, height);
+
+        }
+
 
     }
 }

@@ -52,6 +52,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.resetPenBtn = new System.Windows.Forms.Button();
+            this.drawRectangleBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.codeBlockContainer.SuspendLayout();
             this.convasContainer.SuspendLayout();
@@ -59,6 +60,7 @@
             this.toolboxAndSnippetsContainer.SuspendLayout();
             this.outputAndSnippetsTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -315,6 +317,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.drawRectangleBtn);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Size = new System.Drawing.Size(362, 174);
@@ -340,6 +343,16 @@
             this.resetPenBtn.UseVisualStyleBackColor = true;
             this.resetPenBtn.Click += new System.EventHandler(this.resetPenBtn_Click);
             // 
+            // drawRectangleBtn
+            // 
+            this.drawRectangleBtn.Location = new System.Drawing.Point(4, 4);
+            this.drawRectangleBtn.Name = "drawRectangleBtn";
+            this.drawRectangleBtn.Size = new System.Drawing.Size(92, 23);
+            this.drawRectangleBtn.TabIndex = 0;
+            this.drawRectangleBtn.Text = "Draw Rectangle";
+            this.drawRectangleBtn.UseVisualStyleBackColor = true;
+            this.drawRectangleBtn.Click += new System.EventHandler(this.drawRectangleBtn_Click);
+            // 
             // MainUI_AseGPL1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,6 +373,7 @@
             this.toolboxAndSnippetsContainer.PerformLayout();
             this.outputAndSnippetsTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -390,6 +404,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button clearCanvasButton;
         private System.Windows.Forms.Button resetPenBtn;
+        private System.Windows.Forms.Button drawRectangleBtn;
     }
 }
 

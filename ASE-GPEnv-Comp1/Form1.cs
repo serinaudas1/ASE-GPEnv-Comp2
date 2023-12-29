@@ -48,8 +48,8 @@ namespace ASE_GPEnv_Comp1
         {
             this.canvasPanelGraphics = e.Graphics;
             this.canvas = new Canvas(Color.Red, 2, canvasPanel);
-            this.canvas.moveTo(50, 50);
-            this.canvas.drawTo();
+            //this.canvas.moveTo(50, 50);
+            //this.canvas.drawTo();
         }
 
         private void clearCanvasButton_Click(object sender, EventArgs e)
@@ -61,6 +61,11 @@ namespace ASE_GPEnv_Comp1
         private void resetPenBtn_Click(object sender, EventArgs e)
         {
             this.canvas.resetPen();
+        }
+
+        private void drawRectangleBtn_Click(object sender, EventArgs e)
+        {
+            this.canvas.drawRectangle(100, 100);
         }
     }
 }
