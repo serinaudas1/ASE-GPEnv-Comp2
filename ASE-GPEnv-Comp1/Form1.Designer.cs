@@ -37,6 +37,11 @@
             this.saveProgramButton = new System.Windows.Forms.Button();
             this.loadProgramButton = new System.Windows.Forms.Button();
             this.convasContainer = new System.Windows.Forms.Panel();
+            this.toggleFillBtn = new System.Windows.Forms.Button();
+            this.setPenYellowBtn = new System.Windows.Forms.Button();
+            this.setPenRedBtn = new System.Windows.Forms.Button();
+            this.moveTo100Btn = new System.Windows.Forms.Button();
+            this.resetPenBtn = new System.Windows.Forms.Button();
             this.clearCanvasButton = new System.Windows.Forms.Button();
             this.canvasPanel = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -50,15 +55,10 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.outputTextBox = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.resetPenBtn = new System.Windows.Forms.Button();
-            this.drawRectangleBtn = new System.Windows.Forms.Button();
-            this.drawCircleBtn = new System.Windows.Forms.Button();
-            this.moveTo100Btn = new System.Windows.Forms.Button();
             this.drawTrianleBtn = new System.Windows.Forms.Button();
-            this.setPenRedBtn = new System.Windows.Forms.Button();
-            this.setPenYellowBtn = new System.Windows.Forms.Button();
-            this.toggleFillBtn = new System.Windows.Forms.Button();
+            this.drawCircleBtn = new System.Windows.Forms.Button();
+            this.drawRectangleBtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.codeBlockContainer.SuspendLayout();
             this.convasContainer.SuspendLayout();
@@ -186,6 +186,56 @@
             this.convasContainer.Size = new System.Drawing.Size(413, 207);
             this.convasContainer.TabIndex = 1;
             // 
+            // toggleFillBtn
+            // 
+            this.toggleFillBtn.Location = new System.Drawing.Point(151, 180);
+            this.toggleFillBtn.Name = "toggleFillBtn";
+            this.toggleFillBtn.Size = new System.Drawing.Size(75, 23);
+            this.toggleFillBtn.TabIndex = 7;
+            this.toggleFillBtn.Text = "Toggle Fill";
+            this.toggleFillBtn.UseVisualStyleBackColor = true;
+            this.toggleFillBtn.Click += new System.EventHandler(this.toggleFillBtn_Click);
+            // 
+            // setPenYellowBtn
+            // 
+            this.setPenYellowBtn.BackColor = System.Drawing.Color.Yellow;
+            this.setPenYellowBtn.Location = new System.Drawing.Point(124, 180);
+            this.setPenYellowBtn.Name = "setPenYellowBtn";
+            this.setPenYellowBtn.Size = new System.Drawing.Size(21, 23);
+            this.setPenYellowBtn.TabIndex = 6;
+            this.setPenYellowBtn.UseVisualStyleBackColor = false;
+            this.setPenYellowBtn.Click += new System.EventHandler(this.setPenYellowBtn_Click);
+            // 
+            // setPenRedBtn
+            // 
+            this.setPenRedBtn.BackColor = System.Drawing.Color.Red;
+            this.setPenRedBtn.Location = new System.Drawing.Point(97, 180);
+            this.setPenRedBtn.Name = "setPenRedBtn";
+            this.setPenRedBtn.Size = new System.Drawing.Size(21, 23);
+            this.setPenRedBtn.TabIndex = 5;
+            this.setPenRedBtn.UseVisualStyleBackColor = false;
+            this.setPenRedBtn.Click += new System.EventHandler(this.setPenRedBtn_Click);
+            // 
+            // moveTo100Btn
+            // 
+            this.moveTo100Btn.Location = new System.Drawing.Point(7, 180);
+            this.moveTo100Btn.Name = "moveTo100Btn";
+            this.moveTo100Btn.Size = new System.Drawing.Size(84, 23);
+            this.moveTo100Btn.TabIndex = 4;
+            this.moveTo100Btn.Text = "*MoveTo100";
+            this.moveTo100Btn.UseVisualStyleBackColor = true;
+            this.moveTo100Btn.Click += new System.EventHandler(this.moveTo100Btn_Click);
+            // 
+            // resetPenBtn
+            // 
+            this.resetPenBtn.Location = new System.Drawing.Point(251, 180);
+            this.resetPenBtn.Name = "resetPenBtn";
+            this.resetPenBtn.Size = new System.Drawing.Size(75, 23);
+            this.resetPenBtn.TabIndex = 3;
+            this.resetPenBtn.Text = "Reset Pen";
+            this.resetPenBtn.UseVisualStyleBackColor = true;
+            this.resetPenBtn.Click += new System.EventHandler(this.resetPenBtn_Click);
+            // 
             // clearCanvasButton
             // 
             this.clearCanvasButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -252,6 +302,8 @@
             this.commandTextBox.Name = "commandTextBox";
             this.commandTextBox.Size = new System.Drawing.Size(402, 20);
             this.commandTextBox.TabIndex = 3;
+            this.commandTextBox.TextChanged += new System.EventHandler(this.commandTextBox_TextChanged);
+            this.commandTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.commandTextBox_KeyPress);
             // 
             // commandsHistoryTextBox
             // 
@@ -307,7 +359,7 @@
             this.tabPage1.Controls.Add(this.outputTextBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(362, 174);
+            this.tabPage1.Size = new System.Drawing.Size(393, 174);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Output";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -337,33 +389,15 @@
             this.tabPage2.Text = "Toolbox";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // drawTrianleBtn
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 4);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(0, 13);
-            this.label3.TabIndex = 0;
-            // 
-            // resetPenBtn
-            // 
-            this.resetPenBtn.Location = new System.Drawing.Point(251, 180);
-            this.resetPenBtn.Name = "resetPenBtn";
-            this.resetPenBtn.Size = new System.Drawing.Size(75, 23);
-            this.resetPenBtn.TabIndex = 3;
-            this.resetPenBtn.Text = "Reset Pen";
-            this.resetPenBtn.UseVisualStyleBackColor = true;
-            this.resetPenBtn.Click += new System.EventHandler(this.resetPenBtn_Click);
-            // 
-            // drawRectangleBtn
-            // 
-            this.drawRectangleBtn.Location = new System.Drawing.Point(4, 4);
-            this.drawRectangleBtn.Name = "drawRectangleBtn";
-            this.drawRectangleBtn.Size = new System.Drawing.Size(92, 23);
-            this.drawRectangleBtn.TabIndex = 0;
-            this.drawRectangleBtn.Text = "Draw Rectangle";
-            this.drawRectangleBtn.UseVisualStyleBackColor = true;
-            this.drawRectangleBtn.Click += new System.EventHandler(this.drawRectangleBtn_Click);
+            this.drawTrianleBtn.Location = new System.Drawing.Point(185, 3);
+            this.drawTrianleBtn.Name = "drawTrianleBtn";
+            this.drawTrianleBtn.Size = new System.Drawing.Size(83, 23);
+            this.drawTrianleBtn.TabIndex = 2;
+            this.drawTrianleBtn.Text = "Draw Triangle";
+            this.drawTrianleBtn.UseVisualStyleBackColor = true;
+            this.drawTrianleBtn.Click += new System.EventHandler(this.drawTrianleBtn_Click);
             // 
             // drawCircleBtn
             // 
@@ -375,55 +409,23 @@
             this.drawCircleBtn.UseVisualStyleBackColor = true;
             this.drawCircleBtn.Click += new System.EventHandler(this.drawCircleBtn_Click);
             // 
-            // moveTo100Btn
+            // drawRectangleBtn
             // 
-            this.moveTo100Btn.Location = new System.Drawing.Point(7, 180);
-            this.moveTo100Btn.Name = "moveTo100Btn";
-            this.moveTo100Btn.Size = new System.Drawing.Size(84, 23);
-            this.moveTo100Btn.TabIndex = 4;
-            this.moveTo100Btn.Text = "*MoveTo100";
-            this.moveTo100Btn.UseVisualStyleBackColor = true;
-            this.moveTo100Btn.Click += new System.EventHandler(this.moveTo100Btn_Click);
+            this.drawRectangleBtn.Location = new System.Drawing.Point(4, 4);
+            this.drawRectangleBtn.Name = "drawRectangleBtn";
+            this.drawRectangleBtn.Size = new System.Drawing.Size(92, 23);
+            this.drawRectangleBtn.TabIndex = 0;
+            this.drawRectangleBtn.Text = "Draw Rectangle";
+            this.drawRectangleBtn.UseVisualStyleBackColor = true;
+            this.drawRectangleBtn.Click += new System.EventHandler(this.drawRectangleBtn_Click);
             // 
-            // drawTrianleBtn
+            // label3
             // 
-            this.drawTrianleBtn.Location = new System.Drawing.Point(185, 3);
-            this.drawTrianleBtn.Name = "drawTrianleBtn";
-            this.drawTrianleBtn.Size = new System.Drawing.Size(83, 23);
-            this.drawTrianleBtn.TabIndex = 2;
-            this.drawTrianleBtn.Text = "Draw Triangle";
-            this.drawTrianleBtn.UseVisualStyleBackColor = true;
-            this.drawTrianleBtn.Click += new System.EventHandler(this.drawTrianleBtn_Click);
-            // 
-            // setPenRedBtn
-            // 
-            this.setPenRedBtn.BackColor = System.Drawing.Color.Red;
-            this.setPenRedBtn.Location = new System.Drawing.Point(97, 180);
-            this.setPenRedBtn.Name = "setPenRedBtn";
-            this.setPenRedBtn.Size = new System.Drawing.Size(21, 23);
-            this.setPenRedBtn.TabIndex = 5;
-            this.setPenRedBtn.UseVisualStyleBackColor = false;
-            this.setPenRedBtn.Click += new System.EventHandler(this.setPenRedBtn_Click);
-            // 
-            // setPenYellowBtn
-            // 
-            this.setPenYellowBtn.BackColor = System.Drawing.Color.Yellow;
-            this.setPenYellowBtn.Location = new System.Drawing.Point(124, 180);
-            this.setPenYellowBtn.Name = "setPenYellowBtn";
-            this.setPenYellowBtn.Size = new System.Drawing.Size(21, 23);
-            this.setPenYellowBtn.TabIndex = 6;
-            this.setPenYellowBtn.UseVisualStyleBackColor = false;
-            this.setPenYellowBtn.Click += new System.EventHandler(this.setPenYellowBtn_Click);
-            // 
-            // toggleFillBtn
-            // 
-            this.toggleFillBtn.Location = new System.Drawing.Point(151, 180);
-            this.toggleFillBtn.Name = "toggleFillBtn";
-            this.toggleFillBtn.Size = new System.Drawing.Size(75, 23);
-            this.toggleFillBtn.TabIndex = 7;
-            this.toggleFillBtn.Text = "Toggle Fill";
-            this.toggleFillBtn.UseVisualStyleBackColor = true;
-            this.toggleFillBtn.Click += new System.EventHandler(this.toggleFillBtn_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 13);
+            this.label3.TabIndex = 0;
             // 
             // MainUI_AseGPL1
             // 

@@ -14,9 +14,11 @@ namespace ASE_GPEnv_Comp1
     {
         Graphics canvasPanelGraphics;
         Canvas canvas;
+        CommandParser parser;
         public MainUI_AseGPL1()
         {
             InitializeComponent();
+            parser = new CommandParser();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -103,6 +105,19 @@ namespace ASE_GPEnv_Comp1
         private void toggleFillBtn_Click(object sender, EventArgs e)
         {
             this.canvas.setPenFill(!this.canvas.shouldFill);
+        }
+
+        private void commandTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void commandTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (Char) Keys.Enter)
+            {
+                MessageBox.Show(commandTextBox.Text);
+            }
         }
     }
 }
