@@ -272,6 +272,12 @@ namespace ASE_GPEnv_Comp1
                     canvas.clearCanvas();
                 }
 
+                else if (parsingResult.parsedCommand == "reset")
+                {
+
+                    canvas.resetPen();
+                }
+
 
 
             }
