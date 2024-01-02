@@ -55,11 +55,11 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.outputTextBox = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.drawToButton = new System.Windows.Forms.Button();
             this.drawTrianleBtn = new System.Windows.Forms.Button();
             this.drawCircleBtn = new System.Windows.Forms.Button();
             this.drawRectangleBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.drawToButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.codeBlockContainer.SuspendLayout();
             this.convasContainer.SuspendLayout();
@@ -121,7 +121,7 @@
             // executeProgramButton
             // 
             this.executeProgramButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.executeProgramButton.Location = new System.Drawing.Point(221, 180);
+            this.executeProgramButton.Location = new System.Drawing.Point(243, 180);
             this.executeProgramButton.Name = "executeProgramButton";
             this.executeProgramButton.Size = new System.Drawing.Size(75, 23);
             this.executeProgramButton.TabIndex = 4;
@@ -131,7 +131,7 @@
             // programSyntaxCheckButton
             // 
             this.programSyntaxCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.programSyntaxCheckButton.Location = new System.Drawing.Point(302, 181);
+            this.programSyntaxCheckButton.Location = new System.Drawing.Point(324, 181);
             this.programSyntaxCheckButton.Name = "programSyntaxCheckButton";
             this.programSyntaxCheckButton.Size = new System.Drawing.Size(89, 23);
             this.programSyntaxCheckButton.TabIndex = 3;
@@ -145,13 +145,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.programTextBox.Location = new System.Drawing.Point(4, 20);
             this.programTextBox.Name = "programTextBox";
-            this.programTextBox.Size = new System.Drawing.Size(388, 158);
+            this.programTextBox.Size = new System.Drawing.Size(406, 158);
             this.programTextBox.TabIndex = 2;
             this.programTextBox.Text = "";
             // 
             // saveProgramButton
             // 
-            this.saveProgramButton.Location = new System.Drawing.Point(84, 184);
+            this.saveProgramButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.saveProgramButton.Location = new System.Drawing.Point(93, 180);
             this.saveProgramButton.Name = "saveProgramButton";
             this.saveProgramButton.Size = new System.Drawing.Size(75, 23);
             this.saveProgramButton.TabIndex = 1;
@@ -160,7 +161,8 @@
             // 
             // loadProgramButton
             // 
-            this.loadProgramButton.Location = new System.Drawing.Point(3, 184);
+            this.loadProgramButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.loadProgramButton.Location = new System.Drawing.Point(4, 180);
             this.loadProgramButton.Name = "loadProgramButton";
             this.loadProgramButton.Size = new System.Drawing.Size(75, 23);
             this.loadProgramButton.TabIndex = 0;
@@ -174,14 +176,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.convasContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.convasContainer.Controls.Add(this.toggleFillBtn);
-            this.convasContainer.Controls.Add(this.setPenYellowBtn);
-            this.convasContainer.Controls.Add(this.setPenRedBtn);
-            this.convasContainer.Controls.Add(this.moveTo100Btn);
-            this.convasContainer.Controls.Add(this.resetPenBtn);
-            this.convasContainer.Controls.Add(this.clearCanvasButton);
             this.convasContainer.Controls.Add(this.canvasPanel);
+            this.convasContainer.Controls.Add(this.setPenYellowBtn);
             this.convasContainer.Controls.Add(this.label4);
+            this.convasContainer.Controls.Add(this.setPenRedBtn);
+            this.convasContainer.Controls.Add(this.toggleFillBtn);
+            this.convasContainer.Controls.Add(this.clearCanvasButton);
             this.convasContainer.Location = new System.Drawing.Point(422, 3);
             this.convasContainer.Name = "convasContainer";
             this.convasContainer.Size = new System.Drawing.Size(413, 207);
@@ -189,7 +189,8 @@
             // 
             // toggleFillBtn
             // 
-            this.toggleFillBtn.Location = new System.Drawing.Point(151, 180);
+            this.toggleFillBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.toggleFillBtn.Location = new System.Drawing.Point(254, 180);
             this.toggleFillBtn.Name = "toggleFillBtn";
             this.toggleFillBtn.Size = new System.Drawing.Size(75, 23);
             this.toggleFillBtn.TabIndex = 7;
@@ -199,8 +200,9 @@
             // 
             // setPenYellowBtn
             // 
+            this.setPenYellowBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.setPenYellowBtn.BackColor = System.Drawing.Color.Yellow;
-            this.setPenYellowBtn.Location = new System.Drawing.Point(124, 180);
+            this.setPenYellowBtn.Location = new System.Drawing.Point(34, 181);
             this.setPenYellowBtn.Name = "setPenYellowBtn";
             this.setPenYellowBtn.Size = new System.Drawing.Size(21, 23);
             this.setPenYellowBtn.TabIndex = 6;
@@ -209,8 +211,9 @@
             // 
             // setPenRedBtn
             // 
+            this.setPenRedBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.setPenRedBtn.BackColor = System.Drawing.Color.Red;
-            this.setPenRedBtn.Location = new System.Drawing.Point(97, 180);
+            this.setPenRedBtn.Location = new System.Drawing.Point(7, 181);
             this.setPenRedBtn.Name = "setPenRedBtn";
             this.setPenRedBtn.Size = new System.Drawing.Size(21, 23);
             this.setPenRedBtn.TabIndex = 5;
@@ -219,7 +222,7 @@
             // 
             // moveTo100Btn
             // 
-            this.moveTo100Btn.Location = new System.Drawing.Point(7, 180);
+            this.moveTo100Btn.Location = new System.Drawing.Point(85, 34);
             this.moveTo100Btn.Name = "moveTo100Btn";
             this.moveTo100Btn.Size = new System.Drawing.Size(84, 23);
             this.moveTo100Btn.TabIndex = 4;
@@ -229,7 +232,7 @@
             // 
             // resetPenBtn
             // 
-            this.resetPenBtn.Location = new System.Drawing.Point(251, 180);
+            this.resetPenBtn.Location = new System.Drawing.Point(84, 88);
             this.resetPenBtn.Name = "resetPenBtn";
             this.resetPenBtn.Size = new System.Drawing.Size(75, 23);
             this.resetPenBtn.TabIndex = 3;
@@ -240,7 +243,7 @@
             // clearCanvasButton
             // 
             this.clearCanvasButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearCanvasButton.Location = new System.Drawing.Point(314, 180);
+            this.clearCanvasButton.Location = new System.Drawing.Point(335, 180);
             this.clearCanvasButton.Name = "clearCanvasButton";
             this.clearCanvasButton.Size = new System.Drawing.Size(75, 23);
             this.clearCanvasButton.TabIndex = 2;
@@ -256,7 +259,7 @@
             this.canvasPanel.BackColor = System.Drawing.Color.White;
             this.canvasPanel.Location = new System.Drawing.Point(7, 20);
             this.canvasPanel.Name = "canvasPanel";
-            this.canvasPanel.Size = new System.Drawing.Size(383, 158);
+            this.canvasPanel.Size = new System.Drawing.Size(403, 154);
             this.canvasPanel.TabIndex = 1;
             this.canvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.canvasPanel_Paint);
             // 
@@ -352,7 +355,7 @@
             this.outputAndSnippetsTabControl.Location = new System.Drawing.Point(7, 4);
             this.outputAndSnippetsTabControl.Name = "outputAndSnippetsTabControl";
             this.outputAndSnippetsTabControl.SelectedIndex = 0;
-            this.outputAndSnippetsTabControl.Size = new System.Drawing.Size(383, 200);
+            this.outputAndSnippetsTabControl.Size = new System.Drawing.Size(403, 200);
             this.outputAndSnippetsTabControl.TabIndex = 0;
             // 
             // tabPage1
@@ -380,16 +383,28 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.moveTo100Btn);
             this.tabPage2.Controls.Add(this.drawToButton);
             this.tabPage2.Controls.Add(this.drawTrianleBtn);
+            this.tabPage2.Controls.Add(this.resetPenBtn);
             this.tabPage2.Controls.Add(this.drawCircleBtn);
             this.tabPage2.Controls.Add(this.drawRectangleBtn);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(375, 174);
+            this.tabPage2.Size = new System.Drawing.Size(395, 174);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Toolbox";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // drawToButton
+            // 
+            this.drawToButton.Location = new System.Drawing.Point(4, 34);
+            this.drawToButton.Name = "drawToButton";
+            this.drawToButton.Size = new System.Drawing.Size(75, 23);
+            this.drawToButton.TabIndex = 3;
+            this.drawToButton.Text = "DrawTo";
+            this.drawToButton.UseVisualStyleBackColor = true;
+            this.drawToButton.Click += new System.EventHandler(this.drawToButton_Click);
             // 
             // drawTrianleBtn
             // 
@@ -428,16 +443,6 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 0;
-            // 
-            // drawToButton
-            // 
-            this.drawToButton.Location = new System.Drawing.Point(4, 34);
-            this.drawToButton.Name = "drawToButton";
-            this.drawToButton.Size = new System.Drawing.Size(75, 23);
-            this.drawToButton.TabIndex = 3;
-            this.drawToButton.Text = "DrawTo";
-            this.drawToButton.UseVisualStyleBackColor = true;
-            this.drawToButton.Click += new System.EventHandler(this.drawToButton_Click);
             // 
             // MainUI_AseGPL1
             // 
