@@ -51,8 +51,8 @@ namespace ASE_GPEnv_Comp1
         {
             this.canvasPanelGraphics = e.Graphics;
 
-            this.canvas = new Canvas(Color.Red, 2, canvasPanel, commandsHistoryTextBox, outputTextBox);
-            parser = new CommandParser(this.canvas);
+            this.canvas = new Canvas(Color.Red, 2, canvasPanel, commandsHistoryTextBox, outputTextBox, commandTextBox);
+            parser = new CommandParser(this.canvas, this.shouldClearTextCheckBox);
             //this.canvas.moveTo(50, 50);
             //this.canvas.drawTo();
         }
@@ -136,6 +136,11 @@ namespace ASE_GPEnv_Comp1
         private void drawToButton_Click(object sender, EventArgs e)
         {
             canvas.drawTo();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

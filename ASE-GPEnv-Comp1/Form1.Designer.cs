@@ -60,6 +60,7 @@
             this.drawCircleBtn = new System.Windows.Forms.Button();
             this.drawRectangleBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.shouldClearTextCheckBox = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.codeBlockContainer.SuspendLayout();
             this.convasContainer.SuspendLayout();
@@ -279,6 +280,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.commandAndHistoryContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.commandAndHistoryContainer.Controls.Add(this.shouldClearTextCheckBox);
             this.commandAndHistoryContainer.Controls.Add(this.runCommandButton);
             this.commandAndHistoryContainer.Controls.Add(this.commandTextBox);
             this.commandAndHistoryContainer.Controls.Add(this.commandsHistoryTextBox);
@@ -444,6 +446,18 @@
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 0;
             // 
+            // shouldClearTextCheckBox
+            // 
+            this.shouldClearTextCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.shouldClearTextCheckBox.AutoSize = true;
+            this.shouldClearTextCheckBox.Location = new System.Drawing.Point(7, 185);
+            this.shouldClearTextCheckBox.Name = "shouldClearTextCheckBox";
+            this.shouldClearTextCheckBox.Size = new System.Drawing.Size(249, 17);
+            this.shouldClearTextCheckBox.TabIndex = 5;
+            this.shouldClearTextCheckBox.Text = "Clear command bar after successful execution?";
+            this.shouldClearTextCheckBox.UseVisualStyleBackColor = true;
+            this.shouldClearTextCheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // MainUI_AseGPL1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -503,6 +517,7 @@
         private System.Windows.Forms.Button setPenRedBtn;
         private System.Windows.Forms.Button toggleFillBtn;
         private System.Windows.Forms.Button drawToButton;
+        private System.Windows.Forms.CheckBox shouldClearTextCheckBox;
     }
 }
 

@@ -56,12 +56,14 @@ namespace ASE_GPEnv_Comp1
 
         public GPLCommand [] allValidGPLCommands;
         Canvas canvas;
+        CheckBox shouldClearCommandCheckBox;
 
 
 
-        public CommandParser(Canvas canvas) {
+        public CommandParser(Canvas canvas, CheckBox shouldClearCommandCheckBox) {
 
             this.canvas = canvas;
+            this.shouldClearCommandCheckBox = shouldClearCommandCheckBox;
 
             allValidGPLCommands = new GPLCommand[] {
                 new GPLCommand("run"),
@@ -169,7 +171,7 @@ namespace ASE_GPEnv_Comp1
                 {
 
                     //check for COUNT of required parameters
-                    if (paramsArray.Length == 0)
+                    if (paramsArray.Length == 0 && cmd_i.numberOfValidParams!=0)
                     {
                         parsingInfo.parsingExceptions.Add(new InvalidParamsException("Invalid Command Param:", "Please enter complete command. \n\tHint! " + cmd_i.commandFormat));
                         break;
@@ -264,6 +266,12 @@ namespace ASE_GPEnv_Comp1
                     canvas.drawTo(drawing);
                 }
 
+                else if (parsingResult.parsedCommand == "clear")
+                {
+                    
+                    canvas.clearCanvas();
+                }
+
 
 
             }
@@ -287,6 +295,11 @@ namespace ASE_GPEnv_Comp1
             }
 
             canvas.appendCommandToHistory(commandTxt, parsingResult.isSuccessful);
+
+            if (parsingResult.isSuccessful && shouldClearCommandCheckBox.Checked)
+            {
+                canvas.clearCommandInputBox();
+            }
 
 
         }

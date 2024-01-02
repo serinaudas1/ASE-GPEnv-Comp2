@@ -37,13 +37,14 @@ namespace ASE_GPEnv_Comp1
         Panel canvasPanel;
         RichTextBox commandsHistoryTextBox;
         RichTextBox outputTextBox;
+        TextBox commandInputTextBox;
 
 
         bool hasInitializedPosition = false;
         public bool shouldFill= false;
 
 
-        public Canvas(Color penColor, float penWidth, Panel panel, RichTextBox commandsHistoryTextBox, RichTextBox outputTextBox)
+        public Canvas(Color penColor, float penWidth, Panel panel, RichTextBox commandsHistoryTextBox, RichTextBox outputTextBox, TextBox commandInputTextBox)
         {
             this.pen = new Pen(Color.Red, penWidth);
             this.canvasPanel = panel;
@@ -53,6 +54,7 @@ namespace ASE_GPEnv_Comp1
 
             this.commandsHistoryTextBox = commandsHistoryTextBox;
             this.outputTextBox = outputTextBox;
+            this.commandInputTextBox = commandInputTextBox;
         }
 
 
@@ -187,5 +189,11 @@ namespace ASE_GPEnv_Comp1
             this.outputTextBox.ScrollToCaret();
 
         }
+
+        public void clearCommandInputBox()
+        {
+            this.commandInputTextBox.Clear();
+        }
+      
     }
 }
