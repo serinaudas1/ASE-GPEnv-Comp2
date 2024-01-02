@@ -69,16 +69,28 @@ namespace ASE_GPEnv_Comp1
 
         }
 
-        public void drawTo() {
+        public void drawCurrentPosition(PenPosition position) {
+
+            int radius = 1;
+            this.graphics.DrawEllipse(pen, this.penPosition.posX - radius, this.penPosition.posY - radius, 2 * radius, 2 * radius);
+
+        }
+        public void drawTo()
+        {
 
             if (!hasInitializedPosition)
             {
                 Debug.WriteLine("Waring! No position defined, setting position to (0,0)");
+                this.appendExecutionResultsToOutput("Waring! No position defined, setting position to (0,0)");
                 this.penPosition.setDefaultPosition();
             }
+            drawCurrentPosition(this.penPosition);
+        }
+            
+        public void drawTo(PenPosition penPosition)
+        {
+            drawCurrentPosition(penPosition);
 
-            int radius = 5;
-            this.graphics.DrawEllipse(pen, this.penPosition.posX - radius, this.penPosition.posY - radius, 2 * radius, 2 * radius);
         }
 
         public void clearCanvas() {
@@ -170,6 +182,7 @@ namespace ASE_GPEnv_Comp1
 
         }
         public void appendExecutionResultsToOutput(string text) {
+            text = text + "\n";
             this.outputTextBox.AppendText(text);
             this.outputTextBox.ScrollToCaret();
 

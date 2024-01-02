@@ -59,6 +59,7 @@
             this.drawCircleBtn = new System.Windows.Forms.Button();
             this.drawRectangleBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.drawToButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.codeBlockContainer.SuspendLayout();
             this.convasContainer.SuspendLayout();
@@ -120,7 +121,7 @@
             // executeProgramButton
             // 
             this.executeProgramButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.executeProgramButton.Location = new System.Drawing.Point(239, 180);
+            this.executeProgramButton.Location = new System.Drawing.Point(221, 180);
             this.executeProgramButton.Name = "executeProgramButton";
             this.executeProgramButton.Size = new System.Drawing.Size(75, 23);
             this.executeProgramButton.TabIndex = 4;
@@ -130,7 +131,7 @@
             // programSyntaxCheckButton
             // 
             this.programSyntaxCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.programSyntaxCheckButton.Location = new System.Drawing.Point(320, 181);
+            this.programSyntaxCheckButton.Location = new System.Drawing.Point(302, 181);
             this.programSyntaxCheckButton.Name = "programSyntaxCheckButton";
             this.programSyntaxCheckButton.Size = new System.Drawing.Size(89, 23);
             this.programSyntaxCheckButton.TabIndex = 3;
@@ -144,7 +145,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.programTextBox.Location = new System.Drawing.Point(4, 20);
             this.programTextBox.Name = "programTextBox";
-            this.programTextBox.Size = new System.Drawing.Size(406, 158);
+            this.programTextBox.Size = new System.Drawing.Size(388, 158);
             this.programTextBox.TabIndex = 2;
             this.programTextBox.Text = "";
             // 
@@ -239,7 +240,7 @@
             // clearCanvasButton
             // 
             this.clearCanvasButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearCanvasButton.Location = new System.Drawing.Point(332, 180);
+            this.clearCanvasButton.Location = new System.Drawing.Point(314, 180);
             this.clearCanvasButton.Name = "clearCanvasButton";
             this.clearCanvasButton.Size = new System.Drawing.Size(75, 23);
             this.clearCanvasButton.TabIndex = 2;
@@ -255,7 +256,7 @@
             this.canvasPanel.BackColor = System.Drawing.Color.White;
             this.canvasPanel.Location = new System.Drawing.Point(7, 20);
             this.canvasPanel.Name = "canvasPanel";
-            this.canvasPanel.Size = new System.Drawing.Size(401, 158);
+            this.canvasPanel.Size = new System.Drawing.Size(383, 158);
             this.canvasPanel.TabIndex = 1;
             this.canvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.canvasPanel_Paint);
             // 
@@ -287,7 +288,7 @@
             // runCommandButton
             // 
             this.runCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.runCommandButton.Location = new System.Drawing.Point(334, 181);
+            this.runCommandButton.Location = new System.Drawing.Point(316, 181);
             this.runCommandButton.Name = "runCommandButton";
             this.runCommandButton.Size = new System.Drawing.Size(75, 23);
             this.runCommandButton.TabIndex = 4;
@@ -300,7 +301,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.commandTextBox.Location = new System.Drawing.Point(7, 155);
             this.commandTextBox.Name = "commandTextBox";
-            this.commandTextBox.Size = new System.Drawing.Size(402, 20);
+            this.commandTextBox.Size = new System.Drawing.Size(384, 20);
             this.commandTextBox.TabIndex = 3;
             this.commandTextBox.TextChanged += new System.EventHandler(this.commandTextBox_TextChanged);
             this.commandTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.commandTextBox_KeyPress);
@@ -314,7 +315,7 @@
             this.commandsHistoryTextBox.Location = new System.Drawing.Point(4, 20);
             this.commandsHistoryTextBox.Name = "commandsHistoryTextBox";
             this.commandsHistoryTextBox.ReadOnly = true;
-            this.commandsHistoryTextBox.Size = new System.Drawing.Size(405, 129);
+            this.commandsHistoryTextBox.Size = new System.Drawing.Size(387, 129);
             this.commandsHistoryTextBox.TabIndex = 2;
             this.commandsHistoryTextBox.Text = "";
             // 
@@ -351,7 +352,7 @@
             this.outputAndSnippetsTabControl.Location = new System.Drawing.Point(7, 4);
             this.outputAndSnippetsTabControl.Name = "outputAndSnippetsTabControl";
             this.outputAndSnippetsTabControl.SelectedIndex = 0;
-            this.outputAndSnippetsTabControl.Size = new System.Drawing.Size(401, 200);
+            this.outputAndSnippetsTabControl.Size = new System.Drawing.Size(383, 200);
             this.outputAndSnippetsTabControl.TabIndex = 0;
             // 
             // tabPage1
@@ -359,7 +360,7 @@
             this.tabPage1.Controls.Add(this.outputTextBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(393, 174);
+            this.tabPage1.Size = new System.Drawing.Size(375, 174);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Output";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -373,18 +374,19 @@
             this.outputTextBox.Location = new System.Drawing.Point(3, 3);
             this.outputTextBox.Name = "outputTextBox";
             this.outputTextBox.ReadOnly = true;
-            this.outputTextBox.Size = new System.Drawing.Size(387, 168);
+            this.outputTextBox.Size = new System.Drawing.Size(351, 168);
             this.outputTextBox.TabIndex = 5;
             this.outputTextBox.Text = "";
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.drawToButton);
             this.tabPage2.Controls.Add(this.drawTrianleBtn);
             this.tabPage2.Controls.Add(this.drawCircleBtn);
             this.tabPage2.Controls.Add(this.drawRectangleBtn);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(393, 174);
+            this.tabPage2.Size = new System.Drawing.Size(375, 174);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Toolbox";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -426,6 +428,16 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 0;
+            // 
+            // drawToButton
+            // 
+            this.drawToButton.Location = new System.Drawing.Point(4, 34);
+            this.drawToButton.Name = "drawToButton";
+            this.drawToButton.Size = new System.Drawing.Size(75, 23);
+            this.drawToButton.TabIndex = 3;
+            this.drawToButton.Text = "DrawTo";
+            this.drawToButton.UseVisualStyleBackColor = true;
+            this.drawToButton.Click += new System.EventHandler(this.drawToButton_Click);
             // 
             // MainUI_AseGPL1
             // 
@@ -485,6 +497,7 @@
         private System.Windows.Forms.Button setPenYellowBtn;
         private System.Windows.Forms.Button setPenRedBtn;
         private System.Windows.Forms.Button toggleFillBtn;
+        private System.Windows.Forms.Button drawToButton;
     }
 }
 

@@ -132,5 +132,10 @@ namespace ASE_GPEnv_Comp1
             string s = "Serina  ";
      
         }
+
+        private void drawToButton_Click(object sender, EventArgs e)
+        {
+            canvas.drawTo();
+        }
     }
 }
