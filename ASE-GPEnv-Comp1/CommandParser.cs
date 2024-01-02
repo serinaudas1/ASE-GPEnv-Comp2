@@ -56,7 +56,7 @@ namespace ASE_GPEnv_Comp1
             allValidGPLCommands = new GPLCommand[] {
                 new GPLCommand("run", 0),
                 new GPLCommand("moveto", 2), //2 params: x, y
-                new GPLCommand("drawto", 0), //1 param: pen
+                new GPLCommand("drawto", 2), //2 params: x, y
                 new GPLCommand("clear", 0),
                 new GPLCommand("reset", 0),
                 new GPLCommand("rectangle", 2),//2 params: width, height
@@ -191,7 +191,7 @@ namespace ASE_GPEnv_Comp1
             {
                 foreach (ParsingException pEx in parsingResult.parsingExceptions) {
 
-                    string outputText = pEx.Message + "\n\t" + pEx.getParsingExceptionMessage() + "\n_______________\n";
+                    string outputText = pEx.Message + "\n\t" + pEx.getParsingExceptionMessage() + "\n_______________";
                     canvas.appendExecutionResultsToOutput(outputText);
                     //Debug.WriteLine(pEx.Message+" "+pEx.getParsingExceptionMessage());
                 }
