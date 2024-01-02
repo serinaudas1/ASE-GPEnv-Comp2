@@ -109,73 +109,87 @@ namespace ASE_GPEnv_Comp1
             bool hasFoundCommand = false;
             string[] commandSplitBySpace = command.ToLower().Split(' ');
             string inputCommand = commandSplitBySpace[0];
+
+
+            //checking command validity here
             foreach (GPLCommand cmd_i in allValidGPLCommands) {
 
                 if (cmd_i.command == inputCommand) {
                     hasFoundCommand = true;
+                    break;
+                }
+            }
+            if (!hasFoundCommand) {
+                    parsingInfo.parsingExceptions.Add(new InvalidCommandException("Invalid Command", "'" + command + "' not a valid command."));
+            }
+            // end of command validity check
 
 
-                    //check if string command found in paramters, otherwise add exception object
-                    if (cmd_i.hasStringParam)
+
+
+            if(false) // fix and implement in next step
+            foreach (GPLCommand cmd_i in allValidGPLCommands)
+            {
+                //check if string command found in paramters, otherwise add exception object
+                if (cmd_i.hasStringParam)
+                {
+                    if (commandSplitBySpace.Length < 2)
                     {
-                        if (commandSplitBySpace.Length < 2)
-                        {
-                            parsingInfo.parsingExceptions.Add(new InvalidParamsException("Invalid Command Param", "Please enter complete command. Hint! Add string paramter."));
-                        }
-                        else
-                        {
-                            string inputStringParam = commandSplitBySpace[1];
-                            bool hasFoundStringParam = false;
-                            foreach (GPLCommand cmd_j in allValidGPLCommands)
-                            {
-                                if (inputStringParam == cmd_j.stringParam)
-                                {
-                                    hasFoundStringParam = true;
-                                }
-
-                            }
-                            if (!hasFoundStringParam)
-                            {
-                                parsingInfo.parsingExceptions.Add(new InvalidParamsException("Invalid Command String Param", "'" + inputStringParam + "' Not a valid param"));
-
-                            }
-
-
-
-
-                        }
+                        parsingInfo.parsingExceptions.Add(new InvalidParamsException("Invalid Command Param", "Please enter complete command. Hint! Add string paramter."));
                     }
-
-
-
                     else
                     {
-                        string[] lines = command.ToLower().Split(' ');
-                        int numberOfInputParams = lines.Length;
-                        if (cmd_i.numberOfValidParams < numberOfInputParams)
+                        string inputStringParam = commandSplitBySpace[1];
+                        bool hasFoundStringParam = false;
+                        foreach (GPLCommand cmd_j in allValidGPLCommands)
                         {
-                            parsingInfo.parsingExceptions.Add(new InvalidParamsException("Invalid Params", "Too much parameters passed."));
+                            if (inputStringParam == cmd_j.stringParam)
+                            {
+                                hasFoundStringParam = true;
+                            }
 
                         }
-                        else if (cmd_i.numberOfValidParams > numberOfInputParams)
+                        if (!hasFoundStringParam)
                         {
-                            parsingInfo.parsingExceptions.Add(new InvalidParamsException("Invalid Params", "Insufficient parameters passed."));
+                            parsingInfo.parsingExceptions.Add(new InvalidParamsException("Invalid Command String Param", "'" + inputStringParam + "' Not a valid param"));
 
                         }
-                        else
-                        {
-                            // parameter testing passed so far. time to check paramters validity
-                        }
+
+
+
+
                     }
-
-
                 }
+
+
+
+                else
+                {
+                    string[] lines = command.ToLower().Split(' ');
+                    int numberOfInputParams = lines.Length;
+                    if (cmd_i.numberOfValidParams < numberOfInputParams)
+                    {
+                        parsingInfo.parsingExceptions.Add(new InvalidParamsException("Invalid Params", "Too much parameters passed."));
+
+                    }
+                    else if (cmd_i.numberOfValidParams > numberOfInputParams)
+                    {
+                        parsingInfo.parsingExceptions.Add(new InvalidParamsException("Invalid Params", "Insufficient parameters passed."));
+
+                    }
+                    else
+                    {
+                        // parameter testing passed so far. time to check paramters validity
+                    }
+                }
+
+
+
             }
 
 
 
-
-            if(parsingInfo.parsingExceptions.Count>0)
+            if (parsingInfo.parsingExceptions.Count>0)
                 parsingInfo.isSuccessful = false;
             return parsingInfo;
         }
