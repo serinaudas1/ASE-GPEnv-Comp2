@@ -92,6 +92,12 @@ namespace ASE_GPEnv_Comp1
             public bool isSuccessful;
             public List<ParsingException> parsingExceptions;
 
+            public string[] parsedParameters;
+            public string parsedCommand;
+            
+
+
+
             public void initializeParsingInfo() {
                 lineNumber = -1; //-1 means it's  coming from command box instead of program box
                 isSuccessful = true;
@@ -137,6 +143,8 @@ namespace ASE_GPEnv_Comp1
             string inputCommand = commandSplitBySpace[0];
 
             string[] paramsArray = extractParamsFromCommand(command);
+            parsingInfo.parsedCommand = inputCommand;
+            parsingInfo.parsedParameters = paramsArray;
 
 
             //checking command validity here
@@ -241,6 +249,15 @@ namespace ASE_GPEnv_Comp1
             //MessageBox.Show(""+parsingResult.parsingExceptions.Count);
             if (parsingResult.isSuccessful) {
                 // identify the command and excecute it
+
+                if (parsingResult.parsedCommand == "moveto") {
+                    int x = int.Parse(parsingResult.parsedParameters[0]);
+                    int y = int.Parse(parsingResult.parsedParameters[1]);
+                    PenPosition drawing = new PenPosition(x, y);
+                    canvas.moveTo(drawing);
+                }
+
+
             }
             else
             {
