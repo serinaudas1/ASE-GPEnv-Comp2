@@ -35,18 +35,24 @@ namespace ASE_GPEnv_Comp1
 
         Graphics graphics;
         Panel canvasPanel;
+        RichTextBox commandsHistoryTextBox;
+        RichTextBox outputTextBox;
+
 
         bool hasInitializedPosition = false;
         public bool shouldFill= false;
 
 
-        public Canvas(Color penColor, float penWidth, Panel panel)
+        public Canvas(Color penColor, float penWidth, Panel panel, RichTextBox commandsHistoryTextBox, RichTextBox outputTextBox)
         {
             this.pen = new Pen(Color.Red, penWidth);
             this.canvasPanel = panel;
             this.graphics = panel.CreateGraphics();
             this.penPosition =new PenPosition();
             this.penPosition.setDefaultPosition();
+
+            this.commandsHistoryTextBox = commandsHistoryTextBox;
+            this.outputTextBox = outputTextBox;
         }
 
 
@@ -144,6 +150,29 @@ namespace ASE_GPEnv_Comp1
         public void setPenFill(bool shouldFill)
         {
             this.shouldFill = shouldFill;
+        }
+
+
+
+        public void appendCommandToHistory(string text, bool isSuccess) {
+
+            Color color = isSuccess ? Color.Green : Color.Red;
+
+            text = (isSuccess? "[SUCCESS]-  ":"[FAILURE]- ")+ text + "\n";
+            this.commandsHistoryTextBox.SelectionStart = commandsHistoryTextBox.TextLength;
+            this.commandsHistoryTextBox.SelectionLength = 0;
+
+            this.commandsHistoryTextBox.SelectionColor = color;
+            this.commandsHistoryTextBox.AppendText(text);
+            this.commandsHistoryTextBox.SelectionColor = commandsHistoryTextBox.ForeColor;
+            this.commandsHistoryTextBox.ScrollToCaret();
+
+
+        }
+        public void appendExecutionResultsToOutput(string text) {
+            this.outputTextBox.AppendText(text);
+            this.outputTextBox.ScrollToCaret();
+
         }
     }
 }

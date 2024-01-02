@@ -311,9 +311,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.commandsHistoryTextBox.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.commandsHistoryTextBox.Enabled = false;
             this.commandsHistoryTextBox.Location = new System.Drawing.Point(4, 20);
             this.commandsHistoryTextBox.Name = "commandsHistoryTextBox";
+            this.commandsHistoryTextBox.ReadOnly = true;
             this.commandsHistoryTextBox.Size = new System.Drawing.Size(405, 129);
             this.commandsHistoryTextBox.TabIndex = 2;
             this.commandsHistoryTextBox.Text = "";
@@ -370,10 +370,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.outputTextBox.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.outputTextBox.Enabled = false;
             this.outputTextBox.Location = new System.Drawing.Point(3, 3);
             this.outputTextBox.Name = "outputTextBox";
-            this.outputTextBox.Size = new System.Drawing.Size(356, 168);
+            this.outputTextBox.ReadOnly = true;
+            this.outputTextBox.Size = new System.Drawing.Size(387, 168);
             this.outputTextBox.TabIndex = 5;
             this.outputTextBox.Text = "";
             // 

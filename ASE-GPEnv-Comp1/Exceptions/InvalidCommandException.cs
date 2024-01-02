@@ -13,5 +13,9 @@ namespace ASE_GPEnv_Comp1.Exceptions
         {
             this.invalidCommandMessage = invalidCommandMessage;
         }
+        public override string getParsingExceptionMessage()
+        {
+            return invalidCommandMessage;
+        }
     }
 }

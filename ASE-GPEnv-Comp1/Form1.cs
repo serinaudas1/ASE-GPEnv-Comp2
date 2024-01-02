@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,7 +19,7 @@ namespace ASE_GPEnv_Comp1
         public MainUI_AseGPL1()
         {
             InitializeComponent();
-            parser = new CommandParser();
+        
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -49,7 +50,9 @@ namespace ASE_GPEnv_Comp1
         private void canvasPanel_Paint(object sender, PaintEventArgs e)
         {
             this.canvasPanelGraphics = e.Graphics;
-            this.canvas = new Canvas(Color.Red, 2, canvasPanel);
+
+            this.canvas = new Canvas(Color.Red, 2, canvasPanel, commandsHistoryTextBox, outputTextBox);
+            parser = new CommandParser(this.canvas);
             //this.canvas.moveTo(50, 50);
             //this.canvas.drawTo();
         }
@@ -105,6 +108,7 @@ namespace ASE_GPEnv_Comp1
         private void toggleFillBtn_Click(object sender, EventArgs e)
         {
             this.canvas.setPenFill(!this.canvas.shouldFill);
+          
         }
 
         private void commandTextBox_TextChanged(object sender, EventArgs e)
@@ -116,8 +120,17 @@ namespace ASE_GPEnv_Comp1
         {
             if (e.KeyChar == (Char) Keys.Enter)
             {
-                MessageBox.Show(commandTextBox.Text);
+
+                string commandText = Regex.Replace(commandTextBox.Text, @"\s+", " ");
+                //MessageBox.Show("" + commandText.Split(' ').Length + "-" + commandText.Split(' ')[1].Length);
+                parser.executeOneCommand(commandText);
             }
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            string s = "Serina  ";
+     
         }
     }
 }

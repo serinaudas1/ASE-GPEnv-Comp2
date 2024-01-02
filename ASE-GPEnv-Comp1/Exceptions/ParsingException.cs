@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace ASE_GPEnv_Comp1.Exceptions
 {
-    public class ParsingException : Exception
+    public abstract class ParsingException : Exception
     {
-   
+
+        public abstract string getParsingExceptionMessage();
         public ParsingException(string exceptionMessage) : base(exceptionMessage)
         {
-            Console.WriteLine("Initializing Parsing Exception with message : "+ exceptionMessage);
+
         }
+
+        
     }
 }

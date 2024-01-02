@@ -15,5 +15,14 @@ namespace ASE_GPEnv_Comp1.Exceptions
         {
             this.invalidParamsMessage = invalidParamsMessage;
         }
+
+        public override string getParsingExceptionMessage()
+        {
+            return invalidParamsMessage;
+        }
+
+
+
+
     }
 }
