@@ -203,11 +203,19 @@ namespace ASE_GPEnv_Comp1
             }
             else
             {
-                foreach (ParsingException pEx in parsingResult.parsingExceptions) {
+                foreach (ParsingException parsingException in parsingResult.parsingExceptions) {
 
-                    string outputText = pEx.Message + "\n\t" + pEx.getParsingExceptionMessage() + "\n_______________";
-                    canvas.appendExecutionResultsToOutput(outputText);
-                    //Debug.WriteLine(pEx.Message+" "+pEx.getParsingExceptionMessage());
+                    try
+                    {
+                        throw parsingException;
+                    }
+                    catch (ParsingException pEx) {
+                      
+                        string outputText = pEx.Message + "\n\t" + pEx.getParsingExceptionMessage() + "\n_______________";
+                        canvas.appendExecutionResultsToOutput(outputText);
+                        //Debug.WriteLine(pEx.Message+" "+pEx.getParsingExceptionMessage());
+
+                    }
                 }
                 // draw or log the exception in output panels
             }
