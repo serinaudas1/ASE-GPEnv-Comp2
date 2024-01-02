@@ -246,7 +246,6 @@ namespace ASE_GPEnv_Comp1
         public void executeOneCommand(String commandTxt) {
 
             ParsingInfo parsingResult = checkSyntax(commandTxt, -1);
-            //MessageBox.Show(""+parsingResult.parsingExceptions.Count);
             if (parsingResult.isSuccessful) {
                 // identify the command and excecute it
 
@@ -256,6 +255,15 @@ namespace ASE_GPEnv_Comp1
                     PenPosition drawing = new PenPosition(x, y);
                     canvas.moveTo(drawing);
                 }
+
+                else if (parsingResult.parsedCommand == "drawto")
+                {
+                    int x = int.Parse(parsingResult.parsedParameters[0]);
+                    int y = int.Parse(parsingResult.parsedParameters[1]);
+                    PenPosition drawing = new PenPosition(x, y);
+                    canvas.drawTo(drawing);
+                }
+
 
 
             }

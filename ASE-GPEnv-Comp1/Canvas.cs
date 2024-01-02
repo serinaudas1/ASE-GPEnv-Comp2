@@ -72,7 +72,7 @@ namespace ASE_GPEnv_Comp1
         public void drawCurrentPosition(PenPosition position) {
 
             int radius = 1;
-            this.graphics.DrawEllipse(pen, this.penPosition.posX - radius, this.penPosition.posY - radius, 2 * radius, 2 * radius);
+            this.graphics.DrawEllipse(pen, position.posX - radius, position.posY - radius, 2 * radius, 2 * radius);
 
         }
         public void drawTo()
