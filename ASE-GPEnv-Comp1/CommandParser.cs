@@ -303,6 +303,16 @@ namespace ASE_GPEnv_Comp1
 
                 canvas.drawRectangle(rectangle);
             }
+            else if (parsingResult.parsedCommand == "circle")
+            {
+                int radius = int.Parse(parsingResult.parsedParameters[0]);
+               
+
+                Circle circle = (Circle) shapesFactory.getShape("circle");
+                circle.initializeShape(canvas.getPen().Color, canvas.getPenPosition(),radius);
+
+                canvas.drawCircle(circle);
+            }
         }
 
         void throwAndLogExceptions(ParsingInfo parsingResult) {
