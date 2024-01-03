@@ -245,68 +245,77 @@ namespace ASE_GPEnv_Comp1
             return parsingInfo;
         }
 
+
+
+        void runValidGPLCommand(ParsingInfo parsingResult) {
+
+
+            if (parsingResult.parsedCommand == "moveto")
+            {
+                int x = int.Parse(parsingResult.parsedParameters[0]);
+                int y = int.Parse(parsingResult.parsedParameters[1]);
+                PenPosition drawing = new PenPosition(x, y);
+                canvas.moveTo(drawing);
+            }
+
+            else if (parsingResult.parsedCommand == "drawto")
+            {
+                int x = int.Parse(parsingResult.parsedParameters[0]);
+                int y = int.Parse(parsingResult.parsedParameters[1]);
+                PenPosition drawing = new PenPosition(x, y);
+                canvas.drawTo(drawing);
+            }
+
+            else if (parsingResult.parsedCommand == "clear")
+            {
+
+                canvas.clearCanvas();
+            }
+
+            else if (parsingResult.parsedCommand == "reset")
+            {
+
+                canvas.resetPen();
+            }
+
+            if (parsingResult.parsedCommand == "rectangle")
+            {
+                int width = int.Parse(parsingResult.parsedParameters[0]);
+                int height = int.Parse(parsingResult.parsedParameters[1]);
+
+                canvas.drawRectangle(width, height);
+            }
+        }
+
+        void throwAndLogExceptions(ParsingInfo parsingResult) {
+            foreach (ParsingException parsingException in parsingResult.parsingExceptions)
+            {
+                try
+                {
+                    throw parsingException;
+                }
+                catch (ParsingException pEx)
+                {
+
+                    string outputText = (parsingResult.lineNumber == -1 ? "" : "[ Line No."+parsingResult.lineNumber+"]")+ pEx.Message + "\n\t" + pEx.getParsingExceptionMessage() + "\n_____________________________________________";
+                    canvas.appendExecutionResultsToOutput(outputText);
+                    //Debug.WriteLine(pEx.Message+" "+pEx.getParsingExceptionMessage());
+
+                }
+            }
+        }
+
+
         public void executeOneCommand(String commandTxt) {
 
             ParsingInfo parsingResult = checkSyntax(commandTxt, -1);
             if (parsingResult.isSuccessful) {
                 // identify the command and excecute it
-
-                if (parsingResult.parsedCommand == "moveto") {
-                    int x = int.Parse(parsingResult.parsedParameters[0]);
-                    int y = int.Parse(parsingResult.parsedParameters[1]);
-                    PenPosition drawing = new PenPosition(x, y);
-                    canvas.moveTo(drawing);
-                }
-
-                else if (parsingResult.parsedCommand == "drawto")
-                {
-                    int x = int.Parse(parsingResult.parsedParameters[0]);
-                    int y = int.Parse(parsingResult.parsedParameters[1]);
-                    PenPosition drawing = new PenPosition(x, y);
-                    canvas.drawTo(drawing);
-                }
-
-                else if (parsingResult.parsedCommand == "clear")
-                {
-                    
-                    canvas.clearCanvas();
-                }
-
-                else if (parsingResult.parsedCommand == "reset")
-                {
-
-                    canvas.resetPen();
-                }
-
-                if (parsingResult.parsedCommand == "rectangle")
-                {
-                    int width = int.Parse(parsingResult.parsedParameters[0]);
-                    int height = int.Parse(parsingResult.parsedParameters[1]);
-                    
-                    canvas.drawRectangle(width, height);
-                }
-
-
-
-
+                runValidGPLCommand(parsingResult);
             }
             else
             {
-                foreach (ParsingException parsingException in parsingResult.parsingExceptions) {
-
-                    try
-                    {
-                        throw parsingException;
-                    }
-                    catch (ParsingException pEx) {
-                      
-                        string outputText = pEx.Message + "\n\t" + pEx.getParsingExceptionMessage() + "\n_____________________________________________";
-                        canvas.appendExecutionResultsToOutput(outputText);
-                        //Debug.WriteLine(pEx.Message+" "+pEx.getParsingExceptionMessage());
-
-                    }
-                }
-                // draw or log the exception in output panels
+                throwAndLogExceptions(parsingResult);
             }
 
             canvas.appendCommandToHistory(commandTxt, parsingResult.isSuccessful);
@@ -315,7 +324,6 @@ namespace ASE_GPEnv_Comp1
             {
                 canvas.clearCommandInputBox();
             }
-
 
         }
 
