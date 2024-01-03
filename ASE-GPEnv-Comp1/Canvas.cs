@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASE_GPEnv_Comp1.ShapesClasses;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -115,6 +116,24 @@ namespace ASE_GPEnv_Comp1
             this.graphics.DrawRectangle(this.pen, this.penPosition.posX, this.penPosition.posY, width, height);
 
         }
+        public void drawRectangle(ShapesClasses.Rectangle rectangle)
+        {
+            int width = rectangle.width;
+            int height = rectangle.height;
+            int posX = rectangle.posX;
+            int posY = rectangle.posY;
+
+            Color rectangleColor = rectangle.shapeColor;
+            this.setPenColor(rectangleColor);
+
+            if (shouldFill)
+            {
+                Brush fillingBrush = new SolidBrush(this.pen.Color);
+                this.graphics.FillRectangle(fillingBrush, posX, posY, width, height);
+            }
+            this.graphics.DrawRectangle(this.pen, posX, posY, width, height);
+
+        }
 
         public void drawCircle(int radius)
         {
@@ -130,6 +149,24 @@ namespace ASE_GPEnv_Comp1
                 this.graphics.DrawEllipse(pen, translatedX, translatedY, 2 * radius, 2 * radius);
 
         }
+        public void drawCircle(Circle circle)
+        {
+            int radius = circle.radius;
+            int translatedX = circle.posX - radius;
+            int translatedY = circle.posY - radius;
+            Color circleColor = circle.shapeColor;
+            this.setPenColor(circleColor);
+
+            if (shouldFill)
+            {
+                Brush fillingBrush = new SolidBrush(this.pen.Color);
+                this.graphics.FillEllipse(fillingBrush, translatedX, translatedY, 2 * radius, 2 * radius);
+            }
+            else
+                this.graphics.DrawEllipse(this.pen, translatedX, translatedY, 2 * radius, 2 * radius);
+
+        }
+
 
         public void drawTriangle(int sideLength)
         {
@@ -156,6 +193,34 @@ namespace ASE_GPEnv_Comp1
 
 
         }
+        public void drawTriangle(Triangle triangle)
+        {
+
+            int halfSide = triangle.sideLength / 2;
+            Color triangleColor = triangle.shapeColor;
+            this.setPenColor(triangleColor);
+
+            Point firstPoint = new Point(triangle.posX, triangle.posY - halfSide);
+            Point secondPoint = new Point(triangle.posX + halfSide, triangle.posY);
+            Point thirdPoint = new Point(triangle.posX - halfSide, triangle.posY);
+
+
+            if (shouldFill)
+            {
+                Brush fillingBrush = new SolidBrush(this.pen.Color);
+                this.graphics.FillPolygon(fillingBrush, new Point[] { firstPoint, secondPoint, thirdPoint });
+
+            }
+            else
+            {
+                this.graphics.DrawLine(pen, firstPoint, secondPoint);
+                this.graphics.DrawLine(pen, secondPoint, thirdPoint);
+                this.graphics.DrawLine(pen, thirdPoint, firstPoint);
+            }
+
+
+        }
+
 
         public void setPenColor(Color newColor) {
             this.pen.Color = newColor;

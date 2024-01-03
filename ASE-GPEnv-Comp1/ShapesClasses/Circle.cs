@@ -9,7 +9,7 @@ namespace ASE_GPEnv_Comp1.ShapesClasses
 {
     class Circle : Shape
     {
-        int radius;
+        public int radius;
 
         public Circle() : base()
         {

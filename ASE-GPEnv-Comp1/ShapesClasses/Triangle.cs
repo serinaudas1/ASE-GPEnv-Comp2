@@ -9,7 +9,7 @@ namespace ASE_GPEnv_Comp1.ShapesClasses
 {
     class Triangle: Shape
     {
-        int sideLength;
+        public int sideLength;
 
         public Triangle() : base()
         {
