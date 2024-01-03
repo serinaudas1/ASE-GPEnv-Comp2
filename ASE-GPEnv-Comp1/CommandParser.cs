@@ -278,6 +278,15 @@ namespace ASE_GPEnv_Comp1
                     canvas.resetPen();
                 }
 
+                if (parsingResult.parsedCommand == "rectangle")
+                {
+                    int width = int.Parse(parsingResult.parsedParameters[0]);
+                    int height = int.Parse(parsingResult.parsedParameters[1]);
+                    
+                    canvas.drawRectangle(width, height);
+                }
+
+
 
 
             }
