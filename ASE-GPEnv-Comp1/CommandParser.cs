@@ -282,7 +282,7 @@ namespace ASE_GPEnv_Comp1
                 canvas.resetPen();
             }
 
-            if (parsingResult.parsedCommand == "rectangle")
+            else if (parsingResult.parsedCommand == "rectangle")
             {
                 int width = int.Parse(parsingResult.parsedParameters[0]);
                 int height = int.Parse(parsingResult.parsedParameters[1]);
@@ -290,6 +290,16 @@ namespace ASE_GPEnv_Comp1
                 Rectangle rectangle = (Rectangle) shapesFactory.getShape("rectangle");
                 rectangle.initializeShape(canvas.getPen().Color, canvas.getPenPosition(), width, height);
 
+                canvas.drawRectangle(rectangle);
+            }
+
+            else if (parsingResult.parsedCommand == "rectangle")
+            {
+                int width = int.Parse(parsingResult.parsedParameters[0]);
+                int height = int.Parse(parsingResult.parsedParameters[1]);
+
+                Rectangle rectangle = (Rectangle)shapesFactory.getShape("rectangle");
+                rectangle.initializeShape(canvas.getPen().Color, canvas.getPenPosition(), width, height);
 
                 canvas.drawRectangle(rectangle);
             }
