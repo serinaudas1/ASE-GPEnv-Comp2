@@ -9,7 +9,7 @@ namespace ASE_GPEnv_Comp1.ShapesClasses
 {
     class Rectangle : Shape
     {
-        int width, height;
+        public int width, height;
         public Rectangle() : base()
         {
             width = 25;

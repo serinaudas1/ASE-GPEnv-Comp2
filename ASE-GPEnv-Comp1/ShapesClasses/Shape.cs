@@ -9,8 +9,8 @@ namespace ASE_GPEnv_Comp1.ShapesClasses
 {
     abstract class Shape : ShapesInterface
     {
-        protected Color shapeColor; 
-        protected int posX, posY; 
+        public  Color shapeColor; 
+        public int posX, posY; 
         public Shape()
         {
             shapeColor = Color.Red;
