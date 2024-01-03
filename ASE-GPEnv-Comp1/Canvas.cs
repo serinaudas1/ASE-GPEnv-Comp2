@@ -259,6 +259,14 @@ namespace ASE_GPEnv_Comp1
         {
             this.commandInputTextBox.Clear();
         }
+
+        public Pen getPen() {
+            return this.pen;
+        }
+        public PenPosition getPenPosition()
+        {
+            return this.penPosition;
+        }
       
     }
 }

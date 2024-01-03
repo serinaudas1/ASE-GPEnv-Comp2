@@ -1,4 +1,5 @@
 ﻿using ASE_GPEnv_Comp1.Exceptions;
+using ASE_GPEnv_Comp1.ShapesClasses;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Rectangle = ASE_GPEnv_Comp1.ShapesClasses.Rectangle;
 
 namespace ASE_GPEnv_Comp1
 {
@@ -57,6 +59,7 @@ namespace ASE_GPEnv_Comp1
         public GPLCommand [] allValidGPLCommands;
         Canvas canvas;
         CheckBox shouldClearCommandCheckBox;
+        ShapesFactory shapesFactory;
 
 
 
@@ -64,6 +67,7 @@ namespace ASE_GPEnv_Comp1
 
             this.canvas = canvas;
             this.shouldClearCommandCheckBox = shouldClearCommandCheckBox;
+            this.shapesFactory = new ShapesFactory();
 
             allValidGPLCommands = new GPLCommand[] {
                 new GPLCommand("run"),
@@ -283,7 +287,11 @@ namespace ASE_GPEnv_Comp1
                 int width = int.Parse(parsingResult.parsedParameters[0]);
                 int height = int.Parse(parsingResult.parsedParameters[1]);
 
-                canvas.drawRectangle(width, height);
+                Rectangle rectangle = (Rectangle) shapesFactory.getShape("rectangle");
+                rectangle.initializeShape(canvas.getPen().Color, canvas.getPenPosition(), width, height);
+
+
+                canvas.drawRectangle(rectangle);
             }
         }
 
