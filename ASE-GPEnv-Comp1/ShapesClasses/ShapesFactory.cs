@@ -12,9 +12,9 @@ namespace ASE_GPEnv_Comp1.ShapesClasses
         {
             shapeType = shapeType.ToUpper(); 
 
-            if (shapeType.Equals("CIRCLE"))
+            if (shapeType.Equals("TRIANGLE"))
             {
-                return new Circle();
+                return new Triangle();
 
             }
             else if (shapeType.Equals("RECTANGLE"))

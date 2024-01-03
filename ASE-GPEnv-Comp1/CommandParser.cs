@@ -313,6 +313,16 @@ namespace ASE_GPEnv_Comp1
 
                 canvas.drawCircle(circle);
             }
+            else if (parsingResult.parsedCommand == "triangle")
+            {
+                int sideLength = int.Parse(parsingResult.parsedParameters[0]);
+
+
+                Triangle triangle = (Triangle)shapesFactory.getShape("triangle");
+                triangle.initializeShape(canvas.getPen().Color, canvas.getPenPosition(), sideLength);
+
+                canvas.drawTriangle(triangle);
+            }
         }
 
         void throwAndLogExceptions(ParsingInfo parsingResult) {
