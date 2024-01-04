@@ -277,6 +277,9 @@ namespace ASE_GPEnv_Comp1
 
         }
 
+        public string readProgramFromFile(string selectedFilePath) {
+            return File.ReadAllText(selectedFilePath);
+        }
         public void handleLoadProgram() {
             OpenFileDialog openFileBrowser = new OpenFileDialog();
 
@@ -291,7 +294,7 @@ namespace ASE_GPEnv_Comp1
                 {
                     try
                     {
-                        string graphicsProgram = File.ReadAllText(selectedFilePath);
+                        string graphicsProgram = readProgramFromFile(selectedFilePath);
                         this.programTextBox.Text = graphicsProgram;
                     }
                     catch (Exception ex)
@@ -304,6 +307,10 @@ namespace ASE_GPEnv_Comp1
                     MessageBox.Show("Please select a text file with the .txt extension.", "Invalid File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+        }
+
+        public void storeProgramToFile(string gplFilePath, string graphicsProgram) {
+            File.WriteAllText(gplFilePath, graphicsProgram);
         }
 
         public void handleSaveProgram() {
@@ -321,7 +328,8 @@ namespace ASE_GPEnv_Comp1
                 try
                 {
                     string graphicsProgram = programTextBox.Text;
-                    File.WriteAllText(gplFilePath, graphicsProgram);
+                    storeProgramToFile(gplFilePath, graphicsProgram);
+                   
 
                     MessageBox.Show("Program saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

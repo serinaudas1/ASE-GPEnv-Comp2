@@ -139,7 +139,7 @@ namespace ASE_GPEnv_Comp1
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            string s = "Serina  ";
+   
      
         }
 
@@ -155,7 +155,7 @@ namespace ASE_GPEnv_Comp1
 
         private void saveProgramButton_Click(object sender, EventArgs e)
         {
-            handleSaveProgram();
+            canvas.handleSaveProgram();
         }
     }
 }
