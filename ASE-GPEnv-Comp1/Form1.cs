@@ -15,13 +15,20 @@ namespace ASE_GPEnv_Comp1
     public partial class MainUI_AseGPL1 : Form
     {
         Graphics canvasPanelGraphics;
-        Canvas canvas;
-        CommandParser parser;
+        public Canvas canvas;
+        public CommandParser parser;
+        public CheckBox clearTextCB;
         public MainUI_AseGPL1()
         {
             InitializeComponent();
-        
+
+            this.canvas = new Canvas(Color.Red, 2, canvasPanel, commandsHistoryTextBox, outputTextBox, commandTextBox, programTextBox);
+            parser = new CommandParser(this.canvas, this.shouldClearTextCheckBox);
+            // I added this intentionally becuase can't directly call the UI compenent from family
+            this.clearTextCB = this.shouldClearTextCheckBox;
+
         }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -75,10 +82,7 @@ namespace ASE_GPEnv_Comp1
 
         private void canvasPanel_Paint(object sender, PaintEventArgs e)
         {
-            this.canvasPanelGraphics = e.Graphics;
-
-            this.canvas = new Canvas(Color.Red, 2, canvasPanel, commandsHistoryTextBox, outputTextBox,commandTextBox,  programTextBox);
-            parser = new CommandParser(this.canvas, this.shouldClearTextCheckBox);
+           
             //this.canvas.moveTo(50, 50);
             //this.canvas.drawTo();
         }

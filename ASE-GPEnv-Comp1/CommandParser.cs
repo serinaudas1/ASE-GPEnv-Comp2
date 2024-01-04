@@ -258,7 +258,11 @@ namespace ASE_GPEnv_Comp1
         }
 
 
-
+        /// <summary>
+        /// On Succesful parsing of command, this method identifies the command and
+        /// triggers the right handler for that command
+        /// </summary>
+        /// <param name="parsingResult"></param>
         void runValidGPLCommand(ParsingInfo parsingResult) {
 
 
@@ -389,8 +393,22 @@ namespace ASE_GPEnv_Comp1
             }
         }
 
-
-        public void executeOneCommand(String commandTxt, int lineNumber) {
+        /// <summary>
+        /// Receives one line command either coming from
+        /// command input box or multiple program statement splits.
+        /// It has three methods. 
+        /// 1) To check the validity of command
+        /// 2) To execute the command only If command is successfully parsed
+        /// 3) Logging of exceptions if command parsing was unsuccessful.
+        /// </summary>
+        /// <param name="commandTxt">
+        /// Command text which needs to be parsed followed by execution of the command
+        /// </param>
+        /// <param name="lineNumber">
+        /// It's -1 in case of one line command and have a proper line number if
+        /// method is called from statement splits of program execution
+        /// </param>
+        public ParsingInfo executeOneCommand(String commandTxt, int lineNumber) {
 
             commandTxt = commandTxt.ToLower();
             ParsingInfo parsingResult = checkSyntax(commandTxt, lineNumber);
@@ -410,6 +428,9 @@ namespace ASE_GPEnv_Comp1
             {
                 canvas.clearCommandInputBox();
             }
+
+            Debug.Write(parsingResult.parsedCommand+ "-" +parsingResult.isSuccessful);
+            return parsingResult;
 
         }
 
