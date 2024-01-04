@@ -349,6 +349,9 @@ namespace ASE_GPEnv_Comp1
                 canvas.clearCanvas();
             }
 
+            ///<summary>
+            ///Command to reset the position of pen cursor. It makes calls to the resetPen method of Canvas class.
+            ///</summary>
             else if (parsingResult.parsedCommand == "reset")
             {
 

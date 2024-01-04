@@ -247,6 +247,43 @@ namespace ASE_GPEnv_Comp1.Tests
             // added this to see the result of execution on screen
             MessageBox.Show("Test Completed");
         }
-        
+
+
+        [TestMethod]
+        public void executeOneCommandTest_reset()
+        {
+            MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
+            mainUI.Visible = true;
+            CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
+            string command = "reset";
+
+            MessageBox.Show("Drawing a rectangle of 200,200 at 20,20");
+            parser.executeOneCommand("moveto 20, 20", -1);
+            parser.executeOneCommand("rectangle 200, 200", -1);
+
+
+            try
+            {
+                MessageBox.Show("Clearing Cursor and Canvas now.");
+                parser.executeOneCommand("clear");
+                ParsingInfo parsingResult = parser.executeOneCommand(command, -1);
+                Assert.IsTrue(parsingResult.isSuccessful);
+            }
+            catch (InvalidCommandException ex)
+            {
+                StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command", failedTestMessage(ex));
+                Assert.Fail(failedTestMessage(ex));
+
+            }
+
+
+            MessageBox.Show("To check position reset redrawing a rectangle of 200,200");
+            parser.executeOneCommand("rectangle 200, 200", -1);
+
+
+            // added this to see the result of execution on screen
+            MessageBox.Show("Test Completed");
+        }
+
     }
 }

@@ -126,6 +126,10 @@ namespace ASE_GPEnv_Comp1
 
         }
 
+
+        /// <summary>
+        /// Resets the pen position by moving to default position 0,0
+        /// </summary>
         public void resetPen() {
             this.penPosition.setDefaultPosition();
 
