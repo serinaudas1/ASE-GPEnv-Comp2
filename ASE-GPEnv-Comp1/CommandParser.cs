@@ -408,6 +408,10 @@ namespace ASE_GPEnv_Comp1
         /// It's -1 in case of one line command and have a proper line number if
         /// method is called from statement splits of program execution
         /// </param>
+        /// <returns>
+        /// Method returns the object of ParsingInfo class which have:
+        /// 1) Parsed Command 2) Parsed Params and 3) Successflag along with other info
+        /// </returns>
         public ParsingInfo executeOneCommand(String commandTxt, int lineNumber) {
 
             commandTxt = commandTxt.ToLower();
@@ -434,15 +438,17 @@ namespace ASE_GPEnv_Comp1
 
         }
 
-        public void executeWholePrograme(String programTxt)
+        public List<ParsingInfo> executeWholePrograme(String programTxt)
         {
             String[] statements = programTxt.Split('\n');
+            List<ParsingInfo> parsingInfos = new List<ParsingInfo>();
             int lineNumber = 1;
             foreach (String statement in statements) {
 
-                executeOneCommand(statement, lineNumber++);
-
+                ParsingInfo parsingInfo = executeOneCommand(statement, lineNumber++);
+                parsingInfos.Add(parsingInfo);
             }
+            return parsingInfos;
         }
 
         
