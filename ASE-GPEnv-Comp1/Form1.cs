@@ -30,6 +30,11 @@ namespace ASE_GPEnv_Comp1
         }
 
 
+        public void setProgramText(string text)
+        {
+            this.programTextBox.Text = text;
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
 

@@ -438,6 +438,16 @@ namespace ASE_GPEnv_Comp1
 
         }
 
+
+
+        /// <summary>
+        /// Function to read all statements in the program editor and execute one by one
+        /// </summary>
+        /// <param name="programTxt">Whole program typed/loaded in program box.</param>
+        /// <returns>
+        /// Method returns the list of objects of ParsingInfo class, where each object have:
+        /// 1) Parsed Command 2) Parsed Params and 3) Successflag along with other info
+        /// </returns>
         public List<ParsingInfo> executeWholePrograme(String programTxt)
         {
             String[] statements = programTxt.Split('\n');

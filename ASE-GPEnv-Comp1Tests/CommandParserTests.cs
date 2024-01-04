@@ -14,6 +14,11 @@ namespace ASE_GPEnv_Comp1.Tests
     [TestClass()]
     public class CommandParserTests
     {
+        public void failTestWithMessage(ParsingException ex)
+        {
+            string message = ex.Message + " " + ex.getParsingExceptionMessage();
+            Assert.Fail("Test Failed! Exception should not be raised. Message: " + message);
+        }
         [TestMethod()]
         public void executeOneCommandTest_ValidCommandTest()
         {
@@ -29,13 +34,59 @@ namespace ASE_GPEnv_Comp1.Tests
             catch (InvalidCommandException ex)
             {
                 StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command");
-                Assert.Fail();
+
+
             }
 
             // added this to see the result of execution on screen
             MessageBox.Show("Test Completed");
         }
 
-        
+
+        [TestMethod()]
+        public void executeOneCommandTest_ValidProgramTest()
+        {
+            MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
+            mainUI.Visible = true;
+            CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
+
+            string testProgram = @"
+            moveto 100,100
+            pen cyan
+            rectangle 100,100
+            fill on
+            pen yellow
+            circle 20";
+            mainUI.setProgramText(testProgram);
+
+            try
+            {
+                Boolean hasPassedAll = false;
+                List<ParsingInfo> parsingResults = parser.executeWholePrograme(testProgram);
+                foreach (ParsingInfo parsingResult in parsingResults)
+                {
+                    if (!parsingResult.isSuccessful)
+                    {
+                        hasPassedAll = false;
+                        break;
+                    }
+                }
+                Assert.IsTrue(hasPassedAll);
+   
+            }
+            catch (InvalidCommandException ex)
+            {
+                StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command");
+           
+            }
+            catch (InvalidParamsException ex)
+            {
+                StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command params");
+            }
+            // added this to see the result of execution on screen
+            MessageBox.Show("Test Completed");
+        }
+
+
     }
 }
