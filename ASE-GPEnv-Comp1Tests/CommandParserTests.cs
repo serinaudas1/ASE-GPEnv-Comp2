@@ -194,7 +194,8 @@ namespace ASE_GPEnv_Comp1.Tests
             CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
             string command = "clear";
 
-            MessageBox.Show("Drawing a rectangle of 200,200");
+            MessageBox.Show("Drawing a rectangle of 200,200 at 20,20");
+            parser.executeOneCommand("moveto 20, 20", -1);
             parser.executeOneCommand("rectangle 200, 200", -1);
 
 
@@ -210,6 +211,11 @@ namespace ASE_GPEnv_Comp1.Tests
                 Assert.Fail(failedTestMessage(ex));
 
             }
+
+
+            MessageBox.Show("To check position reset redrawing a rectangle of 200,200");
+            parser.executeOneCommand("rectangle 200, 200", -1);
+
 
             // added this to see the result of execution on screen
             MessageBox.Show("Test Completed");
