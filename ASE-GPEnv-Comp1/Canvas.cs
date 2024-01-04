@@ -277,9 +277,28 @@ namespace ASE_GPEnv_Comp1
 
         }
 
+        /// <summary>
+        /// This function is used by handleLoadProgram. 
+        /// It's responsible for extracting the file content. 
+        /// </summary>
+        /// <param name="selectedFilePath">Path to load program from</param>
+        /// <returns>Content of file selected.</returns>
         public string readProgramFromFile(string selectedFilePath) {
-            return File.ReadAllText(selectedFilePath);
+
+            try
+            {
+                return File.ReadAllText(selectedFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
+
+        /// <summary>
+        /// Opens a dialog box and asks user to select a file
+        /// This ONLY ALLOWS GPL extension file
+        /// </summary>
         public void handleLoadProgram() {
             OpenFileDialog openFileBrowser = new OpenFileDialog();
 
@@ -309,10 +328,23 @@ namespace ASE_GPEnv_Comp1
             }
         }
 
+        /// <summary>
+        /// This function directly saves the content of program editor box to selected file path.
+        /// </summary>
+        /// <param name="gplFilePath">File path to store program in</param>
+        /// <param name="graphicsProgram">Program to store</param>
         public void storeProgramToFile(string gplFilePath, string graphicsProgram) {
-            File.WriteAllText(gplFilePath, graphicsProgram);
+            try
+            {
+                File.WriteAllText(gplFilePath, graphicsProgram);
+            } catch (Exception ex) {
+                throw ex;
+            }
         }
 
+        /// <summary>
+        /// Opens the dialog box and asks the user to select a filename with path to store program.
+        /// </summary>
         public void handleSaveProgram() {
             SaveFileDialog saveBrowser = new SaveFileDialog();
 
