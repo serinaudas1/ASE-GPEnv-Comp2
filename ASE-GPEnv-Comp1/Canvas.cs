@@ -278,6 +278,11 @@ namespace ASE_GPEnv_Comp1
             this.pen.Color = newColor;
         }
 
+
+        /// <summary>
+        /// To set weather the future drawings should be outlined or filled.
+        /// </summary>
+        /// <param name="shouldFill">Should be true if willing to draw filled shapes.</param>
         public void setPenFill(bool shouldFill)
         {
             this.shouldFill = shouldFill;

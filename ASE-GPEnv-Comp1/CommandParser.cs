@@ -449,6 +449,11 @@ namespace ASE_GPEnv_Comp1
 
                 canvas.setPenColor(color);
             }
+
+            ///<summary>
+            ///Command to change the fill move of pen/brush.
+            ///Fill mode is changed using setPenFill function of Canvas class.
+            ///</summary>
             else if (parsingResult.parsedCommand == "fill")
             {
                 string fillParam = parsingResult.parsedParameters[0].ToUpper();
@@ -459,6 +464,9 @@ namespace ASE_GPEnv_Comp1
                 //else case will never reach. I am sure
 
             }
+            ///<summary>
+            ///this is to avoid run command being called from code editor. (To avoid recursion)
+            ///</summary>
             else if (parsingResult.parsedCommand == "run") {
 
                 executeWholePrograme(canvas.getProgramFromEditor());

@@ -396,6 +396,42 @@ namespace ASE_GPEnv_Comp1.Tests
         }
 
 
+        [TestMethod]
+        public void executeOneCommandTest_penFill()
+        {
+            MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
+            mainUI.Visible = true;
+            CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
+
+            string command1 = "fill on";
+            string command2 = "fill off";
+
+            try
+            {
+                ParsingInfo parsingResult1 = parser.executeOneCommand(command1, -1);
+                Assert.IsTrue(parsingResult1.isSuccessful);
+                parser.executeOneCommand("rectangle 50,50", -1);
+
+                MessageBox.Show("Changing fill mode to unfill and Drawing another triangle of differnt size.");
+                ParsingInfo parsingResult2 = parser.executeOneCommand(command2, -1);
+                Assert.IsTrue(parsingResult2.isSuccessful);
+                parser.executeOneCommand("rectangle 80,80", -1);
+
+            }
+            catch (InvalidCommandException ex)
+            {
+                StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command", failedTestMessage(ex));
+                Assert.Fail(failedTestMessage(ex));
+
+            }
+
+            // added this to see the result of execution on screen
+            MessageBox.Show("Test Completed");
+        }
+
+
+
+
 
 
     }
