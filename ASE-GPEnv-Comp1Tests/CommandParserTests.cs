@@ -14,10 +14,11 @@ namespace ASE_GPEnv_Comp1.Tests
     [TestClass()]
     public class CommandParserTests
     {
-        public void failTestWithMessage(ParsingException ex)
+        public string failedTestMessage(ParsingException ex)
         {
             string message = ex.Message + " " + ex.getParsingExceptionMessage();
-            Assert.Fail("Test Failed! Exception should not be raised. Message: " + message);
+            message = message + "Test Failed! Exception should not be raised. Message: ";
+            return message;    
         }
         [TestMethod()]
         public void executeOneCommandTest_ValidCommandTest()
@@ -33,7 +34,7 @@ namespace ASE_GPEnv_Comp1.Tests
             }
             catch (InvalidCommandException ex)
             {
-                StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command");
+                StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command", failedTestMessage(ex));
 
 
             }
@@ -61,7 +62,7 @@ namespace ASE_GPEnv_Comp1.Tests
 
             try
             {
-                Boolean hasPassedAll = false;
+                bool hasPassedAll = true;
                 List<ParsingInfo> parsingResults = parser.executeWholePrograme(testProgram);
                 foreach (ParsingInfo parsingResult in parsingResults)
                 {
@@ -76,12 +77,12 @@ namespace ASE_GPEnv_Comp1.Tests
             }
             catch (InvalidCommandException ex)
             {
-                StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command");
+                StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command", failedTestMessage(ex));
            
             }
             catch (InvalidParamsException ex)
             {
-                StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command params");
+                StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command params", failedTestMessage(ex));
             }
             // added this to see the result of execution on screen
             MessageBox.Show("Test Completed");

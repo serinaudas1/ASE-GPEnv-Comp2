@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Rectangle = ASE_GPEnv_Comp1.ShapesClasses.Rectangle;
@@ -450,12 +451,18 @@ namespace ASE_GPEnv_Comp1
         /// </returns>
         public List<ParsingInfo> executeWholePrograme(String programTxt)
         {
-            String[] statements = programTxt.Split('\n');
+            Regex regex = new Regex("\\s{2,}");
+            string[] statements = programTxt.Split('\n');
             List<ParsingInfo> parsingInfos = new List<ParsingInfo>();
             int lineNumber = 1;
             foreach (String statement in statements) {
+                string cleanedStatement = statement.Replace('\r'.ToString(), "");
+                
+                cleanedStatement = regex.Replace(cleanedStatement, "");
 
-                ParsingInfo parsingInfo = executeOneCommand(statement, lineNumber++);
+                if (cleanedStatement == "")
+                    continue;
+                ParsingInfo parsingInfo = executeOneCommand(cleanedStatement, lineNumber++);
                 parsingInfos.Add(parsingInfo);
             }
             return parsingInfos;
