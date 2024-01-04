@@ -187,6 +187,34 @@ namespace ASE_GPEnv_Comp1.Tests
         }
 
         [TestMethod]
+        public void executeOneCommandTest_clear()
+        {
+            MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
+            mainUI.Visible = true;
+            CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
+            string command = "clear";
+
+            MessageBox.Show("Drawing a rectangle of 200,200");
+            parser.executeOneCommand("rectangle 200, 200", -1);
+
+
+            try
+            {
+                MessageBox.Show("Clearing Canvas now.");
+                ParsingInfo parsingResult = parser.executeOneCommand(command, -1);
+                Assert.IsTrue(parsingResult.isSuccessful);
+            }
+            catch (InvalidCommandException ex)
+            {
+                StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command", failedTestMessage(ex));
+                Assert.Fail(failedTestMessage(ex));
+
+            }
+
+            // added this to see the result of execution on screen
+            MessageBox.Show("Test Completed");
+        }
+          [TestMethod]
         public void executeOneCommandTest_drawTo()
         {
             MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();

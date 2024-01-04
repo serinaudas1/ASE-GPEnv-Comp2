@@ -340,6 +340,9 @@ namespace ASE_GPEnv_Comp1
                 canvas.drawTo(drawing);
             }
 
+            ///<summary>
+            ///Command to clear the canvas. It makes calls to the clearCanvas method of Canvas class.
+            ///</summary>
             else if (parsingResult.parsedCommand == "clear")
             {
 

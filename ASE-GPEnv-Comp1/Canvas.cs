@@ -118,6 +118,9 @@ namespace ASE_GPEnv_Comp1
 
         }
 
+        /// <summary>
+        /// Simply clears the drawing canvas by repaiting the background color
+        /// </summary>
         public void clearCanvas() {
             this.graphics.Clear(canvasPanel.BackColor);
 
