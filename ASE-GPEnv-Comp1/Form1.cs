@@ -157,5 +157,10 @@ namespace ASE_GPEnv_Comp1
         {
             canvas.handleSaveProgram();
         }
+
+        private void executeProgramButton_Click(object sender, EventArgs e)
+        {
+            parser.executeWholePrograme(canvas.getProgramFromEditor());
+        }
     }
 }

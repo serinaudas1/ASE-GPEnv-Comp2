@@ -128,6 +128,7 @@
             this.executeProgramButton.TabIndex = 4;
             this.executeProgramButton.Text = "Execute";
             this.executeProgramButton.UseVisualStyleBackColor = true;
+            this.executeProgramButton.Click += new System.EventHandler(this.executeProgramButton_Click);
             // 
             // programSyntaxCheckButton
             // 
