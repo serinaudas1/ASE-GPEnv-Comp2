@@ -77,7 +77,7 @@ namespace ASE_GPEnv_Comp1
         {
             this.canvasPanelGraphics = e.Graphics;
 
-            this.canvas = new Canvas(Color.Red, 2, canvasPanel, commandsHistoryTextBox, outputTextBox, commandTextBox);
+            this.canvas = new Canvas(Color.Red, 2, canvasPanel, commandsHistoryTextBox, outputTextBox,commandTextBox,  programTextBox);
             parser = new CommandParser(this.canvas, this.shouldClearTextCheckBox);
             //this.canvas.moveTo(50, 50);
             //this.canvas.drawTo();
@@ -149,7 +149,7 @@ namespace ASE_GPEnv_Comp1
 
                 string commandText = Regex.Replace(commandTextBox.Text, @"\s+", " ");
                 //MessageBox.Show("" + commandText.Split(' ').Length + "-" + commandText.Split(' ')[1].Length);
-                parser.executeOneCommand(commandText);
+                parser.executeOneCommand(commandText,  -1);
             }
         }
 

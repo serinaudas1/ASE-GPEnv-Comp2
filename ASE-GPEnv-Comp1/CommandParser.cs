@@ -151,6 +151,7 @@ namespace ASE_GPEnv_Comp1
             string[] paramsArray = extractParamsFromCommand(command);
             parsingInfo.parsedCommand = inputCommand;
             parsingInfo.parsedParameters = paramsArray;
+            parsingInfo.lineNumber = lineNumber;
 
 
             //checking command validity here
@@ -245,6 +246,14 @@ namespace ASE_GPEnv_Comp1
 
             if (parsingInfo.parsingExceptions.Count>0)
                 parsingInfo.isSuccessful = false;
+
+            if(parsingInfo.parsedCommand == "run" && parsingInfo.lineNumber!=-1)
+            {
+                parsingInfo.parsingExceptions.Add(new InvalidCommandException("Recursive Run Found", "The program box cannot have a 'run' command."));
+                parsingInfo.isSuccessful = false;
+
+            }
+
             return parsingInfo;
         }
 
@@ -281,7 +290,7 @@ namespace ASE_GPEnv_Comp1
                 canvas.resetPen();
             }
 
-            
+
             else if (parsingResult.parsedCommand == "rectangle")
             {
                 int width = int.Parse(parsingResult.parsedParameters[0]);
@@ -295,10 +304,10 @@ namespace ASE_GPEnv_Comp1
             else if (parsingResult.parsedCommand == "circle")
             {
                 int radius = int.Parse(parsingResult.parsedParameters[0]);
-               
 
-                Circle circle = (Circle) shapesFactory.getShape("circle");
-                circle.initializeShape(canvas.getPen().Color, canvas.getPenPosition(),radius);
+
+                Circle circle = (Circle)shapesFactory.getShape("circle");
+                circle.initializeShape(canvas.getPen().Color, canvas.getPenPosition(), radius);
 
                 canvas.drawCircle(circle);
             }
@@ -339,12 +348,12 @@ namespace ASE_GPEnv_Comp1
                         break;
                     default:
                         color = Color.Black;
-                       break;
+                        break;
                 }
-                
 
 
-                    canvas.setPenColor(color);
+
+                canvas.setPenColor(color);
             }
             else if (parsingResult.parsedCommand == "fill")
             {
@@ -355,6 +364,10 @@ namespace ASE_GPEnv_Comp1
                     canvas.setPenFill(false);
                 //else case will never reach. I am sure
 
+            }
+            else if (parsingResult.parsedCommand == "run") {
+
+                executeWholePrograme(canvas.getProgramFromEditor());
             }
         }
 
@@ -377,10 +390,10 @@ namespace ASE_GPEnv_Comp1
         }
 
 
-        public void executeOneCommand(String commandTxt) {
+        public void executeOneCommand(String commandTxt, int lineNumber) {
 
             commandTxt = commandTxt.ToLower();
-            ParsingInfo parsingResult = checkSyntax(commandTxt, -1);
+            ParsingInfo parsingResult = checkSyntax(commandTxt, lineNumber);
             if (parsingResult.isSuccessful) {
                 // identify the command and excecute it
                 runValidGPLCommand(parsingResult);
@@ -390,6 +403,7 @@ namespace ASE_GPEnv_Comp1
                 throwAndLogExceptions(parsingResult);
             }
 
+            if(lineNumber==-1)
             canvas.appendCommandToHistory(commandTxt, parsingResult.isSuccessful);
 
             if (parsingResult.isSuccessful && shouldClearCommandCheckBox.Checked)
@@ -405,15 +419,7 @@ namespace ASE_GPEnv_Comp1
             int lineNumber = 1;
             foreach (String statement in statements) {
 
-                ParsingInfo parsingResult = checkSyntax(statement, lineNumber++);
-                if (parsingResult.isSuccessful)
-                {
-                    // identify the command and excecute it
-                }
-                else
-                {
-                    // draw or log the exception in output panels
-                }
+                executeOneCommand(statement, lineNumber++);
 
             }
         }
