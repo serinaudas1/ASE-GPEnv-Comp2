@@ -233,6 +233,14 @@ namespace ASE_GPEnv_Comp1
 
 
         }
+
+
+        /// <summary>
+        /// [Overloaded Function]
+        /// Draws a triangle on canvas of side length set by user in params.
+        /// The joining point of two sides of triangle are right above the mid of base
+        /// </summary>
+        /// <param name="triangle">object of Triangle shape class.</param>
         public void drawTriangle(Triangle triangle)
         {
 

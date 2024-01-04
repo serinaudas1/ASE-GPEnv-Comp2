@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ASE_GPEnv_Comp1.ShapesClasses
 {
+    /// <summary>
+    /// Triangle class that inherits shape and have side length as specific property.
+    /// </summary>
     public class Triangle: Shape
     {
         public int sideLength;

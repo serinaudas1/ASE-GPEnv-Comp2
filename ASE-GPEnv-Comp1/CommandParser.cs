@@ -389,6 +389,13 @@ namespace ASE_GPEnv_Comp1
 
                 canvas.drawCircle(circle);
             }
+
+            ///<summary>
+            ///triangle command execution based on the parameters side length received by user
+            // I am drawing equi-lateral triangle based on side length
+            ///Triangle object is prepared from Factory Class
+            ///Triangle is drawn on the canvas using drawTriangle method of Canvas class
+            ///</summary>
             else if (parsingResult.parsedCommand == "triangle")
             {
                 int sideLength = int.Parse(parsingResult.parsedParameters[0]);
