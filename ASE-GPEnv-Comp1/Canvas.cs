@@ -270,6 +270,10 @@ namespace ASE_GPEnv_Comp1
         }
 
 
+        /// <summary>
+        /// Function sets the pen/brush color for future drawings. 
+        /// </summary>
+        /// <param name="newColor">Color to be set</param>
         public void setPenColor(Color newColor) {
             this.pen.Color = newColor;
         }

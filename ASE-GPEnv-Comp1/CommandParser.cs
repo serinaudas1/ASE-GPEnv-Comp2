@@ -96,7 +96,7 @@ namespace ASE_GPEnv_Comp1
                 new GPLCommand("triangle",1, "draw {side-length}"),//1 param: side length
 
                 new GPLCommand("pen",
-                    new string []{"red", "green", "blue", "cyan", "magenta", "yellow"},
+                    new string []{"red", "green", "blue", "cyan", "magenta", "yellow", "black"},
                     1, 
                     "pen {color}"),
 
@@ -406,6 +406,12 @@ namespace ASE_GPEnv_Comp1
 
                 canvas.drawTriangle(triangle);
             }
+
+            ///<summary>
+            /// Command to change the color of drawing pen/brush.
+            /// Parsed input color is in String type, it's converted to right Color class object
+            /// Pen color is changed using the setPenColor method of canvas class.
+            ///</summary>
             else if (parsingResult.parsedCommand == "pen")
             {
                 Color color;
@@ -430,6 +436,9 @@ namespace ASE_GPEnv_Comp1
                         break;
                     case "YELLOW":
                         color = Color.Yellow;
+                        break;
+                    case "BLACK":
+                        color = Color.Black;
                         break;
                     default:
                         color = Color.Black;
