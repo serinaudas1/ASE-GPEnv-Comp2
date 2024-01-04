@@ -168,10 +168,11 @@ namespace ASE_GPEnv_Comp1.Tests
             MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
             mainUI.Visible = true;
             CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
+            string command = "moveto 100, 100";
 
             try
             {
-                ParsingInfo parsingResult = parser.executeOneCommand("moveto 100, 100", -1);
+                ParsingInfo parsingResult = parser.executeOneCommand(command, -1);
                 Assert.IsTrue(parsingResult.isSuccessful);
             }
             catch (InvalidCommandException ex)
@@ -179,6 +180,30 @@ namespace ASE_GPEnv_Comp1.Tests
                 StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command", failedTestMessage(ex));
                 Assert.Fail(failedTestMessage(ex));
             
+            }
+
+            // added this to see the result of execution on screen
+            MessageBox.Show("Test Completed");
+        }
+
+        [TestMethod]
+        public void executeOneCommandTest_drawTo()
+        {
+            MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
+            mainUI.Visible = true;
+            CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
+            string command = "drawto 100, 100";
+
+            try
+            {
+                ParsingInfo parsingResult = parser.executeOneCommand(command, -1);
+                Assert.IsTrue(parsingResult.isSuccessful);
+            }
+            catch (InvalidCommandException ex)
+            {
+                StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command", failedTestMessage(ex));
+                Assert.Fail(failedTestMessage(ex));
+
             }
 
             // added this to see the result of execution on screen

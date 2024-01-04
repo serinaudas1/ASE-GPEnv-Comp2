@@ -327,6 +327,11 @@ namespace ASE_GPEnv_Comp1
                 canvas.moveTo(drawing);
             }
 
+            ///<summary>
+            ///After successful parsing checks, drawto command is executed here.
+            ///PenPosition struct is used to store the position of cursor.
+            ///call is made to drawTo handler from canvas class to draw a small cursor on canvas.
+            ///</summary>
             else if (parsingResult.parsedCommand == "drawto")
             {
                 int x = int.Parse(parsingResult.parsedParameters[0]);

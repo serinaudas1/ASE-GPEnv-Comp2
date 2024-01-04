@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace ASE_GPEnv_Comp1
 {
+    /// <summary>
+    /// Object of this sturcture holds the value for cursor. 
+    /// </summary>
     public struct PenPosition
     {
         public int posX;
@@ -105,6 +108,10 @@ namespace ASE_GPEnv_Comp1
             drawCurrentPosition(this.penPosition);
         }
             
+        /// <summary>
+        /// Function simply draws a small circle at the passed position x,y
+        /// </summary>
+        /// <param name="penPosition">Where to draw the cursor. </param>
         public void drawTo(PenPosition penPosition)
         {
             drawCurrentPosition(penPosition);
