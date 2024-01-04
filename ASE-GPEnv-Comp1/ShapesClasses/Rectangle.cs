@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ASE_GPEnv_Comp1.ShapesClasses
 {
+    /// <summary>
+    /// Rectangle class that inherits shape and have width and height as specific properties.
+    /// </summary>
     public class Rectangle : Shape
     {
         public int width, height;

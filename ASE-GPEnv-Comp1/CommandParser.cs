@@ -358,7 +358,11 @@ namespace ASE_GPEnv_Comp1
                 canvas.resetPen();
             }
 
-
+           ///<summary>
+           ///rectangle command execution based on the parameters width and heigh received by user
+           ///Rectangle object is prepared from Factory Class
+           ///Rectangle is drawn on the canvas using drawRectangle method of Canvas class
+           ///</summary>
             else if (parsingResult.parsedCommand == "rectangle")
             {
                 int width = int.Parse(parsingResult.parsedParameters[0]);
