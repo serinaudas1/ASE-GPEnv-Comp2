@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASE_GPEnv_Comp1.ShapesClasses
 {
-    class Rectangle : Shape
+    public class Rectangle : Shape
     {
         public int width, height;
         public Rectangle() : base()

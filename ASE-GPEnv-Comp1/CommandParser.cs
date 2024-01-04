@@ -51,7 +51,7 @@ namespace ASE_GPEnv_Comp1
         }
     }
 
-    class CommandParser
+   public class CommandParser
     {
     
 
