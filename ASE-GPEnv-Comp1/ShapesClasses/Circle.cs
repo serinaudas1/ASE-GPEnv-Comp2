@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ASE_GPEnv_Comp1.ShapesClasses
 {
+    /// <summary>
+    /// Circle class that inherits shape and have radius as specific property.
+    /// </summary>
     public class Circle : Shape
     {
         public int radius;

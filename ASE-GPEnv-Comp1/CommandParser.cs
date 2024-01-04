@@ -373,6 +373,12 @@ namespace ASE_GPEnv_Comp1
 
                 canvas.drawRectangle(rectangle);
             }
+
+            ///<summary>
+            ///circle command execution based on the parameters radius received by user
+            ///Circle object is prepared from Factory Class
+            ///Circle is drawn on the canvas using drawCircle method of Canvas class
+            ///</summary>
             else if (parsingResult.parsedCommand == "circle")
             {
                 int radius = int.Parse(parsingResult.parsedParameters[0]);

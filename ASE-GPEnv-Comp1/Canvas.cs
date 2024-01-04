@@ -183,6 +183,12 @@ namespace ASE_GPEnv_Comp1
                 this.graphics.DrawEllipse(pen, translatedX, translatedY, 2 * radius, 2 * radius);
 
         }
+
+        /// <summary>
+        /// [Overloaded Function]
+        /// Draws a circle on canvas of radius set by user in params.
+        /// </summary>
+        /// <param name="circle">object of Circle shape class.</param>
         public void drawCircle(Circle circle)
         {
             int radius = circle.radius;
