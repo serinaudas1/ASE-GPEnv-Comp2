@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -29,7 +30,32 @@ namespace ASE_GPEnv_Comp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            OpenFileDialog openFileBrowser = new OpenFileDialog();
 
+            openFileBrowser.Title = "Browse for a .gpl file";
+            openFileBrowser.Filter = "Graphics Programming Language files (.gpl)|*.gpl"; 
+
+            if (openFileBrowser.ShowDialog() == DialogResult.OK)
+            {
+                string selectedFilePath = openFileBrowser.FileName;
+
+                if (Path.GetExtension(selectedFilePath).Equals(".gpl"))
+                {
+                    try
+                    {
+                        string graphicsProgram = File.ReadAllText(selectedFilePath);
+                        this.programTextBox.Text = graphicsProgram;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error reading the file. Try other file."+ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a text file with the .txt extension.", "Invalid File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -140,6 +166,34 @@ namespace ASE_GPEnv_Comp1
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void saveProgramButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveBrowser = new SaveFileDialog();
+
+            saveBrowser.Title = "Save to a .gpl file";
+            saveBrowser.Filter = "Graphics Programming Language files (.gpl)|*.gpl"; ;
+
+           
+
+            if (saveBrowser.ShowDialog() == DialogResult.OK)
+            {
+                string gplFilePath = saveBrowser.FileName;
+
+                try
+                {
+                    string graphicsProgram = programTextBox.Text;
+                    File.WriteAllText(gplFilePath, graphicsProgram);
+
+                    MessageBox.Show("Program saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error saving program file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
 
         }
     }

@@ -37,15 +37,14 @@
             this.saveProgramButton = new System.Windows.Forms.Button();
             this.loadProgramButton = new System.Windows.Forms.Button();
             this.convasContainer = new System.Windows.Forms.Panel();
-            this.toggleFillBtn = new System.Windows.Forms.Button();
-            this.setPenYellowBtn = new System.Windows.Forms.Button();
-            this.setPenRedBtn = new System.Windows.Forms.Button();
-            this.moveTo100Btn = new System.Windows.Forms.Button();
-            this.resetPenBtn = new System.Windows.Forms.Button();
-            this.clearCanvasButton = new System.Windows.Forms.Button();
             this.canvasPanel = new System.Windows.Forms.Panel();
+            this.setPenYellowBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.setPenRedBtn = new System.Windows.Forms.Button();
+            this.toggleFillBtn = new System.Windows.Forms.Button();
+            this.clearCanvasButton = new System.Windows.Forms.Button();
             this.commandAndHistoryContainer = new System.Windows.Forms.Panel();
+            this.shouldClearTextCheckBox = new System.Windows.Forms.CheckBox();
             this.runCommandButton = new System.Windows.Forms.Button();
             this.commandTextBox = new System.Windows.Forms.TextBox();
             this.commandsHistoryTextBox = new System.Windows.Forms.RichTextBox();
@@ -55,12 +54,13 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.outputTextBox = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.moveTo100Btn = new System.Windows.Forms.Button();
             this.drawToButton = new System.Windows.Forms.Button();
             this.drawTrianleBtn = new System.Windows.Forms.Button();
+            this.resetPenBtn = new System.Windows.Forms.Button();
             this.drawCircleBtn = new System.Windows.Forms.Button();
             this.drawRectangleBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.shouldClearTextCheckBox = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.codeBlockContainer.SuspendLayout();
             this.convasContainer.SuspendLayout();
@@ -159,6 +159,7 @@
             this.saveProgramButton.TabIndex = 1;
             this.saveProgramButton.Text = "Save";
             this.saveProgramButton.UseVisualStyleBackColor = true;
+            this.saveProgramButton.Click += new System.EventHandler(this.saveProgramButton_Click);
             // 
             // loadProgramButton
             // 
@@ -188,70 +189,6 @@
             this.convasContainer.Size = new System.Drawing.Size(413, 207);
             this.convasContainer.TabIndex = 1;
             // 
-            // toggleFillBtn
-            // 
-            this.toggleFillBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.toggleFillBtn.Location = new System.Drawing.Point(254, 180);
-            this.toggleFillBtn.Name = "toggleFillBtn";
-            this.toggleFillBtn.Size = new System.Drawing.Size(75, 23);
-            this.toggleFillBtn.TabIndex = 7;
-            this.toggleFillBtn.Text = "Toggle Fill";
-            this.toggleFillBtn.UseVisualStyleBackColor = true;
-            this.toggleFillBtn.Click += new System.EventHandler(this.toggleFillBtn_Click);
-            // 
-            // setPenYellowBtn
-            // 
-            this.setPenYellowBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.setPenYellowBtn.BackColor = System.Drawing.Color.Yellow;
-            this.setPenYellowBtn.Location = new System.Drawing.Point(34, 181);
-            this.setPenYellowBtn.Name = "setPenYellowBtn";
-            this.setPenYellowBtn.Size = new System.Drawing.Size(21, 23);
-            this.setPenYellowBtn.TabIndex = 6;
-            this.setPenYellowBtn.UseVisualStyleBackColor = false;
-            this.setPenYellowBtn.Click += new System.EventHandler(this.setPenYellowBtn_Click);
-            // 
-            // setPenRedBtn
-            // 
-            this.setPenRedBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.setPenRedBtn.BackColor = System.Drawing.Color.Red;
-            this.setPenRedBtn.Location = new System.Drawing.Point(7, 181);
-            this.setPenRedBtn.Name = "setPenRedBtn";
-            this.setPenRedBtn.Size = new System.Drawing.Size(21, 23);
-            this.setPenRedBtn.TabIndex = 5;
-            this.setPenRedBtn.UseVisualStyleBackColor = false;
-            this.setPenRedBtn.Click += new System.EventHandler(this.setPenRedBtn_Click);
-            // 
-            // moveTo100Btn
-            // 
-            this.moveTo100Btn.Location = new System.Drawing.Point(85, 34);
-            this.moveTo100Btn.Name = "moveTo100Btn";
-            this.moveTo100Btn.Size = new System.Drawing.Size(84, 23);
-            this.moveTo100Btn.TabIndex = 4;
-            this.moveTo100Btn.Text = "*MoveTo100";
-            this.moveTo100Btn.UseVisualStyleBackColor = true;
-            this.moveTo100Btn.Click += new System.EventHandler(this.moveTo100Btn_Click);
-            // 
-            // resetPenBtn
-            // 
-            this.resetPenBtn.Location = new System.Drawing.Point(84, 88);
-            this.resetPenBtn.Name = "resetPenBtn";
-            this.resetPenBtn.Size = new System.Drawing.Size(75, 23);
-            this.resetPenBtn.TabIndex = 3;
-            this.resetPenBtn.Text = "Reset Pen";
-            this.resetPenBtn.UseVisualStyleBackColor = true;
-            this.resetPenBtn.Click += new System.EventHandler(this.resetPenBtn_Click);
-            // 
-            // clearCanvasButton
-            // 
-            this.clearCanvasButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearCanvasButton.Location = new System.Drawing.Point(335, 180);
-            this.clearCanvasButton.Name = "clearCanvasButton";
-            this.clearCanvasButton.Size = new System.Drawing.Size(75, 23);
-            this.clearCanvasButton.TabIndex = 2;
-            this.clearCanvasButton.Text = "Clear";
-            this.clearCanvasButton.UseVisualStyleBackColor = true;
-            this.clearCanvasButton.Click += new System.EventHandler(this.clearCanvasButton_Click);
-            // 
             // canvasPanel
             // 
             this.canvasPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -264,6 +201,17 @@
             this.canvasPanel.TabIndex = 1;
             this.canvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.canvasPanel_Paint);
             // 
+            // setPenYellowBtn
+            // 
+            this.setPenYellowBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.setPenYellowBtn.BackColor = System.Drawing.Color.Yellow;
+            this.setPenYellowBtn.Location = new System.Drawing.Point(34, 181);
+            this.setPenYellowBtn.Name = "setPenYellowBtn";
+            this.setPenYellowBtn.Size = new System.Drawing.Size(21, 23);
+            this.setPenYellowBtn.TabIndex = 6;
+            this.setPenYellowBtn.UseVisualStyleBackColor = false;
+            this.setPenYellowBtn.Click += new System.EventHandler(this.setPenYellowBtn_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -273,6 +221,39 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Graphical Output";
             this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // setPenRedBtn
+            // 
+            this.setPenRedBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.setPenRedBtn.BackColor = System.Drawing.Color.Red;
+            this.setPenRedBtn.Location = new System.Drawing.Point(7, 181);
+            this.setPenRedBtn.Name = "setPenRedBtn";
+            this.setPenRedBtn.Size = new System.Drawing.Size(21, 23);
+            this.setPenRedBtn.TabIndex = 5;
+            this.setPenRedBtn.UseVisualStyleBackColor = false;
+            this.setPenRedBtn.Click += new System.EventHandler(this.setPenRedBtn_Click);
+            // 
+            // toggleFillBtn
+            // 
+            this.toggleFillBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.toggleFillBtn.Location = new System.Drawing.Point(254, 180);
+            this.toggleFillBtn.Name = "toggleFillBtn";
+            this.toggleFillBtn.Size = new System.Drawing.Size(75, 23);
+            this.toggleFillBtn.TabIndex = 7;
+            this.toggleFillBtn.Text = "Toggle Fill";
+            this.toggleFillBtn.UseVisualStyleBackColor = true;
+            this.toggleFillBtn.Click += new System.EventHandler(this.toggleFillBtn_Click);
+            // 
+            // clearCanvasButton
+            // 
+            this.clearCanvasButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearCanvasButton.Location = new System.Drawing.Point(335, 180);
+            this.clearCanvasButton.Name = "clearCanvasButton";
+            this.clearCanvasButton.Size = new System.Drawing.Size(75, 23);
+            this.clearCanvasButton.TabIndex = 2;
+            this.clearCanvasButton.Text = "Clear";
+            this.clearCanvasButton.UseVisualStyleBackColor = true;
+            this.clearCanvasButton.Click += new System.EventHandler(this.clearCanvasButton_Click);
             // 
             // commandAndHistoryContainer
             // 
@@ -289,6 +270,18 @@
             this.commandAndHistoryContainer.Name = "commandAndHistoryContainer";
             this.commandAndHistoryContainer.Size = new System.Drawing.Size(413, 207);
             this.commandAndHistoryContainer.TabIndex = 2;
+            // 
+            // shouldClearTextCheckBox
+            // 
+            this.shouldClearTextCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.shouldClearTextCheckBox.AutoSize = true;
+            this.shouldClearTextCheckBox.Location = new System.Drawing.Point(7, 185);
+            this.shouldClearTextCheckBox.Name = "shouldClearTextCheckBox";
+            this.shouldClearTextCheckBox.Size = new System.Drawing.Size(249, 17);
+            this.shouldClearTextCheckBox.TabIndex = 5;
+            this.shouldClearTextCheckBox.Text = "Clear command bar after successful execution?";
+            this.shouldClearTextCheckBox.UseVisualStyleBackColor = true;
+            this.shouldClearTextCheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // runCommandButton
             // 
@@ -365,7 +358,7 @@
             this.tabPage1.Controls.Add(this.outputTextBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(375, 174);
+            this.tabPage1.Size = new System.Drawing.Size(395, 174);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Output";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -398,6 +391,16 @@
             this.tabPage2.Text = "Toolbox";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // moveTo100Btn
+            // 
+            this.moveTo100Btn.Location = new System.Drawing.Point(85, 34);
+            this.moveTo100Btn.Name = "moveTo100Btn";
+            this.moveTo100Btn.Size = new System.Drawing.Size(84, 23);
+            this.moveTo100Btn.TabIndex = 4;
+            this.moveTo100Btn.Text = "*MoveTo100";
+            this.moveTo100Btn.UseVisualStyleBackColor = true;
+            this.moveTo100Btn.Click += new System.EventHandler(this.moveTo100Btn_Click);
+            // 
             // drawToButton
             // 
             this.drawToButton.Location = new System.Drawing.Point(4, 34);
@@ -417,6 +420,16 @@
             this.drawTrianleBtn.Text = "Draw Triangle";
             this.drawTrianleBtn.UseVisualStyleBackColor = true;
             this.drawTrianleBtn.Click += new System.EventHandler(this.drawTrianleBtn_Click);
+            // 
+            // resetPenBtn
+            // 
+            this.resetPenBtn.Location = new System.Drawing.Point(84, 88);
+            this.resetPenBtn.Name = "resetPenBtn";
+            this.resetPenBtn.Size = new System.Drawing.Size(75, 23);
+            this.resetPenBtn.TabIndex = 3;
+            this.resetPenBtn.Text = "Reset Pen";
+            this.resetPenBtn.UseVisualStyleBackColor = true;
+            this.resetPenBtn.Click += new System.EventHandler(this.resetPenBtn_Click);
             // 
             // drawCircleBtn
             // 
@@ -445,18 +458,6 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 0;
-            // 
-            // shouldClearTextCheckBox
-            // 
-            this.shouldClearTextCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.shouldClearTextCheckBox.AutoSize = true;
-            this.shouldClearTextCheckBox.Location = new System.Drawing.Point(7, 185);
-            this.shouldClearTextCheckBox.Name = "shouldClearTextCheckBox";
-            this.shouldClearTextCheckBox.Size = new System.Drawing.Size(249, 17);
-            this.shouldClearTextCheckBox.TabIndex = 5;
-            this.shouldClearTextCheckBox.Text = "Clear command bar after successful execution?";
-            this.shouldClearTextCheckBox.UseVisualStyleBackColor = true;
-            this.shouldClearTextCheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // MainUI_AseGPL1
             // 

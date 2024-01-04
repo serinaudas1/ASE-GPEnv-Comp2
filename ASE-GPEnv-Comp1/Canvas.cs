@@ -237,7 +237,7 @@ namespace ASE_GPEnv_Comp1
 
             Color color = isSuccess ? Color.Green : Color.Red;
 
-            text = (isSuccess? "[SUCCESS]-  ":"[FAILURE]- ")+ text + "\n";
+            text = (isSuccess? "[SUCCESS]- ":"[FAILURE]-   ")+ text + "\n";
             this.commandsHistoryTextBox.SelectionStart = commandsHistoryTextBox.TextLength;
             this.commandsHistoryTextBox.SelectionLength = 0;
 
