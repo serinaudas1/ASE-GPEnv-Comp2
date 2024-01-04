@@ -15,6 +15,14 @@ namespace ASE_GPEnv_Comp1
 {
 
 
+
+    /// <summary>
+    /// Struct to save following:
+    /// 1) valid command
+    /// 2) number of valid params [for quick checking]
+    /// 3) all vallid params for that command
+    /// 4) valid format to show as a hint
+    /// </summary>
     public struct GPLCommand
     {
         public string command;
@@ -52,6 +60,9 @@ namespace ASE_GPEnv_Comp1
         }
     }
 
+    /// <summary>
+    /// Command Parser class which parses one command or multiple line program.
+    /// </summary>
    public class CommandParser
     {
     
@@ -63,7 +74,11 @@ namespace ASE_GPEnv_Comp1
         ShapesFactory shapesFactory;
 
 
-
+        /// <summary>
+        /// Consturctor Initializes the all valid commands
+        /// </summary>
+        /// <param name="canvas">Canvas class object to perform  all UI related operations.</param>
+        /// <param name="shouldClearCommandCheckBox">Checkbox for clearing the command on successful execution</param>
         public CommandParser(Canvas canvas, CheckBox shouldClearCommandCheckBox) {
 
             this.canvas = canvas;
@@ -92,7 +107,9 @@ namespace ASE_GPEnv_Comp1
 
             };
         }
-
+        /// <summary>
+        /// Struct to hold parsing information of any given command
+        /// </summary>
         public struct ParsingInfo
         {
             public int lineNumber;
@@ -112,6 +129,11 @@ namespace ASE_GPEnv_Comp1
             }
         }
 
+        /// <summary>
+        /// Function extracts the parameters from input command
+        /// </summary>
+        /// <param name="command">Input command</param>
+        /// <returns>Array of command input parameters.</returns>
         public string[] extractParamsFromCommand(string command) {  
             //List<string> paramsArray = new List<string>();
             string[] commandSplitBySpace = command.ToLower().Split(' ');
@@ -128,6 +150,23 @@ namespace ASE_GPEnv_Comp1
             return restString == ""? new string[] { }: paramsArray;
 
         }
+
+        /// <summary>
+        /// Function checks following things:
+        /// 1) Empty command
+        /// 2) Only allowed commands- [Case Insensitive]
+        /// 3) Valid parameter names
+        /// 4) Valid parameter count
+        /// 5) Valid parameter types
+        /// 6) IMPORTANT: Also checks the if run command is typed inside program editor
+        /// , which can cause recursive calls. 
+        /// </summary>
+        /// <param name="command">Command needs to be checked</param>
+        /// <param name="lineNumber">Lines number of the command. -1 in case of single command.</param>
+        /// <returns>
+        ///   /// Method returns the object of ParsingInfo struct which have:
+        /// 1) Parsed Command 2) Parsed Params and 3) Successflag along with other info
+        /// </returns>
         public ParsingInfo checkSyntax(String command, int lineNumber)
         {
             ParsingInfo parsingInfo = new ParsingInfo();
@@ -376,7 +415,7 @@ namespace ASE_GPEnv_Comp1
             }
         }
 
-        void throwAndLogExceptions(ParsingInfo parsingResult) {
+        public void throwAndLogExceptions(ParsingInfo parsingResult) {
             foreach (ParsingException parsingException in parsingResult.parsingExceptions)
             {
                 try
@@ -410,7 +449,7 @@ namespace ASE_GPEnv_Comp1
         /// method is called from statement splits of program execution
         /// </param>
         /// <returns>
-        /// Method returns the object of ParsingInfo class which have:
+        /// Method returns the object of ParsingInfo struct which have:
         /// 1) Parsed Command 2) Parsed Params and 3) Successflag along with other info
         /// </returns>
         public ParsingInfo executeOneCommand(String commandTxt, int lineNumber) {
@@ -446,7 +485,7 @@ namespace ASE_GPEnv_Comp1
         /// </summary>
         /// <param name="programTxt">Whole program typed/loaded in program box.</param>
         /// <returns>
-        /// Method returns the list of objects of ParsingInfo class, where each object have:
+        /// Method returns the list of objects of ParsingInfo struct, where each object have:
         /// 1) Parsed Command 2) Parsed Params and 3) Successflag along with other info
         /// </returns>
         public List<ParsingInfo> executeWholePrograme(String programTxt)

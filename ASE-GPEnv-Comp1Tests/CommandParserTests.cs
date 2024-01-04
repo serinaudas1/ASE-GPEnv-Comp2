@@ -18,7 +18,7 @@ namespace ASE_GPEnv_Comp1.Tests
         {
             string message = ex.Message + " " + ex.getParsingExceptionMessage();
             message = message + "Test Failed! Exception should not be raised. Message: ";
-            return message;    
+            return message;
         }
         [TestMethod()]
         public void executeOneCommandTest_ValidCommandTest()
@@ -73,12 +73,12 @@ namespace ASE_GPEnv_Comp1.Tests
                     }
                 }
                 Assert.IsTrue(hasPassedAll);
-   
+
             }
             catch (InvalidCommandException ex)
             {
                 StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command", failedTestMessage(ex));
-           
+
             }
             catch (InvalidParamsException ex)
             {
@@ -88,6 +88,35 @@ namespace ASE_GPEnv_Comp1.Tests
             MessageBox.Show("Test Completed");
         }
 
+        [TestMethod()]
+        public void checkSyntaxTest_InvalidCommands()
+        {
+            MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
+            //mainUI.Visible = true;
+            CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
 
+            string[] invalidTestCommands = {
+                "invalid",
+                "crcle 50",
+                "movto 100,100"
+            };
+            foreach (string invalidCommand in invalidTestCommands)
+            {
+                try
+                {
+                    ParsingInfo info = parser.checkSyntax(invalidCommand, -1);
+                    foreach (ParsingException parsingException in info.parsingExceptions)
+                    {
+                        throw parsingException;
+                    }
+                    Assert.Fail("Test Failed for " + invalidCommand);
+
+                }
+                catch (InvalidCommandException ex) {
+                    StringAssert.Contains(ex.Message.ToLower(),"invalid command" );
+             
+                }
+            }
+        }
     }
 }
