@@ -281,17 +281,7 @@ namespace ASE_GPEnv_Comp1
                 canvas.resetPen();
             }
 
-            else if (parsingResult.parsedCommand == "rectangle")
-            {
-                int width = int.Parse(parsingResult.parsedParameters[0]);
-                int height = int.Parse(parsingResult.parsedParameters[1]);
-
-                Rectangle rectangle = (Rectangle) shapesFactory.getShape("rectangle");
-                rectangle.initializeShape(canvas.getPen().Color, canvas.getPenPosition(), width, height);
-
-                canvas.drawRectangle(rectangle);
-            }
-
+            
             else if (parsingResult.parsedCommand == "rectangle")
             {
                 int width = int.Parse(parsingResult.parsedParameters[0]);
@@ -351,9 +341,20 @@ namespace ASE_GPEnv_Comp1
                         color = Color.Black;
                        break;
                 }
+                
 
 
-                canvas.setPenColor(color);
+                    canvas.setPenColor(color);
+            }
+            else if (parsingResult.parsedCommand == "fill")
+            {
+                string fillParam = parsingResult.parsedParameters[0].ToUpper();
+                if (fillParam == "ON")
+                    canvas.setPenFill(true);
+                else if (fillParam == "OFF")
+                    canvas.setPenFill(false);
+                //else case will never reach. I am sure
+
             }
         }
 
