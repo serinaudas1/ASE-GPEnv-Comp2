@@ -265,7 +265,7 @@ namespace ASE_GPEnv_Comp1.Tests
             try
             {
                 MessageBox.Show("Clearing Cursor and Canvas now.");
-                parser.executeOneCommand("clear");
+                parser.executeOneCommand("clear",-1);
                 ParsingInfo parsingResult = parser.executeOneCommand(command, -1);
                 Assert.IsTrue(parsingResult.isSuccessful);
             }
