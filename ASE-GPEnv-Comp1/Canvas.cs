@@ -145,6 +145,11 @@ namespace ASE_GPEnv_Comp1
             this.graphics.DrawRectangle(this.pen, this.penPosition.posX, this.penPosition.posY, width, height);
 
         }
+        /// <summary>
+        /// [Overloaded Function]
+        /// Draws a rectangle on canvas of width and height set by user in params.
+        /// </summary>
+        /// <param name="rectangle">object of Rectangle shape class.</param>
         public void drawRectangle(ShapesClasses.Rectangle rectangle)
         {
             int width = rectangle.width;
