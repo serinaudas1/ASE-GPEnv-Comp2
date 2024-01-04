@@ -118,5 +118,46 @@ namespace ASE_GPEnv_Comp1.Tests
                 }
             }
         }
+
+        [TestMethod()]
+        public void checkSyntaxTest_InvalidCommandParams()
+        {
+            MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
+            //mainUI.Visible = true;
+            CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
+
+            string[] invalidTestCommandParams = {
+                "circle x",
+                "moveto 100",
+                "drawto 100,100,100"
+            };
+            foreach (string invalidCommandParam in invalidTestCommandParams)
+            {
+                try
+                {
+                    ParsingInfo info = parser.checkSyntax(invalidCommandParam, -1);
+                    foreach (ParsingException parsingException in info.parsingExceptions)
+                    {
+                        throw parsingException;
+                    }
+                    Assert.Fail("Test Failed for " + invalidCommandParam);
+
+                }
+                catch (InvalidParamsException ex)
+                {
+
+                    if(invalidCommandParam=="circle x")
+                        StringAssert.Contains(ex.Message.ToLower(), "invalid param type");
+
+                    else if (invalidCommandParam == "moveto 100")
+                        StringAssert.Contains(ex.invalidParamsMessage.ToLower(), "insufficient param");
+                    else
+                        StringAssert.Contains(ex.invalidParamsMessage.ToLower(), "too much param");
+
+
+                }
+            }
+        }
+
     }
 }

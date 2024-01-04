@@ -210,6 +210,13 @@ namespace ASE_GPEnv_Comp1
 
 
 
+            /*
+             * here I am checking three things:
+             * 1) Valid count of params
+             * 2) Valid name of params
+             * 3) Valid type of params
+             */
+            
             foreach (GPLCommand cmd_i in allValidGPLCommands)
             {
                 if (cmd_i.command == inputCommand)
