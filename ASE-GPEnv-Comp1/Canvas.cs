@@ -333,11 +333,13 @@ namespace ASE_GPEnv_Comp1
         /// </summary>
         /// <param name="gplFilePath">File path to store program in</param>
         /// <param name="graphicsProgram">Program to store</param>
-        public void storeProgramToFile(string gplFilePath, string graphicsProgram) {
+        public bool storeProgramToFile(string gplFilePath, string graphicsProgram) {
             try
             {
                 File.WriteAllText(gplFilePath, graphicsProgram);
+                return true;
             } catch (Exception ex) {
+                return false;
                 throw ex;
             }
         }

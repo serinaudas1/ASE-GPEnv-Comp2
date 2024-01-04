@@ -45,7 +45,7 @@ namespace ASE_GPEnv_Comp1.Tests
 
 
         [TestMethod()]
-        public void executeOneCommandTest_ValidProgramTest()
+        public void executeWholeProgramTest_ValidProgramTest()
         {
             MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
             mainUI.Visible = true;
