@@ -243,7 +243,6 @@ namespace ASE_GPEnv_Comp1
             }
 
 
-
             if (parsingInfo.parsingExceptions.Count>0)
                 parsingInfo.isSuccessful = false;
             return parsingInfo;
@@ -323,6 +322,39 @@ namespace ASE_GPEnv_Comp1
 
                 canvas.drawTriangle(triangle);
             }
+            else if (parsingResult.parsedCommand == "pen")
+            {
+                Color color;
+                string inputColor = parsingResult.parsedParameters[0].ToUpper();
+                switch (inputColor)
+                {
+                    case "RED":
+                        color = Color.Red;
+                        break;
+
+                    case "GREEN":
+                        color = Color.Green;
+                        break;
+                    case "BLUE":
+                        color = Color.Blue;
+                        break;
+                    case "CYAN":
+                        color = Color.Cyan;
+                        break;
+                    case "MAGENTA":
+                        color = Color.Magenta;
+                        break;
+                    case "YELLOW":
+                        color = Color.Yellow;
+                        break;
+                    default:
+                        color = Color.Black;
+                       break;
+                }
+
+
+                canvas.setPenColor(color);
+            }
         }
 
         void throwAndLogExceptions(ParsingInfo parsingResult) {
@@ -346,6 +378,7 @@ namespace ASE_GPEnv_Comp1
 
         public void executeOneCommand(String commandTxt) {
 
+            commandTxt = commandTxt.ToLower();
             ParsingInfo parsingResult = checkSyntax(commandTxt, -1);
             if (parsingResult.isSuccessful) {
                 // identify the command and excecute it
