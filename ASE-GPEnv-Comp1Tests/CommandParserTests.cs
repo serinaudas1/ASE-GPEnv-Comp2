@@ -31,10 +31,12 @@ namespace ASE_GPEnv_Comp1.Tests
             {
                 ParsingInfo parsingResult = parser.executeOneCommand("drawto 100, 100", -1);
                 Assert.IsTrue(parsingResult.isSuccessful);
+
             }
             catch (InvalidCommandException ex)
             {
                 StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command", failedTestMessage(ex));
+                Assert.Fail(failedTestMessage(ex));
 
 
             }
@@ -112,9 +114,10 @@ namespace ASE_GPEnv_Comp1.Tests
                     Assert.Fail("Test Failed for " + invalidCommand);
 
                 }
-                catch (InvalidCommandException ex) {
-                    StringAssert.Contains(ex.Message.ToLower(),"invalid command" );
-             
+                catch (InvalidCommandException ex)
+                {
+                    StringAssert.Contains(ex.Message.ToLower(), "invalid command");
+
                 }
             }
         }
@@ -146,7 +149,7 @@ namespace ASE_GPEnv_Comp1.Tests
                 catch (InvalidParamsException ex)
                 {
 
-                    if(invalidCommandParam=="circle x")
+                    if (invalidCommandParam == "circle x")
                         StringAssert.Contains(ex.Message.ToLower(), "invalid param type");
 
                     else if (invalidCommandParam == "moveto 100")
@@ -157,6 +160,29 @@ namespace ASE_GPEnv_Comp1.Tests
 
                 }
             }
+        }
+
+        [TestMethod]
+        public void executeOneCommandTest_moveTo()
+        {
+            MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
+            mainUI.Visible = true;
+            CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
+
+            try
+            {
+                ParsingInfo parsingResult = parser.executeOneCommand("moveto 100, 100", -1);
+                Assert.IsTrue(parsingResult.isSuccessful);
+            }
+            catch (InvalidCommandException ex)
+            {
+                StringAssert.Contains(ex.getParsingExceptionMessage().ToLower(), "invalid command", failedTestMessage(ex));
+                Assert.Fail(failedTestMessage(ex));
+            
+            }
+
+            // added this to see the result of execution on screen
+            MessageBox.Show("Test Completed");
         }
 
     }

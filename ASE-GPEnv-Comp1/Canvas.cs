@@ -61,13 +61,25 @@ namespace ASE_GPEnv_Comp1
             this.programTextBox = programTextBox;
         }
 
-
+        /// <summary>
+        /// [Overloaded Implementation]
+        /// Version1: Accepts new position as object 
+        /// and sets the pen position/cursor positon to passed x,y
+        /// </summary>
+        /// <param name="penPosition">Object of PenPosition struct having x,y values</param>
         public void moveTo(PenPosition  penPosition)
         {
             this.hasInitializedPosition = true;
             this.penPosition = penPosition;
         }
- 
+
+        /// <summary>
+        /// [Overloaded Implementation]
+        /// Version2: Directly accepts new x and y values for cursor position 
+        /// and sets the pen position/cursor positon to passed x,y
+        /// </summary>
+        /// <param name="posX">Horizontal position</param>
+        /// <param name="posY">Vertical position</param>
         public void moveTo(int posX, int posY)
         {
             this.hasInitializedPosition = true;

@@ -310,9 +310,15 @@ namespace ASE_GPEnv_Comp1
         /// triggers the right handler for that command
         /// </summary>
         /// <param name="parsingResult"></param>
-        void runValidGPLCommand(ParsingInfo parsingResult) {
+        public void runValidGPLCommand(ParsingInfo parsingResult) {
 
 
+            ///<summary>
+            ///After successful parsing checks, moveto command is executed here.
+            ///x and y are initialized from the parsed input params.
+            ///PenPosition struct is used to store the position of cursor.
+            ///call is made to moveTo handler from canvas class.
+            ///</summary>
             if (parsingResult.parsedCommand == "moveto")
             {
                 int x = int.Parse(parsingResult.parsedParameters[0]);
