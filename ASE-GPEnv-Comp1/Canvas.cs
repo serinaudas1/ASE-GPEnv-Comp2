@@ -27,7 +27,7 @@ namespace ASE_GPEnv_Comp1
             posY = 0;
         }
     }
-    class Canvas
+    public class Canvas
     {
         Pen pen;
         //float penWidth;

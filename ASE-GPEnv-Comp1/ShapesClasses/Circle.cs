@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASE_GPEnv_Comp1.ShapesClasses
 {
-    class Circle : Shape
+    public class Circle : Shape
     {
         public int radius;
 

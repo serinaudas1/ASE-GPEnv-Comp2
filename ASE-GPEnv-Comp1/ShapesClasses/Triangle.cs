@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASE_GPEnv_Comp1.ShapesClasses
 {
-    class Triangle: Shape
+    public class Triangle: Shape
     {
         public int sideLength;
 

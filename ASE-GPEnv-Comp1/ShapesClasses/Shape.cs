@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASE_GPEnv_Comp1.ShapesClasses
 {
-    abstract class Shape : ShapesInterface
+    public abstract class Shape : ShapesInterface
     {
         public  Color shapeColor; 
         public int posX, posY; 
