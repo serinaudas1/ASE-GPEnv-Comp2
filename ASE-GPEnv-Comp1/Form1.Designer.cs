@@ -89,7 +89,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(838, 426);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1326, 677);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // codeBlockContainer
@@ -106,7 +106,7 @@
             this.codeBlockContainer.Controls.Add(this.loadProgramButton);
             this.codeBlockContainer.Location = new System.Drawing.Point(3, 3);
             this.codeBlockContainer.Name = "codeBlockContainer";
-            this.codeBlockContainer.Size = new System.Drawing.Size(413, 207);
+            this.codeBlockContainer.Size = new System.Drawing.Size(657, 332);
             this.codeBlockContainer.TabIndex = 0;
             // 
             // label1
@@ -122,7 +122,7 @@
             // executeProgramButton
             // 
             this.executeProgramButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.executeProgramButton.Location = new System.Drawing.Point(243, 180);
+            this.executeProgramButton.Location = new System.Drawing.Point(487, 305);
             this.executeProgramButton.Name = "executeProgramButton";
             this.executeProgramButton.Size = new System.Drawing.Size(75, 23);
             this.executeProgramButton.TabIndex = 4;
@@ -133,7 +133,7 @@
             // programSyntaxCheckButton
             // 
             this.programSyntaxCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.programSyntaxCheckButton.Location = new System.Drawing.Point(324, 181);
+            this.programSyntaxCheckButton.Location = new System.Drawing.Point(568, 306);
             this.programSyntaxCheckButton.Name = "programSyntaxCheckButton";
             this.programSyntaxCheckButton.Size = new System.Drawing.Size(89, 23);
             this.programSyntaxCheckButton.TabIndex = 3;
@@ -147,14 +147,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.programTextBox.Location = new System.Drawing.Point(4, 20);
             this.programTextBox.Name = "programTextBox";
-            this.programTextBox.Size = new System.Drawing.Size(406, 158);
+            this.programTextBox.Size = new System.Drawing.Size(650, 283);
             this.programTextBox.TabIndex = 2;
             this.programTextBox.Text = "";
             // 
             // saveProgramButton
             // 
             this.saveProgramButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.saveProgramButton.Location = new System.Drawing.Point(93, 180);
+            this.saveProgramButton.Location = new System.Drawing.Point(93, 305);
             this.saveProgramButton.Name = "saveProgramButton";
             this.saveProgramButton.Size = new System.Drawing.Size(75, 23);
             this.saveProgramButton.TabIndex = 1;
@@ -165,7 +165,7 @@
             // loadProgramButton
             // 
             this.loadProgramButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.loadProgramButton.Location = new System.Drawing.Point(4, 180);
+            this.loadProgramButton.Location = new System.Drawing.Point(4, 305);
             this.loadProgramButton.Name = "loadProgramButton";
             this.loadProgramButton.Size = new System.Drawing.Size(75, 23);
             this.loadProgramButton.TabIndex = 0;
@@ -185,9 +185,9 @@
             this.convasContainer.Controls.Add(this.setPenRedBtn);
             this.convasContainer.Controls.Add(this.toggleFillBtn);
             this.convasContainer.Controls.Add(this.clearCanvasButton);
-            this.convasContainer.Location = new System.Drawing.Point(422, 3);
+            this.convasContainer.Location = new System.Drawing.Point(666, 3);
             this.convasContainer.Name = "convasContainer";
-            this.convasContainer.Size = new System.Drawing.Size(413, 207);
+            this.convasContainer.Size = new System.Drawing.Size(657, 332);
             this.convasContainer.TabIndex = 1;
             // 
             // canvasPanel
@@ -198,7 +198,7 @@
             this.canvasPanel.BackColor = System.Drawing.Color.White;
             this.canvasPanel.Location = new System.Drawing.Point(7, 20);
             this.canvasPanel.Name = "canvasPanel";
-            this.canvasPanel.Size = new System.Drawing.Size(403, 154);
+            this.canvasPanel.Size = new System.Drawing.Size(647, 279);
             this.canvasPanel.TabIndex = 1;
             this.canvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.canvasPanel_Paint);
             // 
@@ -206,7 +206,7 @@
             // 
             this.setPenYellowBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.setPenYellowBtn.BackColor = System.Drawing.Color.Yellow;
-            this.setPenYellowBtn.Location = new System.Drawing.Point(34, 181);
+            this.setPenYellowBtn.Location = new System.Drawing.Point(34, 306);
             this.setPenYellowBtn.Name = "setPenYellowBtn";
             this.setPenYellowBtn.Size = new System.Drawing.Size(21, 23);
             this.setPenYellowBtn.TabIndex = 6;
@@ -227,7 +227,7 @@
             // 
             this.setPenRedBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.setPenRedBtn.BackColor = System.Drawing.Color.Red;
-            this.setPenRedBtn.Location = new System.Drawing.Point(7, 181);
+            this.setPenRedBtn.Location = new System.Drawing.Point(7, 306);
             this.setPenRedBtn.Name = "setPenRedBtn";
             this.setPenRedBtn.Size = new System.Drawing.Size(21, 23);
             this.setPenRedBtn.TabIndex = 5;
@@ -237,7 +237,7 @@
             // toggleFillBtn
             // 
             this.toggleFillBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.toggleFillBtn.Location = new System.Drawing.Point(254, 180);
+            this.toggleFillBtn.Location = new System.Drawing.Point(498, 305);
             this.toggleFillBtn.Name = "toggleFillBtn";
             this.toggleFillBtn.Size = new System.Drawing.Size(75, 23);
             this.toggleFillBtn.TabIndex = 7;
@@ -248,7 +248,7 @@
             // clearCanvasButton
             // 
             this.clearCanvasButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearCanvasButton.Location = new System.Drawing.Point(335, 180);
+            this.clearCanvasButton.Location = new System.Drawing.Point(579, 305);
             this.clearCanvasButton.Name = "clearCanvasButton";
             this.clearCanvasButton.Size = new System.Drawing.Size(75, 23);
             this.clearCanvasButton.TabIndex = 2;
@@ -267,16 +267,16 @@
             this.commandAndHistoryContainer.Controls.Add(this.commandTextBox);
             this.commandAndHistoryContainer.Controls.Add(this.commandsHistoryTextBox);
             this.commandAndHistoryContainer.Controls.Add(this.label2);
-            this.commandAndHistoryContainer.Location = new System.Drawing.Point(3, 216);
+            this.commandAndHistoryContainer.Location = new System.Drawing.Point(3, 341);
             this.commandAndHistoryContainer.Name = "commandAndHistoryContainer";
-            this.commandAndHistoryContainer.Size = new System.Drawing.Size(413, 207);
+            this.commandAndHistoryContainer.Size = new System.Drawing.Size(657, 333);
             this.commandAndHistoryContainer.TabIndex = 2;
             // 
             // shouldClearTextCheckBox
             // 
             this.shouldClearTextCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.shouldClearTextCheckBox.AutoSize = true;
-            this.shouldClearTextCheckBox.Location = new System.Drawing.Point(7, 185);
+            this.shouldClearTextCheckBox.Location = new System.Drawing.Point(7, 311);
             this.shouldClearTextCheckBox.Name = "shouldClearTextCheckBox";
             this.shouldClearTextCheckBox.Size = new System.Drawing.Size(249, 17);
             this.shouldClearTextCheckBox.TabIndex = 5;
@@ -287,7 +287,7 @@
             // runCommandButton
             // 
             this.runCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.runCommandButton.Location = new System.Drawing.Point(316, 181);
+            this.runCommandButton.Location = new System.Drawing.Point(560, 307);
             this.runCommandButton.Name = "runCommandButton";
             this.runCommandButton.Size = new System.Drawing.Size(75, 23);
             this.runCommandButton.TabIndex = 4;
@@ -298,9 +298,9 @@
             // 
             this.commandTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.commandTextBox.Location = new System.Drawing.Point(7, 155);
+            this.commandTextBox.Location = new System.Drawing.Point(7, 281);
             this.commandTextBox.Name = "commandTextBox";
-            this.commandTextBox.Size = new System.Drawing.Size(384, 20);
+            this.commandTextBox.Size = new System.Drawing.Size(628, 20);
             this.commandTextBox.TabIndex = 3;
             this.commandTextBox.TextChanged += new System.EventHandler(this.commandTextBox_TextChanged);
             this.commandTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.commandTextBox_KeyPress);
@@ -314,7 +314,7 @@
             this.commandsHistoryTextBox.Location = new System.Drawing.Point(4, 20);
             this.commandsHistoryTextBox.Name = "commandsHistoryTextBox";
             this.commandsHistoryTextBox.ReadOnly = true;
-            this.commandsHistoryTextBox.Size = new System.Drawing.Size(387, 129);
+            this.commandsHistoryTextBox.Size = new System.Drawing.Size(631, 255);
             this.commandsHistoryTextBox.TabIndex = 2;
             this.commandsHistoryTextBox.Text = "";
             // 
@@ -336,9 +336,9 @@
             this.toolboxAndSnippetsContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.toolboxAndSnippetsContainer.Controls.Add(this.outputAndSnippetsTabControl);
             this.toolboxAndSnippetsContainer.Controls.Add(this.label3);
-            this.toolboxAndSnippetsContainer.Location = new System.Drawing.Point(422, 216);
+            this.toolboxAndSnippetsContainer.Location = new System.Drawing.Point(666, 341);
             this.toolboxAndSnippetsContainer.Name = "toolboxAndSnippetsContainer";
-            this.toolboxAndSnippetsContainer.Size = new System.Drawing.Size(413, 207);
+            this.toolboxAndSnippetsContainer.Size = new System.Drawing.Size(657, 333);
             this.toolboxAndSnippetsContainer.TabIndex = 3;
             // 
             // outputAndSnippetsTabControl
@@ -351,7 +351,7 @@
             this.outputAndSnippetsTabControl.Location = new System.Drawing.Point(7, 4);
             this.outputAndSnippetsTabControl.Name = "outputAndSnippetsTabControl";
             this.outputAndSnippetsTabControl.SelectedIndex = 0;
-            this.outputAndSnippetsTabControl.Size = new System.Drawing.Size(403, 200);
+            this.outputAndSnippetsTabControl.Size = new System.Drawing.Size(647, 326);
             this.outputAndSnippetsTabControl.TabIndex = 0;
             // 
             // tabPage1
@@ -359,7 +359,7 @@
             this.tabPage1.Controls.Add(this.outputTextBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(395, 174);
+            this.tabPage1.Size = new System.Drawing.Size(639, 300);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Output";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -373,7 +373,7 @@
             this.outputTextBox.Location = new System.Drawing.Point(3, 3);
             this.outputTextBox.Name = "outputTextBox";
             this.outputTextBox.ReadOnly = true;
-            this.outputTextBox.Size = new System.Drawing.Size(351, 168);
+            this.outputTextBox.Size = new System.Drawing.Size(595, 294);
             this.outputTextBox.TabIndex = 5;
             this.outputTextBox.Text = "";
             // 
@@ -464,7 +464,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(862, 450);
+            this.ClientSize = new System.Drawing.Size(1350, 701);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MainUI_AseGPL1";
             this.Text = "ASE-GPL-1";

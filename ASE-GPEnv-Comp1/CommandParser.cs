@@ -176,7 +176,7 @@ namespace ASE_GPEnv_Comp1
     
             if (command.Length == 0) {
 
-                parsingInfo.parsingExceptions.Add(new InvalidCommandException("Invalid Command:","Command be an empty string"));
+                parsingInfo.parsingExceptions.Add(new InvalidCommandException("Invalid Command:","Command cannot be an empty string"));
                 parsingInfo.isSuccessful = false;
                 return parsingInfo;
 
