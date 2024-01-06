@@ -187,7 +187,7 @@ namespace ASE_GPEnv_Comp1
             bool hasFoundCommand = false;
             string[] commandSplitBySpace = command.ToLower().Split(' ');
             string inputCommand = commandSplitBySpace[0];
-
+            
             string[] paramsArray = extractParamsFromCommand(command);
             parsingInfo.parsedCommand = inputCommand;
             parsingInfo.parsedParameters = paramsArray;

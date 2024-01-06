@@ -20,6 +20,15 @@ namespace ASE_GPEnv_Comp1.Tests
             message = message + "Test Failed! Exception should not be raised. Message: ";
             return message;
         }
+
+        /// <summary>
+        /// Unit test to check if one valid command executes.
+        /// Without any exception. 
+        /// Example Command: drawto 100,100
+        /// Expected Behaviours: Draw the cursor on canvas without any error
+        /// Generated Result: Drawn the curson on canvas without any error. 
+        /// Test Status: Passed
+        /// </summary>
         [TestMethod()]
         public void executeOneCommandTest_ValidCommandTest()
         {
@@ -46,6 +55,21 @@ namespace ASE_GPEnv_Comp1.Tests
         }
 
 
+        /// <summary>
+        /// Unit test to check if mulitple valid commands / Program executes.
+        /// Without any exception. 
+        /// Example Program: 
+        ///     moveto 100,100
+        ///     pen cyan
+        ///     rectangle 100,100
+        ///     fill on
+        ///     pen yellow
+        ///     circle 20
+        /// Expected Behaviours: Draw the shapes on the canvas. 
+        /// Generated Result: Drawnn the shapes on canvas without any error. 
+        /// Test Status: Passed
+        /// </summary>
+        /// 
         [TestMethod()]
         public void executeWholeProgramTest_ValidProgramTest()
         {
@@ -90,6 +114,18 @@ namespace ASE_GPEnv_Comp1.Tests
             MessageBox.Show("Test Completed");
         }
 
+
+        /// <summary>
+        /// Unit test to check if system is able to catch the invalid command exceptions on Invalid commands
+        /// Without any exception. 
+        /// Example Invalid Commands: 
+        ///     invalid
+        ///     crcle  50
+        ///     moveto 100,100
+        /// Expected Behaviours: Catch the invalid command exception. 
+        /// Generated Result: Catched the invalid command exception.
+        /// Test Status: Passed
+        /// </summary>
         [TestMethod()]
         public void checkSyntaxTest_InvalidCommands()
         {
@@ -122,6 +158,16 @@ namespace ASE_GPEnv_Comp1.Tests
             }
         }
 
+        /// <summary>
+        /// Unit test to check if system is able to catch the invalid command pararms exceptions on Invalid command parameters
+        /// Example Invalid Params: 
+        ///     circle x
+        ///     moveto 100
+        ///     drawto 100,100,100
+        /// Expected Behaviours: Catch the relevant params exception. 
+        /// Generated Result:   Catched the relevant params exception.
+        /// Test Status: Passed
+        /// </summary>
         [TestMethod()]
         public void checkSyntaxTest_InvalidCommandParams()
         {
@@ -162,6 +208,15 @@ namespace ASE_GPEnv_Comp1.Tests
             }
         }
 
+
+        /// <summary>
+        /// Unit test for moveto command, to check if cursor moves successfully
+        /// Example Command: 
+        ///     moveto 100,100
+        /// Expected Behaviours: Change the pen position . 
+        /// Generated Result: Changed the pen position without any error.
+        /// Test Status: Passed
+        /// </summary>
         [TestMethod]
         public void executeOneCommandTest_moveTo()
         {
@@ -188,13 +243,21 @@ namespace ASE_GPEnv_Comp1.Tests
 
 
 
+        /// <summary>
+        /// Unit test for drawto command, to check if position of pen is updated with cursor visualized
+        /// Example Command: 
+        ///     drawto 200,200
+        /// Expected Behaviours: Change the pen position and draw the cursor position. 
+        /// Generated Result: Changed the pen position and drawn cursor without any error.
+        /// Test Status: Passed
+        /// </summary>
         [TestMethod]
         public void executeOneCommandTest_drawTo()
         {
             MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
             mainUI.Visible = true;
             CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
-            string command = "drawto 100, 100";
+            string command = "drawto 200, 200";
 
             try
             {
@@ -213,6 +276,19 @@ namespace ASE_GPEnv_Comp1.Tests
         }
 
 
+
+        /// <summary>
+        /// Unit test for clear command, to check if the canvas is cleared by said command 
+        /// WIHOUT loosing the current pen position for future drawings
+        /// Example Commands: 
+        ///     moveto 20,20
+        ///     rectangle 200,200
+        ///     clear
+        ///     rectangle 200,200
+        /// Expected Behaviours: Clear all drawings on canvas and preserve the position . 
+        /// Generated Result: Cleared all drawings on canvas and preserved the position for next rectangle.
+        /// Test Status: Passed
+        /// </summary>
         [TestMethod]
         public void executeOneCommandTest_clear()
         {
@@ -249,6 +325,19 @@ namespace ASE_GPEnv_Comp1.Tests
         }
 
 
+
+        /// <summary>
+        /// Unit test for reset command, to check if pen position resets to default for future drawings
+        /// Example Commands: 
+        ///     moveto 20,20
+        ///     rectangle 200,200
+        ///     clear
+        ///     reset
+        ///     rectangle 200,200
+        /// Expected Behaviours: Reset the positon of pen for future drawings drawings on canvas. 
+        /// Generated Result: Changed the position of pen for furture drawings to default.
+        /// Test Status: Passed
+        /// </summary>
         [TestMethod]
         public void executeOneCommandTest_reset()
         {
@@ -285,6 +374,15 @@ namespace ASE_GPEnv_Comp1.Tests
             MessageBox.Show("Test Completed");
         }
 
+
+        /// <summary>
+        /// Unit test for rectangle command, to check if command draws the rectangle of width and height set by user.
+        /// Example Commands:
+        ///     rectangle 50,100
+        /// Expected Behaviours: Draw a rectangle of width 50 and height 100 on canvas
+        /// Generated Result:Drawn a rectangle of width 50 and height 100 on canvas
+        /// Test Status: Passed
+        /// </summary>
         [TestMethod]
         public void executeOneCommandTest_rectangle()
         {
@@ -310,6 +408,14 @@ namespace ASE_GPEnv_Comp1.Tests
         }
 
 
+        /// <summary>
+        /// Unit test for circle command, to check if command draws the circle of radius set by user.
+        /// Example Commands:
+        ///     rectangle 50
+        /// Expected Behaviours: Draw a circle of radius on canvas
+        /// Generated Result:Drawn a circle of radius 50 on canvas
+        /// Test Status: Passed
+        /// </summary>
         [TestMethod]
         public void executeOneCommandTest_circle()
         {
@@ -335,6 +441,16 @@ namespace ASE_GPEnv_Comp1.Tests
         }
 
 
+
+        /// <summary>
+        /// Unit test for triangle command, to check if command draws the triangle of side length set by user.
+        /// Example Commands:
+        ///     moveto 100,100
+        ///     triangle 50
+        /// Expected Behaviours: Draw a triangle of each side length 50 on canvas
+        /// Generated Result:Drawn a triangle of each side length 50 on canvas
+        /// Test Status: Passed
+        /// </summary>
         [TestMethod]
         public void executeOneCommandTest_triangle()
         {
@@ -362,6 +478,19 @@ namespace ASE_GPEnv_Comp1.Tests
         }
 
 
+
+
+        /// <summary>
+        /// Unit test for pen {color} command, to check if command changes the color of pen/brush for future drawings
+        /// Example Commands:
+        ///     pen black
+        ///     rectangle 50,50
+        ///     pen red
+        ///     triangle 80,80
+        /// Expected Behaviours: Draw a black rectangle then a red rectangle
+        /// Generated Result:Drawn a black rectangle then a red rectangle
+        /// Test Status: Passed
+        /// </summary>
         [TestMethod]
         public void executeOneCommandTest_penColor()
         {
@@ -396,6 +525,17 @@ namespace ASE_GPEnv_Comp1.Tests
         }
 
 
+        /// <summary>
+        /// Unit test for fill {on|off} command, to check if command changes the fill mode of pen/brush for future drawings
+        /// Example Commands:
+        ///     fill on
+        ///     rectangle 50,50
+        ///     fill off
+        ///     triangle 80,80
+        /// Expected Behaviours: Draw a filled rectangle then a outlined rectangle
+        /// Generated Result:Drawn a filled rectangle then a outlined rectangle
+        /// Test Status: Passed
+        /// </summary>
         [TestMethod]
         public void executeOneCommandTest_penFill()
         {
