@@ -1,5 +1,5 @@
-﻿using ASE_GPEnv_Comp1.Exceptions;
-using ASE_GPEnv_Comp1.ShapesClasses;
+﻿using ASE_GPEnv_Comp2.Exceptions;
+using ASE_GPEnv_Comp2.ShapesClasses;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,9 +9,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Rectangle = ASE_GPEnv_Comp1.ShapesClasses.Rectangle;
+using Rectangle = ASE_GPEnv_Comp2.ShapesClasses.Rectangle;
 
-namespace ASE_GPEnv_Comp1
+namespace ASE_GPEnv_Comp2
 {
 
 

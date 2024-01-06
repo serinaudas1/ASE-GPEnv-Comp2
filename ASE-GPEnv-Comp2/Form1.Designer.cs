@@ -1,4 +1,4 @@
-﻿namespace ASE_GPEnv_Comp1
+﻿namespace ASE_GPEnv_Comp2
 {
     partial class MainUI_AseGPL1
     {

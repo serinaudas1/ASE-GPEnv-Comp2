@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ASE_GPEnv_Comp1;
+using ASE_GPEnv_Comp2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ASE_GPEnv_Comp1.Tests
+namespace ASE_GPEnv_Comp2.Tests
 {
     [TestClass()]
     public class CanvasTests

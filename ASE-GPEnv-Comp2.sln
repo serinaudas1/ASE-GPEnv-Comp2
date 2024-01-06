@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.34112.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASE-GPEnv-Comp1", "ASE-GPEnv-Comp1\ASE-GPEnv-Comp1.csproj", "{3348F5E5-A3CF-4BB0-AAF9-CB4753BB47C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASE-GPEnv-Comp1", "ASE-GPEnv-Comp2\ASE-GPEnv-Comp1.csproj", "{3348F5E5-A3CF-4BB0-AAF9-CB4753BB47C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASE-GPEnv-Comp1Tests", "ASE-GPEnv-Comp1Tests\ASE-GPEnv-Comp1Tests.csproj", "{6B65CE78-A9A2-4101-94E7-D5906EDD6BCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASE-GPEnv-Comp1Tests", "ASE-GPEnv-Comp2Tests\ASE-GPEnv-Comp1Tests.csproj", "{6B65CE78-A9A2-4101-94E7-D5906EDD6BCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

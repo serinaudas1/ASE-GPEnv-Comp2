@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ASE_GPEnv_Comp1
+namespace ASE_GPEnv_Comp2
 {
     static class Program
     {

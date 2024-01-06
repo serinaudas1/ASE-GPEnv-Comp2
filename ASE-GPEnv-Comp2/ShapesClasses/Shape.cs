@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ASE_GPEnv_Comp1.ShapesClasses
+namespace ASE_GPEnv_Comp2.ShapesClasses
 {
     public abstract class Shape : ShapesInterface
     {

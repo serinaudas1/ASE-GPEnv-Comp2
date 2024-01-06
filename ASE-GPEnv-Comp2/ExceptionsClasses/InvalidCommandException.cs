@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ASE_GPEnv_Comp1.Exceptions
+namespace ASE_GPEnv_Comp2.Exceptions
 {
     public class InvalidCommandException : ParsingException
     {

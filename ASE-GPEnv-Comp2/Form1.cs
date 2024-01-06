@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ASE_GPEnv_Comp1
+namespace ASE_GPEnv_Comp2
 {
     public partial class MainUI_AseGPL1 : Form
     {

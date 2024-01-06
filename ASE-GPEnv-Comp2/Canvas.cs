@@ -1,4 +1,4 @@
-﻿using ASE_GPEnv_Comp1.ShapesClasses;
+﻿using ASE_GPEnv_Comp2.ShapesClasses;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ASE_GPEnv_Comp1
+namespace ASE_GPEnv_Comp2
 {
     /// <summary>
     /// Object of this sturcture holds the value for cursor. 

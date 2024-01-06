@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ASE_GPEnv_Comp1.Properties
+namespace ASE_GPEnv_Comp2.Properties
 {
 
 
