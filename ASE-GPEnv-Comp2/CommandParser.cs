@@ -62,6 +62,9 @@ namespace ASE_GPEnv_Comp2
     }
 
 
+    /// <summary>
+    /// Structure to hold the information about each of the If block
+    /// </summary>
     public struct IfBlock {
         public bool parsedComparisonResult;
         public List<string> ifBlockStatements;
@@ -76,8 +79,7 @@ namespace ASE_GPEnv_Comp2
 
 
     }
-
-
+    
     public struct WhileBlock
     {
 
@@ -535,7 +537,6 @@ namespace ASE_GPEnv_Comp2
             ///<summary>
             ///[if block parsing and checking- both one line and multiline]
             ///</summary>
-
             if (inputCommand == "if") {
                 IfBlock ifBlock = new IfBlock();
                 ifBlock.initializeIfBlock();
@@ -592,6 +593,9 @@ namespace ASE_GPEnv_Comp2
             }
 
 
+            ///<summary>
+            ///[While block parsing and checking- with checking if endloop is defined]
+            ///</summary>
             if (inputCommand == "while")
             {
                 WhileBlock whileBlock = new WhileBlock();
