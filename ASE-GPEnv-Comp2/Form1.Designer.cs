@@ -61,6 +61,7 @@
             this.drawCircleBtn = new System.Windows.Forms.Button();
             this.drawRectangleBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.programTextBox2 = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.codeBlockContainer.SuspendLayout();
             this.convasContainer.SuspendLayout();
@@ -98,6 +99,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.codeBlockContainer.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.codeBlockContainer.Controls.Add(this.programTextBox2);
             this.codeBlockContainer.Controls.Add(this.label1);
             this.codeBlockContainer.Controls.Add(this.executeProgramButton);
             this.codeBlockContainer.Controls.Add(this.programSyntaxCheckButton);
@@ -122,22 +124,22 @@
             // executeProgramButton
             // 
             this.executeProgramButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.executeProgramButton.Location = new System.Drawing.Point(487, 305);
+            this.executeProgramButton.Location = new System.Drawing.Point(484, 306);
             this.executeProgramButton.Name = "executeProgramButton";
             this.executeProgramButton.Size = new System.Drawing.Size(75, 23);
             this.executeProgramButton.TabIndex = 4;
-            this.executeProgramButton.Text = "Execute";
+            this.executeProgramButton.Text = "Execute1";
             this.executeProgramButton.UseVisualStyleBackColor = true;
             this.executeProgramButton.Click += new System.EventHandler(this.executeProgramButton_Click);
             // 
             // programSyntaxCheckButton
             // 
             this.programSyntaxCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.programSyntaxCheckButton.Location = new System.Drawing.Point(568, 306);
+            this.programSyntaxCheckButton.Location = new System.Drawing.Point(565, 306);
             this.programSyntaxCheckButton.Name = "programSyntaxCheckButton";
             this.programSyntaxCheckButton.Size = new System.Drawing.Size(89, 23);
             this.programSyntaxCheckButton.TabIndex = 3;
-            this.programSyntaxCheckButton.Text = "Syntax Check";
+            this.programSyntaxCheckButton.Text = "Syntax Check1";
             this.programSyntaxCheckButton.UseVisualStyleBackColor = true;
             this.programSyntaxCheckButton.Click += new System.EventHandler(this.programSyntaxCheckButton_Click);
             // 
@@ -148,7 +150,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.programTextBox.Location = new System.Drawing.Point(4, 20);
             this.programTextBox.Name = "programTextBox";
-            this.programTextBox.Size = new System.Drawing.Size(650, 283);
+            this.programTextBox.Size = new System.Drawing.Size(334, 283);
             this.programTextBox.TabIndex = 2;
             this.programTextBox.Text = "";
             // 
@@ -461,6 +463,17 @@
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 0;
             // 
+            // programTextBox2
+            // 
+            this.programTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.programTextBox2.Location = new System.Drawing.Point(344, 20);
+            this.programTextBox2.Name = "programTextBox2";
+            this.programTextBox2.Size = new System.Drawing.Size(310, 283);
+            this.programTextBox2.TabIndex = 6;
+            this.programTextBox2.Text = "";
+            // 
             // MainUI_AseGPL1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -468,7 +481,7 @@
             this.ClientSize = new System.Drawing.Size(1350, 701);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MainUI_AseGPL1";
-            this.Text = "ASE-GPL-1";
+            this.Text = "ASE-GPL-2";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.codeBlockContainer.ResumeLayout(false);
@@ -521,6 +534,7 @@
         private System.Windows.Forms.Button toggleFillBtn;
         private System.Windows.Forms.Button drawToButton;
         private System.Windows.Forms.CheckBox shouldClearTextCheckBox;
+        private System.Windows.Forms.RichTextBox programTextBox2;
     }
 }
 

@@ -7,14 +7,15 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ASE_GPEnv_Comp2
 {
+
     public partial class MainUI_AseGPL1 : Form
     {
-        Graphics canvasPanelGraphics;
         public Canvas canvas;
         public CommandParser parser;
         public CheckBox clearTextCB;
@@ -22,7 +23,7 @@ namespace ASE_GPEnv_Comp2
         {
             InitializeComponent();
 
-            this.canvas = new Canvas(Color.Red, 2, canvasPanel, commandsHistoryTextBox, outputTextBox, commandTextBox, programTextBox);
+            this.canvas = new Canvas(Color.Red, 2, canvasPanel, commandsHistoryTextBox, outputTextBox, commandTextBox, programTextBox, programTextBox2);
             parser = new CommandParser(this.canvas, this.shouldClearTextCheckBox);
             // I added this intentionally becuase can't directly call the UI compenent from family
             this.clearTextCB = this.shouldClearTextCheckBox;
@@ -160,12 +161,61 @@ namespace ASE_GPEnv_Comp2
 
         private void executeProgramButton_Click(object sender, EventArgs e)
         {
-            parser.executeWholePrograme(canvas.getProgramFromEditor());
+
+            Thread thread1 = new Thread(() => handleFirstProgramBox(this));
+            Thread thread2 = new Thread(() => handleSecondProgramBox(this));
+
+
+
+            thread2.Start();
+            thread1.Start();
+
+
+
+
+            //parser.executeWholePrograme(canvas.getProgramFromEditor());
         }
+
+
+
+        public void handleFirstProgramBox(ASE_GPEnv_Comp2.MainUI_AseGPL1 form)
+        {
+
+            
+            form.Invoke(new Action(() =>
+            {
+                parser.executeWholePrograme(form.programTextBox.Text);
+                //Thread.Sleep(100);
+                //parser.executeWholePrograme(form.programTextBox2.Text);
+            }));
+
+
+        }
+        public void handleSecondProgramBox(MainUI_AseGPL1 form)
+        {
+
+            
+            form.Invoke(new Action(() =>
+            {
+                //parser.executeWholePrograme(form.programTextBox.Text);
+                parser.executeWholePrograme(form.programTextBox2.Text);
+                //Thread.Sleep(100);
+
+            }));
+
+            
+        }
+   
 
         private void programSyntaxCheckButton_Click(object sender, EventArgs e)
         {
             parser.checkProgramSyntax();
+        }
+
+        private void button1_Click_3(object sender, EventArgs e)
+        {
+            parser.executeWholePrograme(canvas.getProgramFromSecondEditor());
+
         }
     }
 }

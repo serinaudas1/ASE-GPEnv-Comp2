@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Rectangle = ASE_GPEnv_Comp2.ShapesClasses.Rectangle;
@@ -1222,10 +1223,12 @@ namespace ASE_GPEnv_Comp2
             this.allDeclaredVariableValues.Clear();
             this.linesToIgnoreExecution.Clear();
             this.allIfBlocks.Clear();
+            this.allWhileBlocks.Clear();
+            this.allMethodBlocks.Clear();
 
-            this.canvas.resetPen();
-            this.canvas.clearCanvas();
-            this.canvas.clearOutputBox();
+            //this.canvas.resetPen();
+            //this.canvas.clearCanvas();
+            //this.canvas.clearOutputBox();
         }
 
         public string[] cleanAndConvertProgramToStatements(string programText) {
@@ -1261,7 +1264,7 @@ namespace ASE_GPEnv_Comp2
         {
             this.resetUI();
             this.isSyntaxCheckingPass = false;
-
+            Thread.Sleep(200);
 
             List<ParsingInfo> parsingInfos = new List<ParsingInfo>();
             int lineNumber = 1;

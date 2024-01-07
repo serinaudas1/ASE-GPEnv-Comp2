@@ -44,13 +44,14 @@ namespace ASE_GPEnv_Comp2
         RichTextBox outputTextBox;
         TextBox commandInputTextBox;
         RichTextBox programTextBox;
+        RichTextBox programTextBox2;
 
 
         bool hasInitializedPosition = false;
         public bool shouldFill= false;
 
 
-        public Canvas(Color penColor, float penWidth, Panel panel, RichTextBox commandsHistoryTextBox, RichTextBox outputTextBox, TextBox commandInputTextBox, RichTextBox programTextBox)
+        public Canvas(Color penColor, float penWidth, Panel panel, RichTextBox commandsHistoryTextBox, RichTextBox outputTextBox, TextBox commandInputTextBox, RichTextBox programTextBox, RichTextBox programTextBox2)
         {
             this.pen = new Pen(Color.Red, penWidth);
             this.canvasPanel = panel;
@@ -62,6 +63,7 @@ namespace ASE_GPEnv_Comp2
             this.outputTextBox = outputTextBox;
             this.commandInputTextBox = commandInputTextBox;
             this.programTextBox = programTextBox;
+            this.programTextBox2 = programTextBox2;
         }
 
         /// <summary>
@@ -330,7 +332,11 @@ namespace ASE_GPEnv_Comp2
             return this.programTextBox.Text;
 
         }
+        public string getProgramFromSecondEditor()
+        {
+            return this.programTextBox2.Text;
 
+        }
         /// <summary>
         /// This function is used by handleLoadProgram. 
         /// It's responsible for extracting the file content. 
