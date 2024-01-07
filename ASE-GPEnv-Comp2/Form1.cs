@@ -162,6 +162,10 @@ namespace ASE_GPEnv_Comp2
         private void executeProgramButton_Click(object sender, EventArgs e)
         {
 
+
+            ///<summary>Creating two threads with two separte function. mostly similar
+            ///with just one difference that is the source program box.
+            ///</summary>
             Thread thread1 = new Thread(() => handleFirstProgramBox(this));
             Thread thread2 = new Thread(() => handleSecondProgramBox(this));
 
@@ -177,7 +181,10 @@ namespace ASE_GPEnv_Comp2
         }
 
 
-
+        /// <summary>
+        /// Function to be called with thread to execute program of FIRST program editor
+        /// </summary>
+        /// <param name="form">The form object containing shared resources</param>
         public void handleFirstProgramBox(ASE_GPEnv_Comp2.MainUI_AseGPL1 form)
         {
 
@@ -191,6 +198,11 @@ namespace ASE_GPEnv_Comp2
 
 
         }
+
+        /// <summary>
+        /// Function to be called with thread to execute program of SECOND program editor
+        /// </summary>
+        /// <param name="form">The form object containing shared resources</param>
         public void handleSecondProgramBox(MainUI_AseGPL1 form)
         {
 
