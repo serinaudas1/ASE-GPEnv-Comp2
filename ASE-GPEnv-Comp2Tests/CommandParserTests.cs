@@ -157,7 +157,7 @@ namespace ASE_GPEnv_Comp2.Tests
         /// <summary>
         /// [While Statment syntax check]
         /// Expected Behaviours: 
-        /// Through Exceptions for each invalid if command
+        /// Through Exceptions for each invalid while command
         /// Generated Results:
         /// For each invalid command exceptions are thrown.
         /// Test Status: Pass
@@ -173,6 +173,92 @@ namespace ASE_GPEnv_Comp2.Tests
                 "while",
                 "while a=",
                 "while 1=1", };
+
+            foreach (string invalidCommand in invalidTestCommands)
+            {
+                try
+                {
+                    ParsingInfo info = parser.checkSyntax(invalidCommand, -1);
+                    foreach (ParsingException parsingException in info.parsingExceptions)
+                    {
+                        throw parsingException;
+                    }
+                    Assert.Fail("Test Failed for " + invalidCommand);
+
+                }
+                catch (ParsingException ex)
+                {
+                    StringAssert.Contains(ex.Message.ToLower(), "invalid");
+
+                }
+            }
+
+
+        }
+
+
+
+        /// <summary>
+        /// [Method Statment syntax check]
+        /// Expected Behaviours: 
+        /// Through Exceptions for each invalid method command
+        /// Generated Results:
+        /// For each invalid command exceptions are thrown.
+        /// Test Status: Pass
+        /// </summary>
+        [TestMethod]
+        public void MethodStatementTest_InvalidSyntax()
+        {
+            MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
+            //mainUI.Visible = true;
+            CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
+
+            string[] invalidTestCommands = {
+                "method",
+                "method name",
+                "method name (", };
+
+            foreach (string invalidCommand in invalidTestCommands)
+            {
+                try
+                {
+                    ParsingInfo info = parser.checkSyntax(invalidCommand, -1);
+                    foreach (ParsingException parsingException in info.parsingExceptions)
+                    {
+                        throw parsingException;
+                    }
+                    Assert.Fail("Test Failed for " + invalidCommand);
+
+                }
+                catch (ParsingException ex)
+                {
+                    StringAssert.Contains(ex.Message.ToLower(), "invalid");
+
+                }
+            }
+
+
+        }
+
+        /// <summary>
+        /// [Method call Statment syntax check]
+        /// Expected Behaviours: 
+        /// Through Exceptions for each invalid method call command
+        /// Generated Results:
+        /// For each invalid command exceptions are thrown.
+        /// Test Status: Pass
+        /// </summary>
+        [TestMethod]
+        public void MethodStatementTest_InvalidMethodCallSyntax()
+        {
+            MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
+            //mainUI.Visible = true;
+            CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
+
+            string[] invalidTestCommands = {
+                "call",
+                "call name",
+                "call name (", };
 
             foreach (string invalidCommand in invalidTestCommands)
             {

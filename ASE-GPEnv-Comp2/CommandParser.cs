@@ -79,7 +79,11 @@ namespace ASE_GPEnv_Comp2
 
 
     }
-    
+
+
+    /// <summary>
+    /// Structure to hold the information about each of the While block
+    /// </summary>
     public struct WhileBlock
     {
 
@@ -95,6 +99,10 @@ namespace ASE_GPEnv_Comp2
 
     }
 
+
+    /// <summary>
+    /// Structure to hold the information about each of the method block
+    /// </summary>
     public struct MethodBlock
     {
 
@@ -647,6 +655,9 @@ namespace ASE_GPEnv_Comp2
 
             }
 
+            ///<summary>
+            ///Method block parsing and initialzing the MethodBlock object with method name, method statements
+            ///</summary>
             if (inputCommand == "method") {
 
                 MethodBlock methodBlock = new MethodBlock();
@@ -735,6 +746,12 @@ namespace ASE_GPEnv_Comp2
 
 
             }
+
+
+
+            ///<summary>
+            ///Method block to parse the method params for preparing the method call
+            ///</summary>
 
             if (inputCommand == "call")
             {
