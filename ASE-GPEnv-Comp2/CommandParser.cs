@@ -964,7 +964,7 @@ namespace ASE_GPEnv_Comp2
                 }
             }
 
-
+            ///<summary>Executin of while loop after extracting the loop block object from list</summary>
             if (parsingResult.parsedCommand == "while")
             {
 

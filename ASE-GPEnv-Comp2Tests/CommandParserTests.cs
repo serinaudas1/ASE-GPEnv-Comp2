@@ -154,7 +154,50 @@ namespace ASE_GPEnv_Comp2.Tests
 
         }
 
-        
+        /// <summary>
+        /// [While Statment syntax check]
+        /// Expected Behaviours: 
+        /// Through Exceptions for each invalid if command
+        /// Generated Results:
+        /// For each invalid command exceptions are thrown.
+        /// Test Status: Pass
+        /// </summary>
+        [TestMethod]
+        public void LoopStatementTest_InvalidSyntax()
+        {
+            MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
+            //mainUI.Visible = true;
+            CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
+
+            string[] invalidTestCommands = {
+                "while",
+                "while a=",
+                "while 1=1", };
+
+            foreach (string invalidCommand in invalidTestCommands)
+            {
+                try
+                {
+                    ParsingInfo info = parser.checkSyntax(invalidCommand, -1);
+                    foreach (ParsingException parsingException in info.parsingExceptions)
+                    {
+                        throw parsingException;
+                    }
+                    Assert.Fail("Test Failed for " + invalidCommand);
+
+                }
+                catch (ParsingException ex)
+                {
+                    StringAssert.Contains(ex.Message.ToLower(), "invalid");
+
+                }
+            }
+
+
+        }
+
+
+
 
         /* 
          * Below are tests for Component 1
