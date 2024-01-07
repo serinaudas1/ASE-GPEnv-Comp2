@@ -154,6 +154,17 @@ namespace ASE_GPEnv_Comp2
             restString = restString.Trim();
 
             string[] paramsArray = restString.Split(',');
+
+            int paramIndex = 0;
+            foreach (string param in paramsArray) {
+                int matchingAtIndex = Array.IndexOf(this.allDeclaredVariables.ToArray(), param);
+                if (matchingAtIndex != -1) {
+                    paramsArray[paramIndex] = this.allDeclaredVariableValues[matchingAtIndex]+"";
+                }
+                paramIndex++;
+            }
+            
+
             return restString == ""? new string[] { }: paramsArray;
 
         }
