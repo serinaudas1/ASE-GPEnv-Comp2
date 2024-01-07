@@ -73,6 +73,11 @@ namespace ASE_GPEnv_Comp2
         CheckBox shouldClearCommandCheckBox;
         ShapesFactory shapesFactory;
 
+        public List<string> allDeclaredVariables = new List<string>();
+        public List<int> allDeclaredVariableValues = new List<int>();
+
+        int variablesCounter = 0;
+
 
         /// <summary>
         /// Consturctor Initializes the all valid commands
@@ -104,6 +109,8 @@ namespace ASE_GPEnv_Comp2
                     new string []{"on", "off"},
                     1, 
                     "fill {on|off}"),
+
+              
 
             };
         }
@@ -151,6 +158,58 @@ namespace ASE_GPEnv_Comp2
 
         }
 
+        public int resolveVariableValue(string expression) {
+
+            if (int.TryParse(expression, out int varValue))
+            {
+                return varValue;
+            }
+
+
+            if (expression.Contains("-"))
+            {
+                string[] splitByOperator = expression.Split('-');
+                string rightOperand = string.Join("-", splitByOperator, 1, splitByOperator.Length - 1);
+                return resolveVariableValue(splitByOperator[0]) - resolveVariableValue(rightOperand);
+            }
+
+            else if (expression.Contains("+"))
+            {
+                string[] splitByOperator = expression.Split('+');
+                string rightOperand = string.Join("+", splitByOperator, 1, splitByOperator.Length - 1);
+                return resolveVariableValue(splitByOperator[0]) + resolveVariableValue(rightOperand);
+            }
+
+            else if (expression.Contains("*"))
+            {
+                string[] splitByOperator = expression.Split('*');
+                string rightOperand = string.Join("*", splitByOperator, 1, splitByOperator.Length - 1);
+                return resolveVariableValue(splitByOperator[0]) * resolveVariableValue(rightOperand);
+            }
+
+
+            else if (expression.Contains("/"))
+            {
+                string[] splitByOperator = expression.Split('/');
+                string rightOperand = string.Join("/", splitByOperator, 1, splitByOperator.Length - 1);
+                return resolveVariableValue(splitByOperator[0]) / resolveVariableValue(rightOperand);
+            }
+
+            else {
+                int index = 0;
+                foreach (string varName in allDeclaredVariables)
+                {
+                    if (varName == expression.Trim()) {
+                        return allDeclaredVariableValues[index];
+                    }
+                    index++;
+            }
+            }
+            return 0;
+
+
+        }
+
         /// <summary>
         /// Function checks following things:
         /// 1) Empty command
@@ -187,11 +246,109 @@ namespace ASE_GPEnv_Comp2
             bool hasFoundCommand = false;
             string[] commandSplitBySpace = command.ToLower().Split(' ');
             string inputCommand = commandSplitBySpace[0];
-            
             string[] paramsArray = extractParamsFromCommand(command);
+
+
             parsingInfo.parsedCommand = inputCommand;
             parsingInfo.parsedParameters = paramsArray;
             parsingInfo.lineNumber = lineNumber;
+
+
+
+
+            ///<summary>
+            /// [Variable Declaration Check]
+            ///checking if input command is a variable declaration
+            ///if command is starting with var, following things are checked
+            ///1) number of params for insuffcient or too much 2) type of param 
+            ///4) If a variable is already declared or not
+            ///</summary>
+            if (inputCommand == "var") {
+                if (paramsArray.Length > 1) {
+
+                    parsingInfo.parsingExceptions.Add(new InvalidParamsException("Invalid Command Param:", "Too much parameters supplied. Please follow command format. \n\tHint! var {variableName}"));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+                else if (paramsArray.Length < 1)
+                {
+                    parsingInfo.parsingExceptions.Add(new InvalidParamsException("Invalid Command Param:", "Insufficient parameters supplied. Please enter complete command. \n\tHint! var {variableName} "));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+
+                else if (int.TryParse(paramsArray[0], out int varValue))
+                {
+                    parsingInfo.parsingExceptions.Add(new InvalidParamsException("Invalid Param Type", "Invalid paramter passed as variable name"));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+                else {
+                    string newVariableName = paramsArray[0];
+                    int searchIndex = Array.IndexOf(allDeclaredVariables.ToArray(), newVariableName);
+
+                    if (searchIndex == -1)
+                    {
+                        this.allDeclaredVariables.Add(newVariableName);
+                        this.allDeclaredVariableValues.Add(0);
+                    }
+                    else {
+                        parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Variable '"+newVariableName+"' Already declared."));
+                        parsingInfo.isSuccessful = false;
+                        return parsingInfo;
+                    }
+                }
+
+                return parsingInfo;
+            }
+
+            ///<summary>
+            /// [Variable Assignment Check]
+            ///checking if command is to assing a created variable 
+            ///if command is starting with var, following things are checked
+            ///1) number of params for insuffcient or too much 2) type of param 
+            ///</summary>
+            //bool isCommandStartingWithVariableName = false;
+
+            int variableIndex = 0;
+            foreach (string variableName in allDeclaredVariables) {
+                if (inputCommand == variableName)
+                {
+                    string[] expressionSplit = command.Trim().Split('=');
+                    
+                    if (expressionSplit.Length <=1) {
+                        parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Incorrect manipulation of variable '" + inputCommand + "'"));
+                        parsingInfo.isSuccessful = false;
+                        return parsingInfo;
+                    }
+                    string expression = expressionSplit[1];
+                    if (expression.Length == 0) {
+                        parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax","Incorrect manipulation of variable '"+inputCommand+"'"));
+                        parsingInfo.isSuccessful = false;
+                        return parsingInfo;
+                    }
+                
+                        //MessageBox.Show("Correct Assignment");
+                        allDeclaredVariableValues[variableIndex] = resolveVariableValue(expression.Trim());
+
+                    int calculatedValue = allDeclaredVariableValues[variableIndex];
+                    this.canvas.appendExecutionResultsToOutput("***** Variable: '"+ inputCommand + "="+ calculatedValue + "' declared. ****");
+
+                    return parsingInfo;
+                   
+                    //variableValues[variableIndex++] = resolveVariableValue(expression);
+                   
+                }
+                variableIndex++;
+
+            }
+
+
+
+
+
+
+
 
 
             //checking command validity here
@@ -203,9 +360,17 @@ namespace ASE_GPEnv_Comp2
                 }
             }
             if (!hasFoundCommand) {
+
+                if(command.Contains("="))
+                    parsingInfo.parsingExceptions.Add(new InvalidCommandException("Invalid Command or Variable name:", "'" + inputCommand + "' is accessed before declaration."));
+   
+                else
                     parsingInfo.parsingExceptions.Add(new InvalidCommandException("Invalid Command:", "'" + command + "' not a valid command."));
             }
             // end of command validity check
+
+
+
 
 
 
@@ -241,7 +406,7 @@ namespace ASE_GPEnv_Comp2
                     }
 
                     //check if string command found in paramters, otherwise add exception object
-                    if (cmd_i.hasStringParam)
+                    if (cmd_i.hasStringParam && inputCommand !="var")
                     {
                         string validParamsString = "'" + string.Join("', '", cmd_i.validParams) + "'";
 
@@ -483,7 +648,7 @@ namespace ASE_GPEnv_Comp2
                 catch (ParsingException pEx)
                 {
 
-                    string outputText = (parsingResult.lineNumber == -1 ? "" : "[ Line No."+parsingResult.lineNumber+"]")+ pEx.Message + "\n\t" + pEx.getParsingExceptionMessage() + "\n_____________________________________________";
+                    string outputText = (parsingResult.lineNumber == -1 ? "" : "[Line No."+parsingResult.lineNumber+"]-")+ pEx.Message + "\n\t" + pEx.getParsingExceptionMessage() + "\n_____________________________________________";
                     canvas.appendExecutionResultsToOutput(outputText);
                     //Debug.WriteLine(pEx.Message+" "+pEx.getParsingExceptionMessage());
 
@@ -536,6 +701,15 @@ namespace ASE_GPEnv_Comp2
 
         }
 
+        public void resetUI()
+        {
+            this.allDeclaredVariables.Clear();
+            this.allDeclaredVariableValues.Clear();
+
+            this.canvas.resetPen();
+            this.canvas.clearCanvas();
+            this.canvas.clearOutputBox();
+        }
 
 
         /// <summary>
@@ -548,6 +722,8 @@ namespace ASE_GPEnv_Comp2
         /// </returns>
         public List<ParsingInfo> executeWholePrograme(String programTxt)
         {
+            this.resetUI();
+
             Regex regex = new Regex("\\s{2,}");
             string[] statements = programTxt.Split('\n');
             List<ParsingInfo> parsingInfos = new List<ParsingInfo>();

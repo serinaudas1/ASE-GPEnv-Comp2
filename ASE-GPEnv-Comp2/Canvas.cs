@@ -429,5 +429,8 @@ namespace ASE_GPEnv_Comp2
 
         }
 
+        public void clearOutputBox() {
+            this.outputTextBox.Text = "";
+        }
     }
 }

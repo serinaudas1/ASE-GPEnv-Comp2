@@ -65,9 +65,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ASE-GPEnv-Comp1\ASE-GPEnv-Comp1.csproj">
+    <ProjectReference Include="..\ASE-GPEnv-Comp2\ASE-GPEnv-Comp2.csproj">
       <Project>{3348F5E5-A3CF-4BB0-AAF9-CB4753BB47C8}</Project>
-      <Name>ASE-GPEnv-Comp1</Name>
+      <Name>ASE-GPEnv-Comp2</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -12,6 +12,8 @@ using System.Windows.Forms;
 namespace ASE_GPEnv_Comp2.Tests
 {
     [TestClass()]
+
+
     public class CommandParserTests
     {
         public string failedTestMessage(ParsingException ex)
@@ -20,6 +22,103 @@ namespace ASE_GPEnv_Comp2.Tests
             message = message + "Test Failed! Exception should not be raised. Message: ";
             return message;
         }
+
+
+        /// <summary>
+        /// [Expression Evaluation]
+        /// This test checks the ability of parser to parse the any complex express.
+        /// I declared an string expression and calcuated its value by parser expression resolver method.
+        /// The resolved value is compared with c# calcualted value
+        /// Example Command:
+        ///      "2 + 4 * 4 / 2 - 2"
+        /// Expected Behaviour: Return an integer value that matches the integer value of C# expression
+        /// Generated Result: Returned a matching value. 
+        /// Test Status: Pass
+        /// </summary>
+        [TestMethod]
+        public void evaluateExpressionTest() {
+            MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
+            //mainUI.Visible = true;
+            CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
+
+ 
+            string expression = "2 + 4 * 4 / 2 - 2";
+
+            int resolvedValue = parser.resolveVariableValue(expression);
+            int actualValue = 2 + 4 * 4 / 2 - 2;
+            Assert.AreEqual(resolvedValue, actualValue);
+
+
+        }
+
+
+
+        /// <summary>
+        /// [Variable Declaration and Expression Evaluation]
+        /// This test checks the ability of parser to:
+        /// 1) Declare Variable 2) Assign value to Variable 3) Evaluate variable based expression
+        /// Example Command:
+        //        var a
+        //        var b
+        //        var c
+        //        a = 2
+        //        b = 4
+        //        c = 2
+        //        var d
+        //        d = a + b - a* c / a
+        /// Expected Behaviours: 
+        /// 1) Return an integer value that matches the integer value of C# expression
+        /// 2) Initialaize the variable Names list with correct integer values in variable values array
+        /// Generated Results:
+        /// 1) Returned a matching value
+        /// 2) Added correct variable  names and values to names and values list arrays.
+        /// Test Status: Pass
+        /// </summary>
+        [TestMethod]
+        public void variableDeclarationAndExpressionTest()
+        {
+            MainUI_AseGPL1 mainUI = new MainUI_AseGPL1();
+            //mainUI.Visible = true;
+            CommandParser parser = new CommandParser(mainUI.canvas, mainUI.clearTextCB);
+
+            string variableAndEpxressionTestProgram = @"
+                var a
+                var b
+                var c
+                a = 2
+                b = 4
+                c = 2
+                var d
+                d = a + b - a * c / a";
+            mainUI.setProgramText(variableAndEpxressionTestProgram);
+
+
+            parser.executeWholePrograme(variableAndEpxressionTestProgram);
+            int resolvedValue = parser.allDeclaredVariableValues[3];
+
+            int a = 2;
+            int b = 4;
+            int c = 2;
+            int d = a + b - a * c / a;
+
+            int actualValue = d;
+            Assert.AreEqual(resolvedValue, actualValue);
+
+        }
+
+
+        [TestMethod]
+        public void declareVariableTest_InvalidSyntax() {
+        }
+
+
+
+
+        /* 
+         * Below are tests for Component 1
+         
+             */
+
 
         /// <summary>
         /// Unit test to check if one valid command executes.
