@@ -60,6 +60,22 @@ namespace ASE_GPEnv_Comp2
         }
     }
 
+
+    public struct IfBlock {
+        public bool parsedComparisonResult;
+        public List<string> ifBlockStatements;
+        public bool isMultilineBlock;
+        public int atLineNumber;
+        public void initializeIfBlock()
+        {
+            this.parsedComparisonResult = false;
+            this.ifBlockStatements = new List<string>();
+            this.isMultilineBlock = false;
+        }
+
+
+    }
+
     /// <summary>
     /// Command Parser class which parses one command or multiple line program.
     /// </summary>
@@ -75,8 +91,11 @@ namespace ASE_GPEnv_Comp2
 
         public List<string> allDeclaredVariables = new List<string>();
         public List<int> allDeclaredVariableValues = new List<int>();
+        public List<IfBlock> allIfBlocks = new List<IfBlock>();
+        public List<int> linesToIgnoreExecution = new List<int>();
 
-        int variablesCounter = 0;
+        public List<ParsingException> innerExceptions = new List<ParsingException>();
+        
 
 
         /// <summary>
@@ -122,6 +141,7 @@ namespace ASE_GPEnv_Comp2
             public int lineNumber;
             public bool isSuccessful;
             public List<ParsingException> parsingExceptions;
+
 
             public string[] parsedParameters;
             public string parsedCommand;
@@ -216,10 +236,124 @@ namespace ASE_GPEnv_Comp2
                     index++;
             }
             }
+            this.innerExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Unknown variable or expression'"+expression+"'"));
             return 0;
 
 
         }
+
+        public int getOperandValue(string operand)
+        {
+            if (int.TryParse(operand, out int operandValue))
+            {
+                return operandValue;
+            }
+            else {
+                int valueIdx = this.getStringIndexFromArray(operand, this.allDeclaredVariables.ToArray(), false);
+                if (valueIdx != -1) {
+                    return this.allDeclaredVariableValues[valueIdx];
+                }
+            }
+
+            this.innerExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Unknown variable or expression'" + operand + "'"));
+            return 0;
+
+
+        }
+
+
+        public bool getComparisonResult(string[] expressionSplit, string operator_) {
+            if (expressionSplit.Length < 2) {
+                this.innerExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Incomplete expression."));
+                return false;
+            }
+
+
+            string leftOperand = expressionSplit[0].Trim();
+            string rightOperand = expressionSplit[1].Trim();
+
+            if (leftOperand.Equals(rightOperand) || operator_ == "=") {
+                this.canvas.appendExecutionResultsToOutput("Warning!!!! Truth assertion for '"+leftOperand+operator_+rightOperand+"'. Always returns true");
+                return true;
+            }
+
+            int leftOperandValue = getOperandValue(leftOperand);
+            int rightOperandValue = getOperandValue(rightOperand);
+            switch (operator_) {
+                case "==":
+                    return leftOperandValue == rightOperandValue;
+                case "<":
+                    return leftOperandValue < rightOperandValue;
+                case ">":
+                    return leftOperandValue > rightOperandValue;
+                case ">=":
+                    return leftOperandValue >= rightOperandValue;
+                case "<=":
+                    return leftOperandValue <= rightOperandValue;
+            }
+            return false;
+
+        }
+        public bool resolveComparisonExpression(string expression) {
+
+
+            if (expression.Contains("==")) {
+                string [] expressionSplit = expression.Split("==".ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                return getComparisonResult(expressionSplit, "==");
+            }
+            else if (expression.Contains("<="))
+            {
+                string[] expressionSplit = expression.Split("<=".ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                return getComparisonResult(expressionSplit, "<=");
+            }
+            else if (expression.Contains(">="))
+            {
+                string[] expressionSplit = expression.Split(">=".ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                return getComparisonResult(expressionSplit, ">=");
+            }
+            else if (expression.Contains(">="))
+            {
+                string[] expressionSplit = expression.Split("<".ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                return getComparisonResult(expressionSplit, "<");
+            }
+            if (expression.Contains(">"))
+            {
+                string[] expressionSplit = expression.Split(">".ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                return getComparisonResult(expressionSplit, ">");
+            }
+            if (expression.Contains("="))
+            {
+                // Truth assertion: Handled by one function above.
+                string[] expressionSplit = expression.Split("=".ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                return getComparisonResult(expressionSplit, "=");
+
+            }
+            else
+            {
+                this.innerExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Incomplete Expression for comparison."));
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Function finds the string from an array
+        /// </summary>
+        /// <param name="str">string to find</param>
+        /// <param name="array">Source array to find the string from</param>
+        /// <param name="shouldTrim">Whether  to remove spaces in commands i.e 'endif '</param>
+        /// <returns>Index of target string, -1 string not found</returns>
+        int getStringIndexFromArray(string str, string[] array, bool shouldTrim) {
+            
+            if(shouldTrim)
+                array = Array.ConvertAll(array, s => s.Replace(" ", ""));
+
+            return Array.IndexOf(array, str);
+
+
+
+        }
+
 
         /// <summary>
         /// Function checks following things:
@@ -319,7 +453,6 @@ namespace ASE_GPEnv_Comp2
             ///if command is starting with var, following things are checked
             ///1) number of params for insuffcient or too much 2) type of param 
             ///</summary>
-            //bool isCommandStartingWithVariableName = false;
 
             int variableIndex = 0;
             foreach (string variableName in allDeclaredVariables) {
@@ -354,6 +487,65 @@ namespace ASE_GPEnv_Comp2
 
             }
 
+
+            ///<summary>
+            ///[if block parsing and checking- both one line and multiline]
+            ///</summary>
+
+            if (inputCommand == "if") {
+                IfBlock ifBlock = new IfBlock();
+                ifBlock.initializeIfBlock();
+                ifBlock.atLineNumber = lineNumber;
+                string [] cleanedStatments = this.cleanAndConvertProgramToStatements(canvas.getProgramFromEditor());
+
+                string[] ifCompExpression = command.Trim().Split("if".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                if (ifCompExpression.Length == 0)
+                {
+                    parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Empty expression for if statement"));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+                ifBlock.parsedComparisonResult = this.resolveComparisonExpression(ifCompExpression[0]);
+              
+        
+
+                if (lineNumber == cleanedStatments.Length)
+                {
+                    parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Incomplete program. Nothing found after if statement"));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+
+                int startingLineFor_If = lineNumber;
+                int lineFor_EndIf = getStringIndexFromArray("endif", cleanedStatments, true);
+                if (lineFor_EndIf == -1)
+                {
+                    //one line if
+                    ifBlock.ifBlockStatements.Add(cleanedStatments[startingLineFor_If]);
+                    ifBlock.isMultilineBlock = false;
+                    linesToIgnoreExecution.Add(startingLineFor_If);
+                }
+                else {
+                    // multiline if block block with end if
+                    for (int ifBlockLineIdx = startingLineFor_If; ifBlockLineIdx <= lineFor_EndIf-1; ifBlockLineIdx++)
+                    {
+                        ifBlock.ifBlockStatements.Add(cleanedStatments[ifBlockLineIdx]);
+                        ifBlock.isMultilineBlock = true;
+                        linesToIgnoreExecution.Add(ifBlockLineIdx);
+
+
+                    }
+                }
+
+                foreach (int line in linesToIgnoreExecution) {
+                    Debug.WriteLine(line+ "+" +cleanedStatments[line]);
+                }
+                this.allIfBlocks.Add(ifBlock);
+                return parsingInfo;
+
+    
+                
+            }
 
 
 
@@ -487,6 +679,25 @@ namespace ASE_GPEnv_Comp2
         /// </summary>
         /// <param name="parsingResult"></param>
         public void runValidGPLCommand(ParsingInfo parsingResult) {
+
+
+            if (parsingResult.parsedCommand == "if")
+            {
+
+                int ifIndex = Array.FindIndex(this.allIfBlocks.ToArray(), element => element.atLineNumber == parsingResult.lineNumber);
+
+                IfBlock ifBlock = this.allIfBlocks[ifIndex];
+
+                //MessageBox.Show("Execute If Block")
+                if (ifBlock.parsedComparisonResult)
+                {
+
+                    foreach (string statement in ifBlock.ifBlockStatements)
+                    {
+                        this.executeOneCommand(statement, -1);
+                    }
+                }
+            }
 
 
             ///<summary>
@@ -661,8 +872,7 @@ namespace ASE_GPEnv_Comp2
 
                     string outputText = (parsingResult.lineNumber == -1 ? "" : "[Line No."+parsingResult.lineNumber+"]-")+ pEx.Message + "\n\t" + pEx.getParsingExceptionMessage() + "\n_____________________________________________";
                     canvas.appendExecutionResultsToOutput(outputText);
-                    //Debug.WriteLine(pEx.Message+" "+pEx.getParsingExceptionMessage());
-
+                    
                 }
             }
         }
@@ -687,10 +897,17 @@ namespace ASE_GPEnv_Comp2
         /// 1) Parsed Command 2) Parsed Params and 3) Successflag along with other info
         /// </returns>
         public ParsingInfo executeOneCommand(String commandTxt, int lineNumber) {
-
             commandTxt = commandTxt.ToLower();
             ParsingInfo parsingResult = checkSyntax(commandTxt, lineNumber);
-            if (parsingResult.isSuccessful) {
+
+            //appending inner exceptions
+            parsingResult.parsingExceptions.AddRange(this.innerExceptions);
+            this.innerExceptions.Clear();
+
+            bool exists = Array.Exists(this.linesToIgnoreExecution.ToArray(), element => element == parsingResult.lineNumber -1);
+
+            if (parsingResult.isSuccessful && !exists) {
+                
                 // identify the command and excecute it
                 runValidGPLCommand(parsingResult);
             }
@@ -716,12 +933,34 @@ namespace ASE_GPEnv_Comp2
         {
             this.allDeclaredVariables.Clear();
             this.allDeclaredVariableValues.Clear();
+            this.linesToIgnoreExecution.Clear();
+            this.allIfBlocks.Clear();
 
             this.canvas.resetPen();
             this.canvas.clearCanvas();
             this.canvas.clearOutputBox();
         }
 
+        public string[] cleanAndConvertProgramToStatements(string programText) {
+            Regex regex = new Regex("\\s{2,}");
+            string[] statements = programText.Split('\n');
+            List<string> cleanedStatements = new List<string>();
+            foreach (string statement in statements)
+            {
+                string cleanedStatement = statement.Replace('\r'.ToString(), "");
+
+                cleanedStatement = regex.Replace(cleanedStatement, "");
+
+                if (cleanedStatement == "")
+                    continue;
+
+                cleanedStatements.Add(cleanedStatement.ToLower());
+            }
+
+            return cleanedStatements.ToArray();
+        }
+
+        public string[] statementsToIgnore = new string[] { "endif"};
 
         /// <summary>
         /// Function to read all statements in the program editor and execute one by one
@@ -735,17 +974,17 @@ namespace ASE_GPEnv_Comp2
         {
             this.resetUI();
 
-            Regex regex = new Regex("\\s{2,}");
-            string[] statements = programTxt.Split('\n');
             List<ParsingInfo> parsingInfos = new List<ParsingInfo>();
             int lineNumber = 1;
-            foreach (String statement in statements) {
-                string cleanedStatement = statement.Replace('\r'.ToString(), "");
-                
-                cleanedStatement = regex.Replace(cleanedStatement, "");
+            string[] cleanedStatements = this.cleanAndConvertProgramToStatements(programTxt);
+            foreach (string cleanedStatement in cleanedStatements) {
 
-                if (cleanedStatement == "")
+                bool foundInArray = Array.Exists(this.statementsToIgnore, element => element.Contains(cleanedStatement.Trim()));
+
+                if (foundInArray) {
                     continue;
+                }
+
                 ParsingInfo parsingInfo = executeOneCommand(cleanedStatement, lineNumber++);
                 parsingInfos.Add(parsingInfo);
             }
