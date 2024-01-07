@@ -162,5 +162,10 @@ namespace ASE_GPEnv_Comp2
         {
             parser.executeWholePrograme(canvas.getProgramFromEditor());
         }
+
+        private void programSyntaxCheckButton_Click(object sender, EventArgs e)
+        {
+            parser.checkProgramSyntax();
+        }
     }
 }

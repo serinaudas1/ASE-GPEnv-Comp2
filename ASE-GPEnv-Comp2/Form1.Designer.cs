@@ -139,6 +139,7 @@
             this.programSyntaxCheckButton.TabIndex = 3;
             this.programSyntaxCheckButton.Text = "Syntax Check";
             this.programSyntaxCheckButton.UseVisualStyleBackColor = true;
+            this.programSyntaxCheckButton.Click += new System.EventHandler(this.programSyntaxCheckButton_Click);
             // 
             // programTextBox
             // 
@@ -387,7 +388,7 @@
             this.tabPage2.Controls.Add(this.drawRectangleBtn);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(395, 174);
+            this.tabPage2.Size = new System.Drawing.Size(639, 300);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Toolbox";
             this.tabPage2.UseVisualStyleBackColor = true;

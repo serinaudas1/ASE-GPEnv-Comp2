@@ -27,7 +27,7 @@ namespace ASE_GPEnv_Comp2
     {
         public string command;
         public int numberOfValidParams;
-        public string[] validParams; 
+        public string[] validParams;
         public bool hasStringParam;
         public string commandFormat;
         public GPLCommand(string command) : this()
@@ -40,7 +40,7 @@ namespace ASE_GPEnv_Comp2
         }
 
 
-        public GPLCommand(string command, string [] validStringParams, int numberOfValidParams, string commandFormat) : this()
+        public GPLCommand(string command, string[] validStringParams, int numberOfValidParams, string commandFormat) : this()
         {
             //exmple commands: fill on; fill off; pen {color}
             this.command = command;
@@ -79,18 +79,38 @@ namespace ASE_GPEnv_Comp2
 
     public struct WhileBlock
     {
-       
+
         public List<string> loopBlockStatements;
         public int atLineNumber;
         public string loopConditionExpression;
         public void initializeWhileBlock()
         {
-            
+
             this.loopBlockStatements = new List<string>();
         }
 
 
     }
+
+    public struct MethodBlock
+    {
+
+        public List<string> methodStatements;
+        public List<int> methodParams;
+        public int methodParamsCount;
+        public string methodName;
+        public int atLineNumber;
+        public void initializeMethodBlock()
+        {
+
+            this.methodStatements = new List<string>();
+            this.methodParams = new List<int>();
+        }
+        
+
+
+    }
+
 
 
 
@@ -111,10 +131,13 @@ namespace ASE_GPEnv_Comp2
         public List<int> allDeclaredVariableValues = new List<int>();
         public List<IfBlock> allIfBlocks = new List<IfBlock>();
         public List<WhileBlock> allWhileBlocks = new List<WhileBlock>();
+        public List<MethodBlock> allMethodBlocks = new List<MethodBlock>();
 
         public List<int> linesToIgnoreExecution = new List<int>();
 
         public List<ParsingException> innerExceptions = new List<ParsingException>();
+
+        public bool isSyntaxCheckingPass = true;
         
 
 
@@ -496,7 +519,7 @@ namespace ASE_GPEnv_Comp2
                         allDeclaredVariableValues[variableIndex] = resolveVariableValue(expression.Trim());
 
                     int calculatedValue = allDeclaredVariableValues[variableIndex];
-                    this.canvas.appendExecutionResultsToOutput("***** Variable: '"+ inputCommand + "="+ calculatedValue + "' updated. ****");
+                    //this.canvas.appendExecutionResultsToOutput("***** Variable: '"+ inputCommand + "="+ calculatedValue + "' updated. ****");
 
                     return parsingInfo;
                    
@@ -518,7 +541,7 @@ namespace ASE_GPEnv_Comp2
                 ifBlock.atLineNumber = lineNumber;
                 string [] cleanedStatments = this.cleanAndConvertProgramToStatements(canvas.getProgramFromEditor());
 
-                string[] ifCompExpression = command.Trim().Split("if".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                string[] ifCompExpression = command.Trim().Split(new[] { "if" }, StringSplitOptions.RemoveEmptyEntries);
                 if (ifCompExpression.Length == 0)
                 {
                     parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Empty expression for if statement"));
@@ -575,7 +598,7 @@ namespace ASE_GPEnv_Comp2
                 whileBlock.atLineNumber = lineNumber;
                 string[] cleanedStatments = this.cleanAndConvertProgramToStatements(canvas.getProgramFromEditor());
 
-                string[] whileExpression = command.Trim().Split("while".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                string[] whileExpression = command.Trim().Split(new[] { "while" }, StringSplitOptions.RemoveEmptyEntries);
                 if (whileExpression.Length == 0)
                 {
                     parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Empty expression for while loop"));
@@ -619,7 +642,171 @@ namespace ASE_GPEnv_Comp2
 
             }
 
+            if (inputCommand == "method") {
 
+                MethodBlock methodBlock = new MethodBlock();
+                methodBlock.initializeMethodBlock();
+
+                methodBlock.atLineNumber = lineNumber;
+                string[] cleanedStatments = this.cleanAndConvertProgramToStatements(canvas.getProgramFromEditor());
+
+                string[] methodSplit = command.Trim().Split(new[] { "method" }, StringSplitOptions.RemoveEmptyEntries);
+                if (methodSplit.Length == 0)
+                {
+                    parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Missing method name and parameters."));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+
+                string[] methodNameSplit = methodSplit[0].Trim().Split('(');
+                if (methodNameSplit.Length <= 1)
+                {
+                    parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Missing method name or parameters."));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+                string methodName = methodNameSplit[0];
+
+                //ToDo: check if method already exists
+
+                methodBlock.methodName = methodName;
+       
+
+    
+                string paramsPart = (methodSplit[0].Trim().Split(new[] { methodName }, StringSplitOptions.RemoveEmptyEntries))[0];
+                if (paramsPart.StartsWith("") && paramsPart.EndsWith(")"))
+                {
+                    paramsPart = paramsPart.Replace("(", "");
+                    paramsPart = paramsPart.Replace(")", "");
+
+                    string[] methodParamsSplit = methodNameSplit[1].Trim().Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                    methodBlock.methodParamsCount = methodParamsSplit.Length;
+
+                }
+                else {
+                    
+                    parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Missing method params enclosing brackets"));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+
+
+
+
+   
+
+
+                if (lineNumber == cleanedStatments.Length)
+                {
+                    parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Incomplete program. Nothing found after method declaration statement"));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+
+                int startingLineFor_Method = lineNumber;
+                int lineFor_EndMethod = getStringIndexFromArray("endmethod", cleanedStatments, true);
+                if (lineFor_EndMethod == -1)
+                {
+                   
+                    parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Method started, but method closing is not defined."));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+                else
+                {
+                    // multiline if block block with end if
+                    for (int methodBlockLineIndex = startingLineFor_Method; methodBlockLineIndex <= lineFor_EndMethod - 1; methodBlockLineIndex++)
+                    {
+                        methodBlock.methodStatements.Add(cleanedStatments[methodBlockLineIndex]);
+                        linesToIgnoreExecution.Add(methodBlockLineIndex);
+
+                    }
+                }
+
+
+                this.allMethodBlocks.Add(methodBlock);
+                return parsingInfo;
+
+
+
+            }
+
+            if (inputCommand == "call")
+            {
+                
+                string[] callSplit = command.Trim().Split(new[] { "call" }, StringSplitOptions.RemoveEmptyEntries);
+                if (callSplit.Length == 0)
+                {
+                    parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Missing method name and parameters."));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+
+                string[] methodNameSplit = callSplit[0].Trim().Split('(');
+                if (methodNameSplit.Length <= 1)
+                {
+                    parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Missing method name or parameters."));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+                string methodName = methodNameSplit[0];
+
+
+
+
+
+                string paramsPart = (callSplit[0].Trim().Split(new[] { methodName }, StringSplitOptions.RemoveEmptyEntries))[0];
+                if (paramsPart.StartsWith("") && paramsPart.EndsWith(")"))
+                {
+                    paramsPart = paramsPart.Replace("(", "");
+                    paramsPart = paramsPart.Replace(")", "");
+
+                    
+
+                    int methodIndex = Array.FindIndex(this.allMethodBlocks.ToArray(), element => element.methodName == methodName);
+
+                    if (methodIndex == -1) {
+
+                        parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Method '"+methodName+"' not found"));
+                        parsingInfo.isSuccessful = false;
+                        return parsingInfo;
+                    }
+                    MethodBlock methodBlock = this.allMethodBlocks[methodIndex];
+
+                    string[] methodParamsSplit = methodNameSplit[1].Trim().Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                    if (methodParamsSplit.Length < methodBlock.methodParamsCount)
+                    {
+
+                        parsingInfo.parsingExceptions.Add(new InvalidParamsException("Invalid Params", "Insufficient params passed to method.'"+methodName+"' accepts "+methodBlock.methodParamsCount+" but "+paramsArray.Length+" passed."));
+                        parsingInfo.isSuccessful = false;
+                        return parsingInfo;
+                    }else if (methodParamsSplit.Length > methodBlock.methodParamsCount)
+                    {
+
+                        parsingInfo.parsingExceptions.Add(new InvalidParamsException("Invalid Params", "Too much params passed to method.'" + methodName + "' accepts " + methodBlock.methodParamsCount + " but " + paramsArray.Length + " passed."));
+                        parsingInfo.isSuccessful = false;
+                        return parsingInfo;
+                    }
+                    foreach (string param in paramsArray) {
+                        allMethodBlocks[methodIndex].methodParams.Add(this.resolveVariableValue(param));
+                        parsingInfo.parsedParameters = new string[] { methodName};
+                    }
+
+                    
+                }
+                else
+                {
+
+                    parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Missing method params enclosing brackets"));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+
+                return parsingInfo;
+
+
+
+            }
 
 
 
@@ -791,6 +978,14 @@ namespace ASE_GPEnv_Comp2
                 }
             }
 
+            if (parsingResult.parsedCommand == "call") {
+
+                int methodIndex = Array.FindIndex(this.allMethodBlocks.ToArray(), element => element.methodName == parsingResult.parsedParameters[0]);
+                MethodBlock methodBlock = this.allMethodBlocks[methodIndex];
+                foreach (string s in methodBlock.methodStatements) {
+                    this.executeOneCommand(s,0);
+                }
+            }
 
             ///<summary>
             ///After successful parsing checks, moveto command is executed here.
@@ -998,7 +1193,7 @@ namespace ASE_GPEnv_Comp2
 
             bool exists = Array.Exists(this.linesToIgnoreExecution.ToArray(), element => element == parsingResult.lineNumber -1);
 
-            if (parsingResult.isSuccessful && !exists) {
+            if (parsingResult.isSuccessful && !exists && !isSyntaxCheckingPass) {
                 
                 // identify the command and excecute it
                 runValidGPLCommand(parsingResult);
@@ -1052,7 +1247,7 @@ namespace ASE_GPEnv_Comp2
             return cleanedStatements.ToArray();
         }
 
-        public string[] statementsToIgnore = new string[] { "endif", "endloop"};
+        public string[] statementsToIgnore = new string[] { "endif", "endloop", "endmethod"};
 
         /// <summary>
         /// Function to read all statements in the program editor and execute one by one
@@ -1065,6 +1260,8 @@ namespace ASE_GPEnv_Comp2
         public List<ParsingInfo> executeWholePrograme(String programTxt)
         {
             this.resetUI();
+            this.isSyntaxCheckingPass = false;
+
 
             List<ParsingInfo> parsingInfos = new List<ParsingInfo>();
             int lineNumber = 1;
@@ -1083,6 +1280,11 @@ namespace ASE_GPEnv_Comp2
             return parsingInfos;
         }
 
-        
+        public void checkProgramSyntax() {
+            this.isSyntaxCheckingPass = true;
+            this.executeWholePrograme(canvas.getProgramFromEditor());
+        }
+
+
     }
 }
