@@ -76,10 +76,28 @@ namespace ASE_GPEnv_Comp2
 
     }
 
+
+    public struct WhileBlock
+    {
+       
+        public List<string> loopBlockStatements;
+        public int atLineNumber;
+        public string loopConditionExpression;
+        public void initializeWhileBlock()
+        {
+            
+            this.loopBlockStatements = new List<string>();
+        }
+
+
+    }
+
+
+
     /// <summary>
     /// Command Parser class which parses one command or multiple line program.
     /// </summary>
-   public class CommandParser
+    public class CommandParser
     {
     
 
@@ -92,6 +110,8 @@ namespace ASE_GPEnv_Comp2
         public List<string> allDeclaredVariables = new List<string>();
         public List<int> allDeclaredVariableValues = new List<int>();
         public List<IfBlock> allIfBlocks = new List<IfBlock>();
+        public List<WhileBlock> allWhileBlocks = new List<WhileBlock>();
+
         public List<int> linesToIgnoreExecution = new List<int>();
 
         public List<ParsingException> innerExceptions = new List<ParsingException>();
@@ -311,7 +331,7 @@ namespace ASE_GPEnv_Comp2
                 string[] expressionSplit = expression.Split(">=".ToArray(), StringSplitOptions.RemoveEmptyEntries);
                 return getComparisonResult(expressionSplit, ">=");
             }
-            else if (expression.Contains(">="))
+            else if (expression.Contains("<"))
             {
                 string[] expressionSplit = expression.Split("<".ToArray(), StringSplitOptions.RemoveEmptyEntries);
                 return getComparisonResult(expressionSplit, "<");
@@ -476,7 +496,7 @@ namespace ASE_GPEnv_Comp2
                         allDeclaredVariableValues[variableIndex] = resolveVariableValue(expression.Trim());
 
                     int calculatedValue = allDeclaredVariableValues[variableIndex];
-                    this.canvas.appendExecutionResultsToOutput("***** Variable: '"+ inputCommand + "="+ calculatedValue + "' declared. ****");
+                    this.canvas.appendExecutionResultsToOutput("***** Variable: '"+ inputCommand + "="+ calculatedValue + "' updated. ****");
 
                     return parsingInfo;
                    
@@ -546,6 +566,59 @@ namespace ASE_GPEnv_Comp2
     
                 
             }
+
+
+            if (inputCommand == "while")
+            {
+                WhileBlock whileBlock = new WhileBlock();
+                whileBlock.initializeWhileBlock();
+                whileBlock.atLineNumber = lineNumber;
+                string[] cleanedStatments = this.cleanAndConvertProgramToStatements(canvas.getProgramFromEditor());
+
+                string[] whileExpression = command.Trim().Split("while".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                if (whileExpression.Length == 0)
+                {
+                    parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Empty expression for while loop"));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+                whileBlock.loopConditionExpression = whileExpression[0];
+
+                if (lineNumber == cleanedStatments.Length)
+                {
+                    parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Incomplete program. Nothing found after while statement"));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+
+                int startingLineFor_WhileLoop = lineNumber;
+                int lineFor_EndWhile = getStringIndexFromArray("endloop", cleanedStatments, true);
+                if (lineFor_EndWhile == -1)
+                {
+                    //no endloop found
+                    parsingInfo.parsingExceptions.Add(new InvalidSyntaxException("Invalid Syntax", "Loop started, but loop closing is not defined."));
+                    parsingInfo.isSuccessful = false;
+                    return parsingInfo;
+                }
+                else
+                {
+                    // multiline if block block with end if
+                    for (int whileBlockLineIndex = startingLineFor_WhileLoop; whileBlockLineIndex <= lineFor_EndWhile - 1; whileBlockLineIndex++)
+                    {
+                        whileBlock.loopBlockStatements.Add(cleanedStatments[whileBlockLineIndex]);
+                        linesToIgnoreExecution.Add(whileBlockLineIndex);
+
+                    }
+                }
+
+            
+                this.allWhileBlocks.Add(whileBlock);
+                return parsingInfo;
+
+
+
+            }
+
 
 
 
@@ -693,6 +766,25 @@ namespace ASE_GPEnv_Comp2
                 {
 
                     foreach (string statement in ifBlock.ifBlockStatements)
+                    {
+                        this.executeOneCommand(statement, -1);
+                    }
+                }
+            }
+
+
+            if (parsingResult.parsedCommand == "while")
+            {
+
+                int whileIndex = Array.FindIndex(this.allWhileBlocks.ToArray(), element => element.atLineNumber == parsingResult.lineNumber);
+
+                WhileBlock whileBlock = this.allWhileBlocks[whileIndex];
+
+                //MessageBox.Show("Execute If Block")d
+                while (this.resolveComparisonExpression(whileBlock.loopConditionExpression))
+                {
+
+                    foreach (string statement in whileBlock.loopBlockStatements)
                     {
                         this.executeOneCommand(statement, -1);
                     }
@@ -960,7 +1052,7 @@ namespace ASE_GPEnv_Comp2
             return cleanedStatements.ToArray();
         }
 
-        public string[] statementsToIgnore = new string[] { "endif"};
+        public string[] statementsToIgnore = new string[] { "endif", "endloop"};
 
         /// <summary>
         /// Function to read all statements in the program editor and execute one by one
